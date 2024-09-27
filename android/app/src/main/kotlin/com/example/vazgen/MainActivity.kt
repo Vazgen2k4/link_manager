@@ -1,0 +1,6 @@
+package com.vazgen
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
