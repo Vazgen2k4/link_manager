@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:link_manager/app_logger.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/models/user/app_user.dart';
 import 'package:equatable/equatable.dart';
@@ -26,11 +27,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     final hasAuth = FirebaseAuth.instance.currentUser != null;
 
-    log('Авторизация ${hasAuth ? 'Есть БраТишкА)))' : 'Её нетУ Брат'}');
-
+    final logValue = 'Авторизация ${hasAuth ? 'присутствует' : 'отсутствует'}';
+    AppLogger.logInfo(logValue);
     AppUser? user;
 
     if (hasAuth) {
+      AppLogger.logInfo('Загрузка пользователя');
       final id = auth.currentUser?.uid;
       user = await FirebaseApi.getUser(id: id);
     }
@@ -44,7 +46,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     if (state is! AuthLoaded) {
-      log('Проблема со стейтом');
+      AppLogger.logWarning('Проблема со стейтом');
       return;
     }
 
@@ -58,7 +60,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       emit(newState);
     } catch (e) {
-      log('Error [object] - log Out');
+      AppLogger.logError('Ошибка выхода: $e');      
     }
   }
 
@@ -81,7 +83,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
 
       final googleAuth = await googleUser.authentication;
-
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,

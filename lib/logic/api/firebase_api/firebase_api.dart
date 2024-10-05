@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:link_manager/app_logger.dart';
 import 'package:link_manager/logic/models/user/app_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 
 abstract final class FirebaseApi {
   static final _instance = FirebaseFirestore.instance;
@@ -49,9 +49,7 @@ abstract final class FirebaseApi {
     User? googleUser,
   }) async {
     if (googleUser == null) {
-      if (kDebugMode) {
-        print('Gjk');
-      }
+      AppLogger.logWarning('Google user не был передан');
       return false;
     }
 
@@ -71,6 +69,7 @@ abstract final class FirebaseApi {
     String? id,
   }) async {
     if (id == null) {
+      AppLogger.logWarning('Id не передан');
       return null;
     }
 
@@ -78,12 +77,14 @@ abstract final class FirebaseApi {
     final userData = userDoc.data();
 
     if (userData == null) {
+      AppLogger.logWarning('Пользователя не существует');
       return null;
     }
 
-
     // TODO: это часть миграции
     if (userData['role'] == null) {
+      AppLogger.logHint('Мигрирование произошло');
+
       userData['role'] ??= 'user';
       await updateUserById(
         user: AppUser.fromJson(userData),
@@ -94,5 +95,4 @@ abstract final class FirebaseApi {
     final user = AppUser.fromJson(userData);
     return user;
   }
-  
 }
