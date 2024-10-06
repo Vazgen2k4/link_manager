@@ -14,10 +14,19 @@ class App extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<SettingsBloc>(
-          create: (context) => SettingsBloc()..add(const SettingsEventLoad()),
+          lazy: false,
+          create: (context) {
+            final block = SettingsBloc();
+            block.add(const SettingsEventLoad());
+            return block;
+          },
         ),
         BlocProvider<AuthBloc>(
-          create: (context) => AuthBloc()..add(const AuthLoading()),
+          create: (context) {
+            final block = AuthBloc();
+            block.add(const AuthLoading());
+            return block;
+          },
         ),
       ],
       child: const AppContent(),
@@ -32,6 +41,16 @@ class AppContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settings = context.watch<SettingsBloc>();
+    String lang = 'en';
+
+    if (settings.state is SettingsLoaded) {
+      final state = settings.state as SettingsLoaded;
+      lang = state.lang;
+    }
+
+    final locale = Locale(lang);
+
     return MaterialApp(
       localizationsDelegates: const [
         S.delegate,
@@ -40,6 +59,7 @@ class AppContent extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
+      locale: locale,
       theme: ThemeData.dark(useMaterial3: true),
       initialRoute: AppRouter.initRoute,
       onGenerateRoute: AppRouter.generate,

@@ -46,77 +46,82 @@ class ProfilePageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final heigth = size.height - kToolbarHeight - kTextTabBarHeight;
+    // final size = MediaQuery.of(context).size;
+    // final heigth = size.height - kToolbarHeight - kTextTabBarHeight;
+    const divider = SizedBox(height: 8);
 
     return LimitContainer(
-      child: SizedBox(
-        height: heigth,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Section(
-                title: S.of(context).userdata_section_title,
-                child: const PersonalForm(),
-              ),
-              Section(
-                title: S.of(context).dev_section_title,
-                child: Column(
-                  children: [
-                    SettingsButton(
-                      icon: Icons.favorite,
-                      text: S.of(context).support_project,
-                      onClick: () => copyData(context),
-                    ),
-                    const SizedBox(height: 8),
-                    SettingsButton(
-                      icon: Icons.telegram,
-                      text: S.of(context).telegram_blog,
-                      onClick: () {
-                        launchUrl(Uri.parse('https://t.me/OverWebBlog'));
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              Section(
-                title: S.of(context).settings_title,
-                child: Column(
-                  children: [
-                    SettingsButton(
-                      text: 'Русский',
-                      icon: Icons.local_parking_sharp,
-                      onClick: () => setLanguage(context, 'ru'),
-                    ),
-                    SettingsButton(
-                      text: 'Английский',
-                      icon: Icons.local_parking_sharp,
-                      onClick: () => setLanguage(context, 'en'),
-                    ),
-                    SettingsButton(
-                      text: 'Чешский',
-                      icon: Icons.local_parking_sharp,
-                      onClick: () => setLanguage(context, 'cz'),
-                    ),
-                  ],
-                ),
-              ),
-              Section(
-                title: S.of(context).exit,
-                child: Hero(
-                  tag: AppHeroTags.button,
-                  child: CooldownButton.text(
-                    text: S.of(context).exit,
-                    onClick: () async {
-                      context.read<AuthBloc>().add(const AuthLogOut());
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Section(
+              title: S.of(context).userdata_section_title,
+              child: const PersonalForm(),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Section(
+              title: S.of(context).dev_section_title,
+              child: Column(
+                children: [
+                  SettingsButton(
+                    icon: Icons.favorite,
+                    text: S.of(context).support_project,
+                    onClick: () => copyData(context),
+                  ),
+                  divider,
+                  SettingsButton(
+                    icon: Icons.telegram,
+                    text: S.of(context).telegram_blog,
+                    onClick: () {
+                      launchUrl(Uri.parse('https://t.me/OverWebBlog'));
                     },
                   ),
+                ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Section(
+              title: S.of(context).settings_title,
+              child: Column(
+                children: [
+                  SettingsButton(
+                    text: 'Русский',
+                    icon: Icons.local_parking_sharp,
+                    onClick: () => setLanguage(context, 'ru'),
+                  ),
+                  divider,
+                  SettingsButton(
+                    text: 'Английский',
+                    icon: Icons.local_parking_sharp,
+                    onClick: () => setLanguage(context, 'en'),
+                  ),
+                  divider,
+                  SettingsButton(
+                    text: 'Чешский',
+                    icon: Icons.local_parking_sharp,
+                    onClick: () => setLanguage(context, 'cs'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Section(
+              title: S.of(context).exit,
+              child: Hero(
+                tag: AppHeroTags.button,
+                child: CooldownButton.text(
+                  text: S.of(context).exit,
+                  onClick: () async {
+                    context.read<AuthBloc>().add(const AuthLogOut());
+                  },
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

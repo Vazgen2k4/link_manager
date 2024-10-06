@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:link_manager/app_logger.dart';
-import 'package:link_manager/generated/l10n.dart';
+// import 'package:link_manager/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'settings_event.dart';
@@ -20,8 +20,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   );
 
   SettingsBloc() : super(SettingsInitial()) {
-    
-    
     on<SettingsEventLoad>(_load);
     on<SettingsEventSetLocale>(_setLocale);
   }
@@ -36,7 +34,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     final lang = prefs.getString(SettingsKeys.lang);
     final state = SettingsLoaded(lang: lang);
 
-    await S.load(Locale(state.lang));
     emit(state);
   }
 
@@ -52,7 +49,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     final prefs = await _prefs;
     final lang = prefs.getString(SettingsKeys.lang);
     // TODO: добавить функционал
-    // ignore: unused_local_variable
     final state = this.state as SettingsLoaded;
 
     if (lang == event.newLang) {
@@ -62,7 +58,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
     AppLogger.logHint("Установка нового языка");
     await prefs.setString(SettingsKeys.lang, event.newLang);
-    await S.load(Locale(event.newLang));
 
     emit(SettingsLoaded(lang: event.newLang));
   }

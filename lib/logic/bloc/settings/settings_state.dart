@@ -19,6 +19,4 @@ final class SettingsLoaded extends SettingsState {
 
   @override
   List<Object> get props => [_lang];
-
-  // TODO: реализовать copyWith
 }
