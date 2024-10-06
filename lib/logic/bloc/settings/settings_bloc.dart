@@ -49,6 +49,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     final prefs = await _prefs;
     final lang = prefs.getString(SettingsKeys.lang);
     // TODO: добавить функционал
+    // ignore: unused_local_variable
     final state = this.state as SettingsLoaded;
 
     if (lang == event.newLang) {
