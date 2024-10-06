@@ -32,5 +32,6 @@
     "remove_link": "Are you sure you want to delete the link:",
     "empty_folder": "The directory is empty",
     "settings_title": "Settings",
+    "lang": "Language",
     "home_page_title": "Link Manager"
 }

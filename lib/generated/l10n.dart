@@ -380,6 +380,16 @@ class S {
     );
   }
 
+  /// `Language`
+  String get lang {
+    return Intl.message(
+      'Language',
+      name: 'lang',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Link Manager`
   String get home_page_title {
     return Intl.message(

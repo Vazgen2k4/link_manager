@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "google_login_button":
             MessageLookupByLibrary.simpleMessage("Выполните вход"),
         "home_page_title": MessageLookupByLibrary.simpleMessage("Link Manager"),
+        "lang": MessageLookupByLibrary.simpleMessage("Язык"),
         "link_to_kos":
             MessageLookupByLibrary.simpleMessage("Сcылка на расписание"),
         "links": MessageLookupByLibrary.simpleMessage("Сcылки"),

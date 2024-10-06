@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Floating error"),
         "google_login_button": MessageLookupByLibrary.simpleMessage("Login"),
         "home_page_title": MessageLookupByLibrary.simpleMessage("Link Manager"),
+        "lang": MessageLookupByLibrary.simpleMessage("Language"),
         "link_to_kos": MessageLookupByLibrary.simpleMessage("Link to schedule"),
         "links": MessageLookupByLibrary.simpleMessage("Links"),
         "no_connection":

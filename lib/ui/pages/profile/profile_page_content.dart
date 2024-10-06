@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/bloc/settings/settings_bloc.dart';
+import 'package:link_manager/resources/resources.dart';
 import 'package:link_manager/ui/router/app_hero_tags.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:link_manager/ui/widgets/buttons/cooldown_button.dart';
@@ -9,9 +13,6 @@ import 'package:link_manager/ui/widgets/buttons/profile_btn.dart';
 import 'package:link_manager/ui/widgets/buttons/settings_button.dart';
 import 'package:link_manager/ui/widgets/limited_container/limited_container.dart';
 import 'package:link_manager/ui/widgets/section/section.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePageContent extends StatelessWidget {
@@ -46,10 +47,18 @@ class ProfilePageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
-    // final heigth = size.height - kToolbarHeight - kTextTabBarHeight;
-    const divider = SizedBox(height: 8);
+    const divider = SizedBox(height: 8, width: 8);
+    final lang = (context.read<SettingsBloc>().state as SettingsLoaded).lang;
 
+    final buttonStyle = ButtonStyle(
+      shape: WidgetStateProperty.all(
+        const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      ),
+      // st - стейт, относительно его выбираем цвет
+      backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+        (st) => st.contains(WidgetState.selected) ? AppColors.correct : null,
+      ),
+    );
     return LimitContainer(
       child: CustomScrollView(
         slivers: [
@@ -86,22 +95,75 @@ class ProfilePageContent extends StatelessWidget {
               title: S.of(context).settings_title,
               child: Column(
                 children: [
-                  SettingsButton(
-                    text: 'Русский',
-                    icon: Icons.local_parking_sharp,
-                    onClick: () => setLanguage(context, 'ru'),
-                  ),
-                  divider,
-                  SettingsButton(
-                    text: 'Английский',
-                    icon: Icons.local_parking_sharp,
-                    onClick: () => setLanguage(context, 'en'),
-                  ),
-                  divider,
-                  SettingsButton(
-                    text: 'Чешский',
-                    icon: Icons.local_parking_sharp,
-                    onClick: () => setLanguage(context, 'cs'),
+                  Container(
+                    clipBehavior: Clip.hardEdge,
+                    padding: EdgeInsets.zero,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: AppColors.main.withOpacity(.3),
+                      border: Border.all(
+                        color: AppColors.main,
+                        width: 2,
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: DecoratedBox(
+                            decoration: const BoxDecoration(
+                              color: AppColors.main,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.language),
+                                  const SizedBox(width: 19),
+                                  Text(S.of(context).lang),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            divider,
+                            IconButton(
+                              isSelected: lang == 'ru',
+                              style: buttonStyle,
+                              onPressed: () => setLanguage(context, 'ru'),
+                              icon: Image.asset(
+                                AppImages.ru,
+                                fit: BoxFit.cover,
+                                width: 25,
+                              ),
+                            ),
+                            IconButton(
+                              isSelected: lang == 'cs',
+                              style: buttonStyle,
+                              onPressed: () => setLanguage(context, 'cs'),
+                              icon: Image.asset(
+                                AppImages.cz,
+                                fit: BoxFit.cover,
+                                width: 25,
+                              ),
+                            ),
+                            IconButton(
+                              isSelected: lang == 'en',
+                              style: buttonStyle,
+                              onPressed: () => setLanguage(context, 'en'),
+                              icon: Image.asset(
+                                AppImages.en,
+                                fit: BoxFit.cover,
+                                width: 25,
+                              ),
+                            ),
+                            divider,
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

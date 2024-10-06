@@ -32,5 +32,6 @@
     "remove_link": "Вы уверены, что хотите удалить ссылку:",
     "empty_folder": "Директория пуста",
     "settings_title": "Настройки",
+    "lang": "Язык",
     "home_page_title": "Link Manager"
 }
