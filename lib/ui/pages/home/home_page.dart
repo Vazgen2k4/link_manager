@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
-import 'package:link_manager/logic/middleware/middleware.dart';
-import 'package:link_manager/logic/models/folder/folder.dart';
-import 'package:link_manager/logic/models/user/app_user.dart';
+import 'package:link_manager/app_logger.dart';
+import 'package:link_manager/generated/l10n.dart';
+import 'package:link_manager/logic/logic.dart';
+
 import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/router/app_hero_tags.dart';
 import 'package:link_manager/ui/widgets/alerts/app_dialogs.dart';
@@ -13,6 +12,7 @@ import 'package:link_manager/ui/widgets/buttons/to_kos_button.dart';
 import 'package:link_manager/ui/widgets/custom_appbar/custom_appbar.dart';
 import 'package:link_manager/ui/widgets/lists/folders_widget_list.dart';
 import 'package:link_manager/ui/widgets/section/section.dart';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,13 +21,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Middleware(
+    return Middleware(
       child: Scaffold(
         appBar: CustomAppBar(
           isHomePage: true,
-          title: 'Link Manager',
+          title: S.of(context).home_page_title,
         ),
-        body: Padding(
+        body: const Padding(
           padding: EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: HomeFloattingButton(),
+        floatingActionButton: const HomeFloattingButton(),
       ),
     );
   }
@@ -53,51 +53,50 @@ class HomeFloattingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    final userStream = FirebaseApi.users.doc(uid).snapshots();
+
     return StreamBuilder(
-        stream: FirebaseApi.users
-            .doc(FirebaseAuth.instance.currentUser?.uid)
-            .snapshots(),
-        builder: (context, snapshot) {
-          final data = snapshot.data;
+      stream: userStream,
+      builder: (context, snapshot) {
+        final data = snapshot.data;
 
-          if (data == null) {
-            return const Text("Ошибка с кнопками");
-          }
+        if (data == null) {
+          return Text(S.of(context).floating_error);
+        }
 
-          AppUserRole role = AppUserRole.user;
+        AppUserRole role = AppUserRole.user;
 
-          try {
-            role = AppUserRole.values.byName(data.get('role') as String);
-          } catch (e) {
-            if (kDebugMode) {
-              print("Нет роли у пользователя или неверный тип роли");
-              print("Установка роли простого пользователя");
-            }
+        try {
+          role = AppUserRole.values.byName(data.get('role') as String);
+        } catch (e) {
+          AppLogger.logWarning("Нет роли у пользователя или неверный тип роли");
+          AppLogger.logWarning("Установка роли простого пользователя");
+          role = AppUserRole.user;
+        }
 
-            role = AppUserRole.user;
-          }
-
-          return Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (role == AppUserRole.admin) ...[
-                FloatingActionButton(
-                  heroTag: AppHeroTags.settingsButton,
-                  child: const Icon(Icons.settings),
-                  onPressed: () {},
-                ),
-                const SizedBox(width: 12)
-              ],
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (role == AppUserRole.admin) ...[
               FloatingActionButton(
-                heroTag: AppHeroTags.button,
-                child: const Icon(Icons.add),
-                onPressed: () async {
-                  await AppDialogs.addFolderDialog(context);
-                },
+                heroTag: AppHeroTags.settingsButton,
+                child: const Icon(Icons.settings),
+                onPressed: () {},
               ),
+              const SizedBox(width: 12)
             ],
-          );
-        });
+            FloatingActionButton(
+              heroTag: AppHeroTags.button,
+              child: const Icon(Icons.add),
+              onPressed: () async {
+                await AppDialogs.addFolderDialog(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 
@@ -109,7 +108,7 @@ class CTUSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Section(
-      title: 'ČVUT - FEL',
+      title: S.of(context).ctu_section_title,
       verticalPadding: 10,
       contentSpace: 15,
       child: SizedBox(

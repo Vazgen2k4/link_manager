@@ -1,3 +1,4 @@
+import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/ui/router/app_hero_tags.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:link_manager/ui/widgets/buttons/profile_btn.dart';
@@ -44,7 +45,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               Expanded(
                 // flex: 3,
                 child: Text(
-                  title ?? 'Нет заголовка',
+                  title ?? S.of(context).no_title,
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 20,
