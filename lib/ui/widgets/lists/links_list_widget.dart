@@ -1,3 +1,4 @@
+import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/models/folder/folder.dart';
@@ -30,7 +31,7 @@ class LInksListWidget extends StatelessWidget {
             TextButton(
               onPressed: onClickFolder,
               child: Text(
-                folder.name ?? 'Error',
+                folder.name ?? S.of(context).error_name,
               ),
             ),
             const Spacer(),
@@ -75,7 +76,7 @@ class LInksListWidget extends StatelessWidget {
 
     final haveApprovement = await AppDialogs.getApprovement(
       context,
-      "Вы хотите удалить папку: \"${user.folders[index]}\"?",
+      "${S.of(context).remove_folder} \"${user.folders[index]}\"?",
     );
 
     if (haveApprovement == null || !haveApprovement) {

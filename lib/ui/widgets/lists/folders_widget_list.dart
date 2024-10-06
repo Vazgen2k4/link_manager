@@ -1,3 +1,4 @@
+import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/models/folder/folder.dart';
 import 'package:link_manager/logic/models/user/app_user.dart';
@@ -24,8 +25,8 @@ class FoldersWidgetList extends StatelessWidget {
         }
         final user = AppUser.fromJson(data);
         if (user.folders.isEmpty) {
-          return const Center(
-            child: Text('У вас пока нет директорий...'),
+          return  Center(
+            child: Text(S.of(context).no_folders),
           );
         }
 
@@ -106,9 +107,9 @@ class _ReorderedListState extends State<ReorderedList> {
       children: [
         Row(
           children: [
-            const Text(
-              "Ссылки",
-              style: TextStyle(
+            Text(
+              S.of(context).links,
+              style: const TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 25,
               ),

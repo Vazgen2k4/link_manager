@@ -1,4 +1,3 @@
-
 import 'package:link_manager/logic/models/link/app_link.dart';
 import 'package:link_manager/ui/app_const.dart';
 import 'package:flutter/material.dart';
