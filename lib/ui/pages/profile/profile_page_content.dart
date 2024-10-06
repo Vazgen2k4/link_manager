@@ -56,7 +56,7 @@ class ProfilePageContent extends StatelessWidget {
       ),
       // st - стейт, относительно его выбираем цвет
       backgroundColor: WidgetStateProperty.resolveWith<Color?>(
-        (st) => st.contains(WidgetState.selected) ? AppColors.correct : null,
+        (st) => st.contains(WidgetState.selected) ? AppColors.main : null,
       ),
     );
     return LimitContainer(
