@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:link_manager/generated/l10n.dart';
 
 class AppValidator {
   final Set<AppValidatorType> settings;
@@ -20,7 +21,9 @@ class AppValidator {
   String? _required(
     String? value,
   ) {
-    return value != null && value.isNotEmpty ? null : 'Это поле обязятельное';
+    return value != null && value.isNotEmpty
+        ? null
+        : S.of(context).validate_required;
   }
 
   String? _isLink(
@@ -28,7 +31,7 @@ class AppValidator {
   ) {
     final linkExp = RegExp(r'^https?://');
     final hasMatch = linkExp.hasMatch(value ?? '');
-    return hasMatch ? null : 'Неверный формат ссылки';
+    return hasMatch ? null : S.of(context).validate_link;
   }
 
   String? _isLinkToPhone(
@@ -36,7 +39,7 @@ class AppValidator {
   ) {
     final linkExp = RegExp(r'^\+?\d+$');
     final hasMatch = linkExp.hasMatch(value ?? '');
-    return hasMatch ? null : 'Неверный формат номера';
+    return hasMatch ? null : S.of(context).validate_phone;
   }
 
   String? _isLinkToMail(
@@ -44,7 +47,7 @@ class AppValidator {
   ) {
     final linkExp = RegExp(r'^[\w\.-]+@[\w\.-]+\.\w+$');
     final hasMatch = linkExp.hasMatch(value ?? '');
-    return hasMatch ? null : 'Неверный формат почты';
+    return hasMatch ? null : S.of(context).validate_email;
   }
 
   String? validate(

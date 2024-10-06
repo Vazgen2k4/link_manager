@@ -1,3 +1,4 @@
+import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/models/link/app_link.dart';
 import 'package:link_manager/ui/widgets/alerts/alert_radio_buttons.dart';
@@ -60,7 +61,7 @@ class _AlertWidgetState extends State<AlertWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Добавьте Директорию'),
+      title: Text(S.of(context).add_folder),
       content: SizedBox(
         width: 250,
         child: Form(
@@ -81,8 +82,8 @@ class _AlertWidgetState extends State<AlertWidget> {
               ),
               TextFormField(
                 controller: nameController,
-                decoration: const InputDecoration(
-                  labelText: "Название",
+                decoration: InputDecoration(
+                  labelText: S.of(context).field_lable_name,
                 ),
                 validator: AppValidator(context, settings: {
                   AppValidatorType.required,
@@ -90,8 +91,8 @@ class _AlertWidgetState extends State<AlertWidget> {
               ),
               TextFormField(
                 controller: linkController,
-                decoration: const InputDecoration(
-                  labelText: "Ссылка",
+                decoration: InputDecoration(
+                  labelText: S.of(context).field_lable_link,
                 ),
                 validator: AppValidator(context, settings: {
                   AppValidatorType.required,
@@ -108,11 +109,11 @@ class _AlertWidgetState extends State<AlertWidget> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),
-          child: const Text('Отмена'),
+          child: Text(S.of(context).cancel),
         ),
         TextButton(
           onPressed: onConfirm,
-          child: const Text('Подтвердить'),
+          child: Text(S.of(context).confirm),
         ),
       ],
     );

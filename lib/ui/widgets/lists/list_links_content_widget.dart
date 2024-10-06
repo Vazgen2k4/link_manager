@@ -1,3 +1,4 @@
+import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/models/link/app_link.dart';
@@ -21,9 +22,9 @@ class LInksListContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (links.isEmpty) {
-      return const Expanded(
+      return  Expanded(
         child: Align(
-          child: Text('Директория пуста'),
+          child: Text(S.of(context).empty_folder),
         ),
       );
     }
@@ -53,7 +54,7 @@ class LInksListContentWidget extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(link.text ?? 'error'),
+                      Text(link.text ?? S.of(context).error_name),
                       const SizedBox(width: 15),
                       Icon(getIconDataByAppLink(link), size: 22),
                     ],
@@ -87,7 +88,7 @@ class LInksListContentWidget extends StatelessWidget {
     final linkText = user.folders[folderIndex].appLinks[index].text;
     final haveApprovement = await AppDialogs.getApprovement(
       context,
-      "Вы уверены, что хотите удалить ссылку: \"$linkText\"?",
+      "${S.of(context).remove_link} \"$linkText\"?",
     );
 
     if (haveApprovement == null || !haveApprovement) {

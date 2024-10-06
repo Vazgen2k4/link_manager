@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:link_manager/generated/l10n.dart';
 
 class Error404Page extends StatelessWidget {
   const Error404Page({Key? key}) : super(key: key);
@@ -6,11 +7,13 @@ class Error404Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Страница не найдена')),
-      body: const Center(
+      appBar: AppBar(
+        title: Text(S.of(context).error_404_title),
+      ),
+      body:  Center(
         child: Text(
-          'Ошибка 404',
-          style: TextStyle(
+          S.of(context).error_404,
+          style:  const TextStyle(
             fontWeight: FontWeight.w700,
             color: Color.fromARGB(255, 40, 38, 38),
             fontSize: 26,

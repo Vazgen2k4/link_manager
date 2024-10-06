@@ -1,3 +1,4 @@
+import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -6,6 +7,11 @@ class ToKosButton extends StatelessWidget {
   const ToKosButton({
     super.key,
   });
+
+  Future<void> goKos() async {
+    final url = Uri.parse('https://kos.cvut.cz/schedule');
+    await launchUrl(url);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +25,10 @@ class ToKosButton extends StatelessWidget {
           color: AppColors.main,
         ),
       ),
-      title: const Text.rich(
+      title: Text.rich(
         TextSpan(
-          text: 'Сcылка на расписание',
-          children: [
+          text: S.of(context).link_to_kos,
+          children: const [
             TextSpan(
               text: "\tKOS",
               style: TextStyle(
@@ -32,12 +38,9 @@ class ToKosButton extends StatelessWidget {
             )
           ],
         ),
-        style: TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 20),
       ),
-      onTap: () async {
-        final url = Uri.parse('https://kos.cvut.cz/schedule');
-        await launchUrl(url);
-      },
+      onTap: goKos,
     );
   }
 }
