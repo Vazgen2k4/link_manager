@@ -5,5 +5,6 @@ abstract final class AppColors {
   static const text = Color(0xFFffffff);
   static const links = Color(0xFF607D8B);
   static const error = Colors.red;
-  static const correct = Colors.green;
-} 
+  static const correct = Color.fromARGB(255, 30, 159, 101);
+  // const Color.fromARGB(255, 30, 159, 101)
+}

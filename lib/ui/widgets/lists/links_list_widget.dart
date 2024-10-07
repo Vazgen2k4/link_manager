@@ -29,10 +29,14 @@ class LInksListWidget extends StatelessWidget {
       children: [
         Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: AutoSizeText(
-                folder.name ?? S.of(context).error_name,
+            SizedBox(
+              width: 150,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: AutoSizeText(
+                  folder.name ?? S.of(context).error_name,
+                  maxLines: 1,
+                ),
               ),
             ),
             const Spacer(),

@@ -28,8 +28,7 @@ class ProfilePageContent extends StatelessWidget {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        // TODO: вынести цвет
-        backgroundColor: const Color.fromARGB(255, 30, 159, 101),
+        backgroundColor: AppColors.correct,
         content: AutoSizeText(
           S.of(context).support_response_msg,
           style: const TextStyle(
