@@ -33,5 +33,8 @@
     "empty_folder": "Složka je prázdná",
     "settings_title": "Nastavení",
     "lang": "Jazyk",
+    "deleate": "Odstranění",
+    "folder_exists": "Tento adresář již existuje",
+    "link_exists": "Tento odkaz již existuje",
     "home_page_title": "Link Manager"
 }

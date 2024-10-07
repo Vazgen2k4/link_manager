@@ -390,6 +390,36 @@ class S {
     );
   }
 
+  /// `Deletion`
+  String get deleate {
+    return Intl.message(
+      'Deletion',
+      name: 'deleate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This folder already exists`
+  String get folder_exists {
+    return Intl.message(
+      'This folder already exists',
+      name: 'folder_exists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This link already exists`
+  String get link_exists {
+    return Intl.message(
+      'This link already exists',
+      name: 'link_exists',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Link Manager`
   String get home_page_title {
     return Intl.message(

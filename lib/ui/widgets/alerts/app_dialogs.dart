@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/models/folder/folder.dart';
@@ -22,26 +23,25 @@ abstract final class AppDialogs {
         return link;
     }
   }
-  
-  // TODO: реализовать всё локализацию и тут
+
   static Future<bool?> getApprovement(
     BuildContext context,
     String message,
   ) async {
     return await showDialog<bool?>(
       context: context,
-      builder: (_) {
+      builder: (context) {
         return AlertDialog(
-          title: const AutoSizeText('Удаление'),
+          title: AutoSizeText(S.of(context).deleate),
           content: AutoSizeText(message),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: const AutoSizeText('Отмена'),
+              child: AutoSizeText(S.of(context).cancel),
             ),
             TextButton(
               onPressed: () => Navigator.of(context).pop(true),
-              child: const AutoSizeText('Подтвердить'),
+              child: AutoSizeText(S.of(context).confirm),
             ),
           ],
         );
@@ -52,7 +52,7 @@ abstract final class AppDialogs {
   static Future<bool?> addFolderDialog(BuildContext context) async {
     return await showDialog<bool?>(
       context: context,
-      builder: (_) {
+      builder: (context) {
         return AlertWidget(
           onSucsess: (name, link, type) async {
             final state = context.read<AuthBloc>().state;
@@ -68,9 +68,11 @@ abstract final class AppDialogs {
             final folders = user.folders.where((el) => el.name == name);
 
             if (folders.isNotEmpty) {
-              const snackBar = SnackBar(
-                content: AutoSizeText('Такая Директория уже существует'),
-                duration: Duration(seconds: 3),
+              final snackBar = SnackBar(
+                content: AutoSizeText(
+                  S.of(context).folder_exists,
+                ),
+                duration: const Duration(seconds: 3),
               );
 
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -105,7 +107,7 @@ abstract final class AppDialogs {
   ) async {
     return await showDialog<bool?>(
       context: context,
-      builder: (_) {
+      builder: (context) {
         return AlertWidget(
           onSucsess: (name, link, type) async {
             final state = context.read<AuthBloc>().state;
@@ -123,9 +125,9 @@ abstract final class AppDialogs {
             final linkList = folder.appLinks.where((el) => el.text == name);
 
             if (linkList.isNotEmpty) {
-              const snackBar = SnackBar(
-                content: AutoSizeText('Такая ссылка уже существует'),
-                duration: Duration(seconds: 3),
+              final snackBar = SnackBar(
+                content: AutoSizeText(S.of(context).link_exists),
+                duration: const Duration(seconds: 3),
               );
 
               ScaffoldMessenger.of(context).showSnackBar(snackBar);

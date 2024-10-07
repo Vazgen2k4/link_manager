@@ -33,5 +33,8 @@
     "empty_folder": "Директория пуста",
     "settings_title": "Настройки",
     "lang": "Язык",
+    "deleate": "Удаление",
+    "folder_exists": "Такая директория уже существует",
+    "link_exists": "Такая ссылка уже существует",
     "home_page_title": "Link Manager"
 }

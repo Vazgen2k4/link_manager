@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/models/link/app_link.dart';
@@ -62,7 +61,7 @@ class _AlertWidgetState extends State<AlertWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: AutoSizeText(S.of(context).add_folder),
+      title: Text(S.of(context).add_folder),
       content: SizedBox(
         width: 250,
         child: Form(
@@ -110,11 +109,11 @@ class _AlertWidgetState extends State<AlertWidget> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),
-          child: AutoSizeText(S.of(context).cancel),
+          child: Text(S.of(context).cancel),
         ),
         TextButton(
           onPressed: onConfirm,
-          child: AutoSizeText(S.of(context).confirm),
+          child: Text(S.of(context).confirm),
         ),
       ],
     );

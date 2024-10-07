@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Отменить"),
         "confirm": MessageLookupByLibrary.simpleMessage("Подтвердить"),
         "ctu_section_title": MessageLookupByLibrary.simpleMessage("ЧВУТ - ФЭЛ"),
+        "deleate": MessageLookupByLibrary.simpleMessage("Удаление"),
         "dev_section_title":
             MessageLookupByLibrary.simpleMessage("Разработчик"),
         "empty_folder":
@@ -42,10 +43,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "field_lable_name": MessageLookupByLibrary.simpleMessage("Название"),
         "floating_error":
             MessageLookupByLibrary.simpleMessage("Ошибка с кнопками"),
+        "folder_exists": MessageLookupByLibrary.simpleMessage(
+            "Такая директория уже существует"),
         "google_login_button":
             MessageLookupByLibrary.simpleMessage("Выполните вход"),
         "home_page_title": MessageLookupByLibrary.simpleMessage("Link Manager"),
         "lang": MessageLookupByLibrary.simpleMessage("Язык"),
+        "link_exists":
+            MessageLookupByLibrary.simpleMessage("Такая ссылка уже существует"),
         "link_to_kos":
             MessageLookupByLibrary.simpleMessage("Сcылка на расписание"),
         "links": MessageLookupByLibrary.simpleMessage("Сcылки"),
