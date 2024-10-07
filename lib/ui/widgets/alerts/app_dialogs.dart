@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/models/folder/folder.dart';
@@ -21,7 +22,8 @@ abstract final class AppDialogs {
         return link;
     }
   }
-
+  
+  // TODO: реализовать всё локализацию и тут
   static Future<bool?> getApprovement(
     BuildContext context,
     String message,
@@ -30,16 +32,16 @@ abstract final class AppDialogs {
       context: context,
       builder: (_) {
         return AlertDialog(
-          title: const Text('Удаление'),
-          content: Text(message),
+          title: const AutoSizeText('Удаление'),
+          content: AutoSizeText(message),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: const Text('Отмена'),
+              child: const AutoSizeText('Отмена'),
             ),
             TextButton(
               onPressed: () => Navigator.of(context).pop(true),
-              child: const Text('Подтвердить'),
+              child: const AutoSizeText('Подтвердить'),
             ),
           ],
         );
@@ -67,7 +69,7 @@ abstract final class AppDialogs {
 
             if (folders.isNotEmpty) {
               const snackBar = SnackBar(
-                content: Text('Такая Директория уже существует'),
+                content: AutoSizeText('Такая Директория уже существует'),
                 duration: Duration(seconds: 3),
               );
 
@@ -122,7 +124,7 @@ abstract final class AppDialogs {
 
             if (linkList.isNotEmpty) {
               const snackBar = SnackBar(
-                content: Text('Такая ссылка уже существует'),
+                content: AutoSizeText('Такая ссылка уже существует'),
                 duration: Duration(seconds: 3),
               );
 

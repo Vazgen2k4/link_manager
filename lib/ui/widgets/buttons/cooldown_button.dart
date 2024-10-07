@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class CooldownButton extends StatefulWidget {
     super.key,
     this.onClick,
     required String text,
-  })  : child = Text(text);
+  })  : child = AutoSizeText(text);
 
   @override
   State<CooldownButton> createState() => _CooldownButtonState();

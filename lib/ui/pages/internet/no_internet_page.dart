@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:link_manager/generated/l10n.dart';
 
@@ -17,9 +18,7 @@ class NoInternetPage extends StatelessWidget {
               size: 100,
             ),
             const SizedBox(height: 16),
-            Text(
-              S.of(context).no_connection,
-            ),
+            AutoSizeText(S.of(context).no_connection),
           ],
         ),
       ),

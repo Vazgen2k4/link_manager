@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/models/folder/folder.dart';
@@ -26,7 +27,7 @@ class FoldersWidgetList extends StatelessWidget {
         final user = AppUser.fromJson(data);
         if (user.folders.isEmpty) {
           return  Center(
-            child: Text(S.of(context).no_folders),
+            child: AutoSizeText(S.of(context).no_folders),
           );
         }
 
@@ -107,7 +108,7 @@ class _ReorderedListState extends State<ReorderedList> {
       children: [
         Row(
           children: [
-            Text(
+            AutoSizeText(
               S.of(context).links,
               style: const TextStyle(
                 fontWeight: FontWeight.w900,

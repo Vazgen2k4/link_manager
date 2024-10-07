@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:link_manager/generated/l10n.dart';
 
@@ -8,10 +9,10 @@ class Error404Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).error_404_title),
+        title: AutoSizeText(S.of(context).error_404_title),
       ),
       body:  Center(
-        child: Text(
+        child: AutoSizeText(
           S.of(context).error_404,
           style:  const TextStyle(
             fontWeight: FontWeight.w700,

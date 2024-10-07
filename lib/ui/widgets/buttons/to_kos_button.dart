@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class ToKosButton extends StatelessWidget {
           color: AppColors.main,
         ),
       ),
-      title: Text.rich(
+      title: AutoSizeText.rich(
         TextSpan(
           text: S.of(context).link_to_kos,
           children: const [

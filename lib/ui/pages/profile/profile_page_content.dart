@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,7 +30,7 @@ class ProfilePageContent extends StatelessWidget {
       SnackBar(
         // TODO: вынести цвет
         backgroundColor: const Color.fromARGB(255, 30, 159, 101),
-        content: Text(
+        content: AutoSizeText(
           S.of(context).support_response_msg,
           style: const TextStyle(
             color: AppColors.text,
@@ -119,7 +120,7 @@ class ProfilePageContent extends StatelessWidget {
                                 children: [
                                   const Icon(Icons.language),
                                   const SizedBox(width: 19),
-                                  Text(S.of(context).lang),
+                                  AutoSizeText(S.of(context).lang),
                                 ],
                               ),
                             ),
@@ -210,12 +211,12 @@ class PersonalForm extends StatelessWidget {
         ),
         ListTile(
           leading: const Icon(Icons.person),
-          title: Text(user?.displayName ?? ''),
+          title: AutoSizeText(user?.displayName ?? ''),
         ),
         const SizedBox(width: 15),
         ListTile(
           leading: const Icon(Icons.email),
-          title: Text(user?.email ?? ''),
+          title: AutoSizeText(user?.email ?? ''),
         ),
       ],
     );

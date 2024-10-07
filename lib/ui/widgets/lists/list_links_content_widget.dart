@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
@@ -24,7 +25,7 @@ class LInksListContentWidget extends StatelessWidget {
     if (links.isEmpty) {
       return  Expanded(
         child: Align(
-          child: Text(S.of(context).empty_folder),
+          child: AutoSizeText(S.of(context).empty_folder),
         ),
       );
     }
@@ -54,7 +55,7 @@ class LInksListContentWidget extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(link.text ?? S.of(context).error_name),
+                      AutoSizeText(link.text ?? S.of(context).error_name),
                       const SizedBox(width: 15),
                       Icon(getIconDataByAppLink(link), size: 22),
                     ],
