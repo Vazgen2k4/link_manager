@@ -35,6 +35,7 @@
     "lang": "Язык",
     "deleate": "Удаление",
     "folder_exists": "Такая директория уже существует",
+    "folder_create": "Директория \"$\" успешно создана",
     "link_exists": "Такая ссылка уже существует",
     "home_page_title": "Link Manager"
 }

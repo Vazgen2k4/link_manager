@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:link_manager/app_logger.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
@@ -8,7 +9,6 @@ import 'package:link_manager/ui/widgets/lists/list_links_content_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class LInksListWidget extends StatelessWidget {
   const LInksListWidget({
@@ -29,8 +29,8 @@ class LInksListWidget extends StatelessWidget {
       children: [
         Row(
           children: [
-            TextButton(
-              onPressed: onClickFolder,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: AutoSizeText(
                 folder.name ?? S.of(context).error_name,
               ),
@@ -57,14 +57,14 @@ class LInksListWidget extends StatelessWidget {
   }
 
   void onClickFolder() async {
+    AppLogger.logInfo('Нажатие на ссылку');
     final link = folder.link;
 
     if (link == null || link.isEmpty) {
+      AppLogger.logWarning('Обнаружена пустая ссылка');
       return;
     }
 
-    final url = Uri.parse(link);
-    await launchUrl(url);
   }
 
   void deleateFolder(BuildContext context) async {
@@ -77,7 +77,7 @@ class LInksListWidget extends StatelessWidget {
 
     final haveApprovement = await AppDialogs.getApprovement(
       context,
-      "${S.of(context).remove_folder} \"${user.folders[index]}\"?",
+      "${S.of(context).remove_folder} \"${user.folders[index].name}\"?",
     );
 
     if (haveApprovement == null || !haveApprovement) {

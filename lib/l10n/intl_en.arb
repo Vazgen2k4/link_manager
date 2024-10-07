@@ -35,6 +35,7 @@
     "lang": "Language",
     "deleate": "Deletion",
     "folder_exists": "This folder already exists",
+    "folder_create": "Folder \"$\" has been successfully created",
     "link_exists": "This link already exists",
     "home_page_title": "Link Manager"
 }

@@ -130,6 +130,7 @@ class _ReorderedListState extends State<ReorderedList> {
         ),
         Expanded(
           child: ReorderableListView.builder(
+            padding: EdgeInsets.only(bottom: 66),
             itemCount: _curentList.length,
             onReorder: _reorder,
             onReorderStart: (_) {

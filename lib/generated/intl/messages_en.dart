@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "field_lable_name": MessageLookupByLibrary.simpleMessage("Name"),
         "floating_error":
             MessageLookupByLibrary.simpleMessage("Floating error"),
+        "folder_create": MessageLookupByLibrary.simpleMessage(
+            "Folder \"\$\" has been successfully created"),
         "folder_exists":
             MessageLookupByLibrary.simpleMessage("This folder already exists"),
         "google_login_button": MessageLookupByLibrary.simpleMessage("Login"),

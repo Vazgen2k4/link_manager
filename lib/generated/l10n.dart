@@ -410,6 +410,16 @@ class S {
     );
   }
 
+  /// `Folder "$" has been successfully created`
+  String get folder_create {
+    return Intl.message(
+      'Folder "\$" has been successfully created',
+      name: 'folder_create',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `This link already exists`
   String get link_exists {
     return Intl.message(

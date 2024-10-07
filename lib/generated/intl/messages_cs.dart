@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "field_lable_name": MessageLookupByLibrary.simpleMessage("Název"),
         "floating_error":
             MessageLookupByLibrary.simpleMessage("Chyba tlačítek"),
+        "folder_create": MessageLookupByLibrary.simpleMessage(
+            "Adresář \"\$\" byl úspěšně vytvořen"),
         "folder_exists":
             MessageLookupByLibrary.simpleMessage("Tento adresář již existuje"),
         "google_login_button":

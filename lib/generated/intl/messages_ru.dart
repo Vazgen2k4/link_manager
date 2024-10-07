@@ -43,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "field_lable_name": MessageLookupByLibrary.simpleMessage("Название"),
         "floating_error":
             MessageLookupByLibrary.simpleMessage("Ошибка с кнопками"),
+        "folder_create": MessageLookupByLibrary.simpleMessage(
+            "Директория \"\$\" успешно создана"),
         "folder_exists": MessageLookupByLibrary.simpleMessage(
             "Такая директория уже существует"),
         "google_login_button":

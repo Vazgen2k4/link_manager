@@ -4,10 +4,12 @@ import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/models/folder/folder.dart';
 import 'package:link_manager/logic/models/link/app_link.dart';
+import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:link_manager/ui/widgets/alerts/alert_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:link_manager/ui/widgets/alerts/create_folder_alert.dart';
 
 abstract final class AppDialogs {
   static String _getLinkValueByType({
@@ -32,16 +34,16 @@ abstract final class AppDialogs {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: AutoSizeText(S.of(context).deleate),
-          content: AutoSizeText(message),
+          title: Text(S.of(context).deleate),
+          content: Text(message),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: AutoSizeText(S.of(context).cancel),
+              child: Text(S.of(context).cancel),
             ),
             TextButton(
               onPressed: () => Navigator.of(context).pop(true),
-              child: AutoSizeText(S.of(context).confirm),
+              child: Text(S.of(context).confirm),
             ),
           ],
         );
@@ -53,8 +55,8 @@ abstract final class AppDialogs {
     return await showDialog<bool?>(
       context: context,
       builder: (context) {
-        return AlertWidget(
-          onSucsess: (name, link, type) async {
+        return CreateFolderAlert(
+          onSucsess: (name) async {
             final state = context.read<AuthBloc>().state;
             if (state is! AuthLoaded) {
               return;
@@ -88,12 +90,22 @@ abstract final class AppDialogs {
 
             final newFolder = Folder(
               name: name,
-              link: _getLinkValueByType(type: type, link: link),
+              link: null,
               position: position,
               appLinks: [],
             );
 
             user.folders.add(newFolder);
+
+            final snackBar = SnackBar(
+              backgroundColor: AppColors.correct,
+              content: AutoSizeText(
+                S.of(context).folder_create.replaceFirst(r'$', name),
+              ),
+              duration: const Duration(seconds: 3),
+            );
+
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
             await FirebaseApi.updateUserById(user: user, id: id);
           },
         );

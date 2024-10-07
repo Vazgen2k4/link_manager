@@ -30,7 +30,7 @@ class _FolderItemWidgetState extends State<FolderItemWidget> {
     final height = isOpen ? widget.maxHeight : widget.minHeight;
 
     return Padding(
-      padding:  EdgeInsets.all(widget.padding),
+      padding: EdgeInsets.symmetric(vertical: widget.padding),
       child: GestureDetector(
         onTap: () {
           setState(() {

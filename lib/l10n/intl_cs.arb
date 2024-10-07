@@ -35,6 +35,7 @@
     "lang": "Jazyk",
     "deleate": "Odstranění",
     "folder_exists": "Tento adresář již existuje",
+    "folder_create": "Adresář \"$\" byl úspěšně vytvořen",
     "link_exists": "Tento odkaz již existuje",
     "home_page_title": "Link Manager"
 }
