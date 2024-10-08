@@ -10,8 +10,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LInksListWidget extends StatelessWidget {
-  const LInksListWidget({
+class LinksListWidget extends StatelessWidget {
+  const LinksListWidget({
     super.key,
     required this.folder,
     required this.index,
@@ -28,6 +28,7 @@ class LInksListWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
               width: 150,
@@ -40,15 +41,24 @@ class LInksListWidget extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            IconButton.filled(
-              onPressed: () => deleateFolder(context),
-              icon: const Icon(Icons.delete_sweep_rounded),
+            SizedBox.square(
+              dimension: 35,
+              child: IconButton.filled(
+                padding: EdgeInsets.zero,
+                onPressed: () => deleateFolder(context),
+                icon: const Icon(Icons.delete_sweep_rounded),
+              ),
             ),
-            IconButton.filled(
-              icon: const Icon(Icons.add_box_outlined),
-              onPressed: () async {
-                await AppDialogs.addLinkToFolderDialog(context, index);
-              },
+            SizedBox.square(dimension: 4),
+            SizedBox.square(
+              dimension: 35,
+              child: IconButton.filled(
+                padding: EdgeInsets.zero,
+                icon: const Icon(Icons.add_box_outlined),
+                onPressed: () async {
+                  await AppDialogs.addLinkToFolderDialog(context, index);
+                },
+              ),
             ),
           ],
         ),

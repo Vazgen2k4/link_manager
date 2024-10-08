@@ -1,4 +1,3 @@
-import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -15,16 +14,16 @@ class CartBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        backgroundColor: getProperty(
+        backgroundColor: WidgetStatePropertyAll(
           AppColors.main.withOpacity(.3),
         ),
-        side: getProperty(
+        side: WidgetStatePropertyAll(
           const BorderSide(
             color: AppColors.main,
             width: 3,
           ),
         ),
-        padding: getProperty(
+        padding: WidgetStatePropertyAll(
           const EdgeInsets.symmetric(
             vertical: 5,
             horizontal: 20,

@@ -17,7 +17,7 @@ class CooldownButton extends StatefulWidget {
     super.key,
     this.onClick,
     required String text,
-  })  : child = AutoSizeText(text);
+  }) : child = AutoSizeText(text);
 
   @override
   State<CooldownButton> createState() => _CooldownButtonState();
@@ -30,15 +30,13 @@ class _CooldownButtonState extends State<CooldownButton> {
   Widget build(BuildContext context) {
     Widget? current = isPresed ? loadWidget : widget.child;
 
-
-
     return Center(
       child: TextButton(
         style: ButtonStyle(
-          backgroundColor: getProperty(AppColors.main),
-          minimumSize: getProperty(const Size(50, 20)),
-          maximumSize: getProperty(const Size(double.maxFinite, 60)),
-          padding: getProperty(
+          backgroundColor: WidgetStatePropertyAll(AppColors.main),
+          minimumSize: WidgetStatePropertyAll(const Size(50, 20)),
+          maximumSize: WidgetStatePropertyAll(const Size(double.maxFinite, 60)),
+          padding: WidgetStatePropertyAll(
             const EdgeInsets.symmetric(
               vertical: 5,
               horizontal: 20,
@@ -64,6 +62,4 @@ class _CooldownButtonState extends State<CooldownButton> {
 
     widget.onClick!();
   }
-
-
 }

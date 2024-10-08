@@ -17,10 +17,6 @@ Future<T?> goRoute<T extends Object?>(
   return await Navigator.of(context).pushNamed(route);
 }
 
-WidgetStateProperty<T> getProperty<T>(T value) {
-  return WidgetStateProperty.all(value);
-}
-
 const Widget loadWidget = Center(child: CircularProgressIndicator.adaptive());
 
 String getRandomWord() {
