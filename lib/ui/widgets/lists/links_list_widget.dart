@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:link_manager/app_logger.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
@@ -7,10 +9,9 @@ import 'package:link_manager/ui/widgets/lists/list_links_content_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class LInksListWidget extends StatelessWidget {
-  const LInksListWidget({
+class LinksListWidget extends StatelessWidget {
+  const LinksListWidget({
     super.key,
     required this.folder,
     required this.index,
@@ -27,23 +28,37 @@ class LInksListWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextButton(
-              onPressed: onClickFolder,
-              child: Text(
-                folder.name ?? S.of(context).error_name,
+            SizedBox(
+              width: 150,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: AutoSizeText(
+                  folder.name ?? S.of(context).error_name,
+                  maxLines: 1,
+                ),
               ),
             ),
             const Spacer(),
-            IconButton.filled(
-              onPressed: () => deleateFolder(context),
-              icon: const Icon(Icons.delete_sweep_rounded),
+            SizedBox.square(
+              dimension: 35,
+              child: IconButton.filled(
+                padding: EdgeInsets.zero,
+                onPressed: () => deleateFolder(context),
+                icon: const Icon(Icons.delete_sweep_rounded),
+              ),
             ),
-            IconButton.filled(
-              icon: const Icon(Icons.add_box_outlined),
-              onPressed: () async {
-                await AppDialogs.addLinkToFolderDialog(context, index);
-              },
+            SizedBox.square(dimension: 4),
+            SizedBox.square(
+              dimension: 35,
+              child: IconButton.filled(
+                padding: EdgeInsets.zero,
+                icon: const Icon(Icons.add_box_outlined),
+                onPressed: () async {
+                  await AppDialogs.addLinkToFolderDialog(context, index);
+                },
+              ),
             ),
           ],
         ),
@@ -56,14 +71,14 @@ class LInksListWidget extends StatelessWidget {
   }
 
   void onClickFolder() async {
+    AppLogger.logInfo('Нажатие на ссылку');
     final link = folder.link;
 
     if (link == null || link.isEmpty) {
+      AppLogger.logWarning('Обнаружена пустая ссылка');
       return;
     }
 
-    final url = Uri.parse(link);
-    await launchUrl(url);
   }
 
   void deleateFolder(BuildContext context) async {
@@ -76,7 +91,7 @@ class LInksListWidget extends StatelessWidget {
 
     final haveApprovement = await AppDialogs.getApprovement(
       context,
-      "${S.of(context).remove_folder} \"${user.folders[index]}\"?",
+      "${S.of(context).remove_folder} \"${user.folders[index].name}\"?",
     );
 
     if (haveApprovement == null || !haveApprovement) {

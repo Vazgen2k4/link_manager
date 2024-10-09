@@ -48,4 +48,5 @@ enum AppLinkType {
   link,
   phone,
   email,
+  none,
 }

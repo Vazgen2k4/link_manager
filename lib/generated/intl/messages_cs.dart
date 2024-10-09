@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Zrušit"),
         "confirm": MessageLookupByLibrary.simpleMessage("Potvrdit"),
         "ctu_section_title": MessageLookupByLibrary.simpleMessage("ČVUT - FEL"),
+        "deleate": MessageLookupByLibrary.simpleMessage("Odstranění"),
         "dev_section_title": MessageLookupByLibrary.simpleMessage("Vývojář"),
         "empty_folder":
             MessageLookupByLibrary.simpleMessage("Složka je prázdná"),
@@ -39,10 +40,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "field_lable_name": MessageLookupByLibrary.simpleMessage("Název"),
         "floating_error":
             MessageLookupByLibrary.simpleMessage("Chyba tlačítek"),
+        "folder_create": MessageLookupByLibrary.simpleMessage(
+            "Adresář \"\$\" byl úspěšně vytvořen"),
+        "folder_exists":
+            MessageLookupByLibrary.simpleMessage("Tento adresář již existuje"),
         "google_login_button":
             MessageLookupByLibrary.simpleMessage("Přihlásit se"),
         "home_page_title": MessageLookupByLibrary.simpleMessage("Link Manager"),
         "lang": MessageLookupByLibrary.simpleMessage("Jazyk"),
+        "link_exists":
+            MessageLookupByLibrary.simpleMessage("Tento odkaz již existuje"),
         "link_to_kos": MessageLookupByLibrary.simpleMessage("Odkaz na rozvrh"),
         "links": MessageLookupByLibrary.simpleMessage("Odkazy"),
         "no_connection":

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
 
@@ -18,7 +19,7 @@ class SettingsButton extends StatelessWidget {
     return ListTile(
       tileColor: AppColors.main,
       leading: Icon(icon),
-      title: Text(text),
+      title: AutoSizeText(text),
       shape: const OutlineInputBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(12),

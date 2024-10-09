@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:link_manager/app_logger.dart';
 import 'package:link_manager/generated/l10n.dart';
@@ -14,7 +15,6 @@ import 'package:link_manager/ui/widgets/lists/folders_widget_list.dart';
 import 'package:link_manager/ui/widgets/section/section.dart';
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -62,7 +62,7 @@ class HomeFloattingButton extends StatelessWidget {
         final data = snapshot.data;
 
         if (data == null) {
-          return Text(S.of(context).floating_error);
+          return AutoSizeText(S.of(context).floating_error);
         }
 
         AppUserRole role = AppUserRole.user;
@@ -130,16 +130,12 @@ class CTUSection extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(appLink.text ?? 'error'),
+                      AutoSizeText(appLink.text ?? 'error'),
                       const SizedBox(width: 12),
-                      Icon(getIconDataByAppLink(appLink))
+                      Icon(getIconByLinkType(appLink.type))
                     ],
                   ),
-                  onClick: () async {
-                    String link = appLink.value ?? '';
-                    Uri url = Uri.parse(link);
-                    await launchUrl(url);
-                  },
+                  onClick: () => launchUrlByLink(appLink.value),
                 );
               },
             );

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class CooldownButton extends StatefulWidget {
     super.key,
     this.onClick,
     required String text,
-  })  : child = Text(text);
+  }) : child = AutoSizeText(text);
 
   @override
   State<CooldownButton> createState() => _CooldownButtonState();
@@ -29,15 +30,13 @@ class _CooldownButtonState extends State<CooldownButton> {
   Widget build(BuildContext context) {
     Widget? current = isPresed ? loadWidget : widget.child;
 
-
-
     return Center(
       child: TextButton(
         style: ButtonStyle(
-          backgroundColor: getProperty(AppColors.main),
-          minimumSize: getProperty(const Size(50, 20)),
-          maximumSize: getProperty(const Size(double.maxFinite, 60)),
-          padding: getProperty(
+          backgroundColor: WidgetStatePropertyAll(AppColors.main),
+          minimumSize: WidgetStatePropertyAll(const Size(50, 20)),
+          maximumSize: WidgetStatePropertyAll(const Size(double.maxFinite, 60)),
+          padding: WidgetStatePropertyAll(
             const EdgeInsets.symmetric(
               vertical: 5,
               horizontal: 20,
@@ -63,6 +62,4 @@ class _CooldownButtonState extends State<CooldownButton> {
 
     widget.onClick!();
   }
-
-
 }

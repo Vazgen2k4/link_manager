@@ -2,7 +2,7 @@ name: link_manager
 description: A new Flutter project.
 publish_to: 'none'
 # new_version
-version: 2.1.5+14
+version: 2.1.6+15
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
@@ -41,9 +41,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
   build_runner: ^2.4.6
   flutter_launcher_icons: ^0.13.1
+  intl_utils: ^2.8.7
+  flutter_lints: ^5.0.0
 
 flutter_icons:
   android: "launcher_icon"
@@ -55,5 +56,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    
 flutter_intl:
-  enabled: true
+  enabled: false

@@ -21,7 +21,7 @@ class ProfileBtn extends StatelessWidget {
     return SizedBox(
       width: size,
       child: IconButton(
-        style: ButtonStyle(padding: getProperty(EdgeInsets.zero)),
+        style: ButtonStyle(padding: WidgetStatePropertyAll(EdgeInsets.zero)),
         onPressed: () {
           final currentRoute = ModalRoute.of(context)?.settings.name;
           if (currentRoute == AppRoutes.profile || disabel) {

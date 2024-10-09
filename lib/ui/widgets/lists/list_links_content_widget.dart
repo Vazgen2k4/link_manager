@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
@@ -7,7 +8,6 @@ import 'package:link_manager/ui/widgets/alerts/app_dialogs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class LInksListContentWidget extends StatelessWidget {
   const LInksListContentWidget({
@@ -24,7 +24,7 @@ class LInksListContentWidget extends StatelessWidget {
     if (links.isEmpty) {
       return  Expanded(
         child: Align(
-          child: Text(S.of(context).empty_folder),
+          child: AutoSizeText(S.of(context).empty_folder),
         ),
       );
     }
@@ -54,21 +54,14 @@ class LInksListContentWidget extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(link.text ?? S.of(context).error_name),
+                      AutoSizeText(link.text ?? S.of(context).error_name),
                       const SizedBox(width: 15),
-                      Icon(getIconDataByAppLink(link), size: 22),
+                      Icon(getIconByLinkType(link.type), size: 22),
                     ],
                   ),
                 ),
                 onLongPress: () => deleateLink(context, index),
-                onTap: () async {
-                  final urlStr = link.value;
-                  if (urlStr == null) {
-                    return;
-                  }
-                  final url = Uri.parse(urlStr);
-                  await launchUrl(url);
-                },
+                onTap: () => launchUrlByLink(link.value),
               ),
             ),
           );

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class Section extends StatelessWidget {
@@ -24,7 +25,7 @@ class Section extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: crossAxisAlignment,
         children: <Widget>[
-          Text(
+          AutoSizeText(
             title,
             style: const TextStyle(
               fontWeight: FontWeight.w900,

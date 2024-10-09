@@ -5,10 +5,10 @@ class LimitContainer extends StatelessWidget {
   final Widget? child;
 
   const LimitContainer({
-    Key? key,
+    super.key,
     this.maxWidth = 1200,
     this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
