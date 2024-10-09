@@ -12,20 +12,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:link_manager/ui/widgets/alerts/create_folder_alert.dart';
 
 abstract final class AppDialogs {
-  static String _getLinkValueByType({
-    required AppLinkType type,
-    required String link,
-  }) {
-    switch (type) {
-      case AppLinkType.phone:
-        return 'tel:$link';
-      case AppLinkType.email:
-        return 'mailto:$link';
-      default:
-        return link;
-    }
-  }
-
   static Future<bool?> getApprovement(
     BuildContext context,
     String message,
@@ -56,7 +42,7 @@ abstract final class AppDialogs {
       context: context,
       builder: (context) {
         return CreateFolderAlert(
-          onSucsess: (name) async {
+          onSucsess: (name, link) async {
             final state = context.read<AuthBloc>().state;
             if (state is! AuthLoaded) {
               return;
@@ -90,7 +76,7 @@ abstract final class AppDialogs {
 
             final newFolder = Folder(
               name: name,
-              link: null,
+              link: link,
               position: position,
               appLinks: [],
             );
@@ -151,7 +137,7 @@ abstract final class AppDialogs {
             final newLink = AppLink(
               type: type,
               text: name,
-              value: _getLinkValueByType(type: type, link: link),
+              value: link,
             );
 
             folder.appLinks.add(newLink);

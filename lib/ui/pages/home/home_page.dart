@@ -15,7 +15,6 @@ import 'package:link_manager/ui/widgets/lists/folders_widget_list.dart';
 import 'package:link_manager/ui/widgets/section/section.dart';
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -133,14 +132,10 @@ class CTUSection extends StatelessWidget {
                     children: [
                       AutoSizeText(appLink.text ?? 'error'),
                       const SizedBox(width: 12),
-                      Icon(getIconDataByAppLink(appLink))
+                      Icon(getIconByLinkType(appLink.type))
                     ],
                   ),
-                  onClick: () async {
-                    String link = appLink.value ?? '';
-                    Uri url = Uri.parse(link);
-                    await launchUrl(url);
-                  },
+                  onClick: () => launchUrlByLink(appLink.value),
                 );
               },
             );

@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 class AlertRadioButtons extends StatelessWidget {
   final void Function(Set<AppLinkType> type)? onChanged;
   final AppLinkType linkType;
+  final bool withNone;
+
   const AlertRadioButtons({
     super.key,
     this.onChanged,
     required this.linkType,
+    this.withNone = false,
   });
 
   @override
@@ -19,7 +22,13 @@ class AlertRadioButtons extends StatelessWidget {
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
-      segments: const [
+      segments: [
+        if (withNone) ...[
+          ButtonSegment(
+            icon: Icon(Icons.folder_rounded),
+            value: AppLinkType.none,
+          ),
+        ],
         ButtonSegment(
           icon: Icon(Icons.link),
           value: AppLinkType.link,

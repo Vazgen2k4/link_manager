@@ -1,4 +1,5 @@
-import 'package:link_manager/logic/models/folder/folder.dart';
+import 'package:link_manager/logic/logic.dart';
+import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:link_manager/ui/widgets/lists/links_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,12 @@ class FolderItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final linkType = getLinkType(folder.link);
+    final icon = getIconByLinkType(linkType);
+    final pressToIcon = linkType != AppLinkType.none
+        ? () => launchUrlByLink(folder.link)
+        : null;
+        
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -26,7 +33,7 @@ class FolderItemWidget extends StatelessWidget {
         children: [
           Center(
             child: TextButton(
-              onPressed: () {},
+              onPressed: pressToIcon,
               style: ButtonStyle(
                 fixedSize: WidgetStatePropertyAll(Size.fromHeight(54)),
                 shape: WidgetStatePropertyAll(
@@ -46,7 +53,7 @@ class FolderItemWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              child: Icon(Icons.link),
+              child: Icon(icon),
             ),
           ),
           SizedBox(width: 6),

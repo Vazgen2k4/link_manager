@@ -37,7 +37,7 @@ class AppValidator {
   String? _isLinkToPhone(
     String? value,
   ) {
-    final linkExp = RegExp(r'^\+?\d+$');
+    final linkExp = RegExp(r'^\+?[0-9]{7,15}$');
     final hasMatch = linkExp.hasMatch(value ?? '');
     return hasMatch ? null : S.of(context).validate_phone;
   }
