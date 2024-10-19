@@ -1,38 +1,33 @@
-name: Xcode - Build and Analyze (Flutter)
+name: Build iOS App
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
-    name: Build and analyze Flutter project
     runs-on: macos-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'
+          flutter-version: "3.24.2" # Указываем Flutter 3.24.2
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Set up CocoaPods
+      - name: Build iOS release
+        run: flutter build ios --release --no-codesign
+
+      - name: Create IPA file
         run: |
-          cd ios
-          pod install
+          cd build/ios/iphoneos
+          mkdir Payload
+          cp -r Runner.app Payload/
+          zip -r Runner.ipa Payload
 
-      - name: Build iOS
-        run: flutter build ios --release
-
-      - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: iOS-App
-          path: build/ios/iphoneos/Runner.app
+      - name: Upload IPA Artifa
