@@ -1,0 +1,38 @@
+name: Xcode - Build and Analyze (Flutter)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build and analyze Flutter project
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Set up CocoaPods
+        run: |
+          cd ios
+          pod install
+
+      - name: Build iOS
+        run: flutter build ios --release
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: iOS-App
+          path: build/ios/iphoneos/Runner.app
