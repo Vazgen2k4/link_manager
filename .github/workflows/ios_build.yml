@@ -30,4 +30,8 @@ jobs:
           cp -r Runner.app Payload/
           zip -r Runner.ipa Payload
 
-      - name: Upload IPA Artifa
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v3 # Обновлённая версия для артефактов
+        with:
+          name: iOS-App
+          path: build/ios/iphoneos/Runner.ipa
