@@ -18,37 +18,27 @@ jobs:
         with:
           flutter-version: '3.24.2'
 
-      - name: Cache Flutter packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.pub-cache
-          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pub-cache-
-
       - name: Install dependencies
         run: flutter pub get
 
       - name: Create firebase_options.dart
         env:
-          FIREBASE_OPTIONS_FILE: ${{ secrets.FIREBASE_OPTIONS_FILE }}  # Секретная переменная с содержимым файла
+          FIREBASE_OPTIONS_FILE: ${{ secrets.FIREBASE_OPTIONS_FILE }}
         run: |
-          # Создаем файл firebase_options.dart из секрета
           echo "$FIREBASE_OPTIONS_FILE" > lib/firebase_options.dart
-      
+
       - name: Create GoogleService-Info.plist
         env:
-          GOOGLE_SERVICE_INFO_PLIST: ${{ secrets.FIREBASE_PLIST }}  # Секретная переменная с содержимым GoogleService-Info.plist
+          GOOGLE_SERVICE_INFO_PLIST: ${{ secrets.FIREBASE_PLIST }}
         run: |
-          # Создаем файл GoogleService-Info.plist из секрета
           echo "$GOOGLE_SERVICE_INFO_PLIST" > ios/Runner/GoogleService-Info.plist
 
-      - name: Build IPA
+      - name: Build iOS .app
         run: |
-          flutter build ipa --release
+          flutter build ios --debug --no-codesign
 
-      - name: Upload iOS Build
+      - name: Upload .app
         uses: actions/upload-artifact@v3
         with:
-          name: ios-build
-          path: build/ios/ipa
+          name: ios-app
+          path: build/ios/iphoneos/Runner.app
