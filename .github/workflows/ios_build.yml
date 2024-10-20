@@ -33,6 +33,32 @@ jobs:
         run: |
           echo "$GOOGLE_SERVICE_INFO_PLIST" > ios/Runner/GoogleService-Info.plist
 
+      - name: Set up Swift Package Manager for Firebase
+        run: |
+          echo "// swift-tools-version:5.3
+          import PackageDescription
+          
+          let package = Package(
+              name: \"YourApp\",
+              dependencies: [
+                  .package(url: \"https://github.com/firebase/firebase-ios-sdk.git\", .upToNextMajor(from: \"10.15.0\"))
+              ],
+              targets: [
+                  .target(
+                      name: \"YourApp\",
+                      dependencies: [
+                          .product(name: \"FirebaseCore\", package: \"firebase-ios-sdk\"),
+                          .product(name: \"FirebaseAnalytics\", package: \"firebase-ios-sdk\")
+                      ]
+                  )
+              ]
+          )" > ios/Package.swift
+
+      - name: Resolve Swift Packages
+        run: |
+          cd ios
+          swift package resolve
+
       - name: Extract IDs from GoogleService-Info.plist
         id: extract_ids
         run: |
@@ -41,7 +67,6 @@ jobs:
           echo "REVERSED_CLIENT_ID=$REVERSED_CLIENT_ID" >> $GITHUB_ENV
           echo "CLIENT_ID=$CLIENT_ID" >> $GITHUB_ENV
 
-           
       - name: Build iOS .app
         run: |
           flutter build ios --release --no-codesign
