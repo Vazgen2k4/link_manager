@@ -20,7 +20,10 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-
+      
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools  # Установка Firebase CLI
+      
       - name: Generate Firebase config for iOS
         env:
           IOS_FIREBASE_API_KEY: ${{ secrets.IOS_FIREBASE_API_KEY }}
