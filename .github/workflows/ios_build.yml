@@ -18,6 +18,12 @@ jobs:
         with:
           flutter-version: '3.24.2'
 
+      - name: Install Google Cloud SDK
+        run: |
+          echo "Installing Google Cloud SDK..."
+          curl -sSL https://sdk.cloud.google.com | bash
+          source $HOME/google-cloud-sdk/path.bash.inc
+
       - name: Install dependencies
         run: flutter pub get
 
