@@ -18,41 +18,27 @@ jobs:
         with:
           flutter-version: '3.24.2'
 
-      - name: Install Google Cloud SDK
-        run: |
-          echo "Installing Google Cloud SDK..."
-          curl -sSL https://sdk.cloud.google.com | bash
-          source $HOME/google-cloud-sdk/path.bash.inc
-
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
-
-      - name: Authenticate with Firebase
+      - name: Create firebase_options.dart
         env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}  # Секретная переменная с JSON
         run: |
-          echo "$FIREBASE_SERVICE_ACCOUNT" > $HOME/.firebase-service-account.json
-          firebase login:ci --token "$(gcloud auth print-access-token)"
-
-      - name: Generate Firebase config for iOS
-        env:
-          IOS_FIREBASE_API_KEY: ${{ secrets.IOS_FIREBASE_API_KEY }}
-          IOS_FIREBASE_APP_ID: ${{ secrets.IOS_FIREBASE_APP_ID }}
-          IOS_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.IOS_FIREBASE_MESSAGING_SENDER_ID }}
-          IOS_FIREBASE_STORAGE_BUCKET: ${{ secrets.IOS_FIREBASE_STORAGE_BUCKET }}
-          IOS_FIREBASE_IOS_CLIENT_ID: ${{ secrets.IOS_FIREBASE_IOS_CLIENT_ID }}
-          IOS_FIREBASE_IOS_BUNDLE_ID: ${{ secrets.IOS_FIREBASE_IOS_BUNDLE_ID }}
-          IOS_FIREBASE_PROJECT_ID: ${{ secrets.IOS_FIREBASE_PROJECT_ID }}
-        run: |
-          dart pub global activate flutterfire_cli
-          flutterfire configure --project $IOS_FIREBASE_PROJECT_ID --platforms ios
+          # Декодируем JSON и создаем файл
+          echo "import 'package:firebase_core/firebase_core.dart';" > lib/firebase_options.dart
+          echo "class DefaultFirebaseOptions {" >> lib/firebase_options.dart
+          echo "  static const FirebaseOptions currentPlatform = FirebaseOptions(" >> lib/firebase_options.dart
+          
+          # Преобразуем переменную в формат
+          echo "$FIREBASE_OPTIONS" | jq -r 'to_entries | .[] | "\(.key): \"\(.value)\","' >> lib/firebase_options.dart
+          
+          echo "  );" >> lib/firebase_options.dart
+          echo "}" >> lib/firebase_options.dart
 
       - name: Build iOS
         run: |
-          flutter build ios --release --no-codesign --dart-define=FIREBASE_API_KEY=${{ secrets.IOS_FIREBASE_API_KEY }} --dart-define=FIREBASE_APP_ID=${{ secrets.IOS_FIREBASE_APP_ID }} --dart-define=FIREBASE_MESSAGING_SENDER_ID=${{ secrets.IOS_FIREBASE_MESSAGING_SENDER_ID }} --dart-define=FIREBASE_PROJECT_ID=${{ secrets.IOS_FIREBASE_PROJECT_ID }}
+          flutter build ios --release --no-codesign --dart-define=FIREBASE_OPTIONS='${{ secrets.FIREBASE_OPTIONS }}'
 
       - name: Upload iOS Build
         uses: actions/upload-artifact@v3
