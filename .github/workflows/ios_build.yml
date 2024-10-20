@@ -32,7 +32,7 @@ jobs:
           IOS_FIREBASE_PROJECT_ID: ${{ secrets.IOS_FIREBASE_PROJECT_ID }}  # Добавлена новая переменная
         run: |
           dart pub global activate flutterfire_cli
-          flutterfire configure --project $IOS_FIREBASE_PROJECT_ID --platform ios
+          flutterfire configure --project $IOS_FIREBASE_PROJECT_ID --platforms ios
 
       - name: Build iOS
         run: |
