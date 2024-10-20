@@ -27,7 +27,15 @@ jobs:
         run: |
           # Создаем файл firebase_options.dart из секрета
           echo "$FIREBASE_OPTIONS_FILE" > lib/firebase_options.dart
-
+      
+      - name: Create GoogleService-Info.plist
+        env:
+          GOOGLE_SERVICE_INFO_PLIST: ${{ secrets.FIREBASE_PLIST }}  # Секретная переменная с содержимым GoogleService-Info.plist
+        run: |
+          # Создаем файл GoogleService-Info.plist из секрета
+          echo "$GOOGLE_SERVICE_INFO_PLIST" > ios/Runner/GoogleService-Info.plist
+      
+      
       - name: Build iOS
         run: |
           flutter build ios --release --no-codesign
