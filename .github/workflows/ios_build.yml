@@ -8,30 +8,38 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+
     steps:
-      - name: Checkout source
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.24.2" # Указываем Flutter 3.24.2
+          flutter-version: '3.24.2'
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build iOS release
-        run: flutter build ios --release --no-codesign
-
-      - name: Create IPA file
+      - name: Generate Firebase config for iOS
+        env:
+          IOS_FIREBASE_API_KEY: ${{ secrets.IOS_FIREBASE_API_KEY }}
+          IOS_FIREBASE_APP_ID: ${{ secrets.IOS_FIREBASE_APP_ID }}
+          IOS_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.IOS_FIREBASE_MESSAGING_SENDER_ID }}
+          IOS_FIREBASE_STORAGE_BUCKET: ${{ secrets.IOS_FIREBASE_STORAGE_BUCKET }}
+          IOS_FIREBASE_IOS_CLIENT_ID: ${{ secrets.IOS_FIREBASE_IOS_CLIENT_ID }}
+          IOS_FIREBASE_IOS_BUNDLE_ID: ${{ secrets.IOS_FIREBASE_IOS_BUNDLE_ID }}
+          IOS_FIREBASE_PROJECT_ID: ${{ secrets.IOS_FIREBASE_PROJECT_ID }}  # Добавлена новая переменная
         run: |
-          cd build/ios/iphoneos
-          mkdir Payload
-          cp -r Runner.app Payload/
-          zip -r Runner.ipa Payload
+          dart pub global activate flutterfire_cli
+          flutterfire configure --project $IOS_FIREBASE_PROJECT_ID --platform ios
 
-      - name: Upload IPA Artifact
-        uses: actions/upload-artifact@v3 # Обновлённая версия для артефактов
+      - name: Build iOS
+        run: |
+          flutter build ios --release --no-codesign --dart-define=FIREBASE_API_KEY=${{ secrets.IOS_FIREBASE_API_KEY }} --dart-define=FIREBASE_APP_ID=${{ secrets.IOS_FIREBASE_APP_ID }} --dart-define=FIREBASE_MESSAGING_SENDER_ID=${{ secrets.IOS_FIREBASE_MESSAGING_SENDER_ID }} --dart-define=FIREBASE_PROJECT_ID=${{ secrets.IOS_FIREBASE_PROJECT_ID }}  # Добавлено определение для projectId
+
+      - name: Upload iOS Build
+        uses: actions/upload-artifact@v3
         with:
-          name: iOS-App
-          path: build/ios/iphoneos/Runner.ipa
+          name: ios-build
+          path: build/ios/iphoneos/Runner.app
