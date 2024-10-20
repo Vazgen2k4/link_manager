@@ -20,10 +20,17 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-      
+
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools  # Установка Firebase CLI
-      
+        run: npm install -g firebase-tools
+
+      - name: Authenticate with Firebase
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT" > $HOME/.firebase-service-account.json
+          firebase login:ci --token "$(gcloud auth print-access-token)"
+
       - name: Generate Firebase config for iOS
         env:
           IOS_FIREBASE_API_KEY: ${{ secrets.IOS_FIREBASE_API_KEY }}
@@ -32,14 +39,14 @@ jobs:
           IOS_FIREBASE_STORAGE_BUCKET: ${{ secrets.IOS_FIREBASE_STORAGE_BUCKET }}
           IOS_FIREBASE_IOS_CLIENT_ID: ${{ secrets.IOS_FIREBASE_IOS_CLIENT_ID }}
           IOS_FIREBASE_IOS_BUNDLE_ID: ${{ secrets.IOS_FIREBASE_IOS_BUNDLE_ID }}
-          IOS_FIREBASE_PROJECT_ID: ${{ secrets.IOS_FIREBASE_PROJECT_ID }}  # Добавлена новая переменная
+          IOS_FIREBASE_PROJECT_ID: ${{ secrets.IOS_FIREBASE_PROJECT_ID }}
         run: |
           dart pub global activate flutterfire_cli
           flutterfire configure --project $IOS_FIREBASE_PROJECT_ID --platforms ios
 
       - name: Build iOS
         run: |
-          flutter build ios --release --no-codesign --dart-define=FIREBASE_API_KEY=${{ secrets.IOS_FIREBASE_API_KEY }} --dart-define=FIREBASE_APP_ID=${{ secrets.IOS_FIREBASE_APP_ID }} --dart-define=FIREBASE_MESSAGING_SENDER_ID=${{ secrets.IOS_FIREBASE_MESSAGING_SENDER_ID }} --dart-define=FIREBASE_PROJECT_ID=${{ secrets.IOS_FIREBASE_PROJECT_ID }}  # Добавлено определение для projectId
+          flutter build ios --release --no-codesign --dart-define=FIREBASE_API_KEY=${{ secrets.IOS_FIREBASE_API_KEY }} --dart-define=FIREBASE_APP_ID=${{ secrets.IOS_FIREBASE_APP_ID }} --dart-define=FIREBASE_MESSAGING_SENDER_ID=${{ secrets.IOS_FIREBASE_MESSAGING_SENDER_ID }} --dart-define=FIREBASE_PROJECT_ID=${{ secrets.IOS_FIREBASE_PROJECT_ID }}
 
       - name: Upload iOS Build
         uses: actions/upload-artifact@v3
