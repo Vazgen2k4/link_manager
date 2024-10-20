@@ -36,8 +36,8 @@ jobs:
       - name: Extract IDs from GoogleService-Info.plist
         id: extract_ids
         run: |
-          REVERSED_CLIENT_ID=$(plutil -extract REVERSED_CLIENT_ID xml1 -o - ios/Runner/GoogleService-Info.plist | grep -oP '(?<=<string>).*?(?=</string>)')
-          CLIENT_ID=$(plutil -extract CLIENT_ID xml1 -o - ios/Runner/GoogleService-Info.plist | grep -oP '(?<=<string>).*?(?=</string>)')
+          REVERSED_CLIENT_ID=$(plutil -extract REVERSED_CLIENT_ID xml1 -o - ios/Runner/GoogleService-Info.plist | awk -F'[><]' '/string/{print $3}')
+          CLIENT_ID=$(plutil -extract CLIENT_ID xml1 -o - ios/Runner/GoogleService-Info.plist | awk -F'[><]' '/string/{print $3}')
           echo "REVERSED_CLIENT_ID=$REVERSED_CLIENT_ID" >> $GITHUB_ENV
           echo "CLIENT_ID=$CLIENT_ID" >> $GITHUB_ENV
 
