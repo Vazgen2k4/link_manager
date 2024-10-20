@@ -53,10 +53,10 @@
             <key>CFBundleTypeRole</key>
             <string>Editor</string>
             <key>CFBundleURLName</key>
-            <string>com.googleusercontent.apps.YOUR_REVERSED_CLIENT_ID</string>
+            <string>com.googleusercontent.apps.721210663604-mvreepcbg8vkkvqc7q1bkjkiptt1489v</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>YOUR_REVERSED_CLIENT_ID</string>
+                <string>com.googleusercontent.apps.721210663604-mvreepcbg8vkkvqc7q1bkjkiptt1489v</string>
             </array>
         </dict>
     </array>
@@ -69,9 +69,9 @@
     <key>GoogleService-Info</key>
     <dict>
         <key>CLIENT_ID</key>
-        <string>YOUR_CLIENT_ID</string>
+        <string>721210663604-mvreepcbg8vkkvqc7q1bkjkiptt1489v.apps.googleusercontent.com</string>
         <key>REVERSED_CLIENT_ID</key>
-        <string>YOUR_REVERSED_CLIENT_ID</string>
+        <string>com.googleusercontent.apps.721210663604-mvreepcbg8vkkvqc7q1bkjkiptt1489v</string>
     </dict>
 </dict>
 </plist>
