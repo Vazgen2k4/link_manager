@@ -23,22 +23,14 @@ jobs:
 
       - name: Create firebase_options.dart
         env:
-          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}  # Секретная переменная с JSON
+          FIREBASE_OPTIONS_FILE: ${{ secrets.FIREBASE_OPTIONS_FILE }}  # Секретная переменная с содержимым файла
         run: |
-          # Декодируем JSON и создаем файл
-          echo "import 'package:firebase_core/firebase_core.dart';" > lib/firebase_options.dart
-          echo "class DefaultFirebaseOptions {" >> lib/firebase_options.dart
-          echo "  static const FirebaseOptions currentPlatform = FirebaseOptions(" >> lib/firebase_options.dart
-          
-          # Преобразуем переменную в формат
-          echo "$FIREBASE_OPTIONS" | jq -r 'to_entries | .[] | "\(.key): \"\(.value)\","' >> lib/firebase_options.dart
-          
-          echo "  );" >> lib/firebase_options.dart
-          echo "}" >> lib/firebase_options.dart
+          # Создаем файл firebase_options.dart из секрета
+          echo "$FIREBASE_OPTIONS_FILE" > lib/firebase_options.dart
 
       - name: Build iOS
         run: |
-          flutter build ios --release --no-codesign --dart-define=FIREBASE_OPTIONS='${{ secrets.FIREBASE_OPTIONS }}'
+          flutter build ios --release --no-codesign
 
       - name: Upload iOS Build
         uses: actions/upload-artifact@v3
