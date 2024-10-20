@@ -33,6 +33,25 @@ jobs:
         run: |
           echo "$GOOGLE_SERVICE_INFO_PLIST" > ios/Runner/GoogleService-Info.plist
 
+      - name: Extract IDs from GoogleService-Info.plist
+        id: extract_ids
+        run: |
+          REVERSED_CLIENT_ID=$(plutil -extract REVERSED_CLIENT_ID xml1 -o - ios/Runner/GoogleService-Info.plist | grep -oP '(?<=<string>).*?(?=</string>)')
+          CLIENT_ID=$(plutil -extract CLIENT_ID xml1 -o - ios/Runner/GoogleService-Info.plist | grep -oP '(?<=<string>).*?(?=</string>)')
+          echo "REVERSED_CLIENT_ID=$REVERSED_CLIENT_ID" >> $GITHUB_ENV
+          echo "CLIENT_ID=$CLIENT_ID" >> $GITHUB_ENV
+
+      - name: Update Info.plist
+        run: |
+          # Обновляем Google Sign-In Configuration в Info.plist
+          plutil -replace CFBundleURLTypes -json '[{"CFBundleTypeRole": "Editor", "CFBundleURLName": "com.googleusercontent.apps.'"$REVERSED_CLIENT_ID"'", "CFBundleURLSchemes": ["'"$REVERSED_CLIENT_ID"'"]}]' ios/Runner/Info.plist
+          plutil -insert LSApplicationQueriesSchemes -json '["googlechrome"]' ios/Runner/Info.plist
+          plutil -insert FirebaseAppDelegateProxyEnabled -bool false ios/Runner/Info.plist
+
+          # Обновляем значения CLIENT_ID и REVERSED_CLIENT_ID в Info.plist
+          plutil -replace 'GoogleService-Info.CLIENT_ID' -string "$CLIENT_ID" ios/Runner/Info.plist
+          plutil -replace 'GoogleService-Info.REVERSED_CLIENT_ID' -string "$REVERSED_CLIENT_ID" ios/Runner/Info.plist
+
       - name: Build iOS .app
         run: |
           flutter build ios --release --no-codesign
