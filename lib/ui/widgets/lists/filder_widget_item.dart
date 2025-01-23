@@ -25,7 +25,7 @@ class FolderItemWidget extends StatelessWidget {
     final pressToIcon = linkType != AppLinkType.none
         ? () => launchUrlByLink(folder.link)
         : null;
-        
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -53,7 +53,10 @@ class FolderItemWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              child: Icon(icon),
+              child: Icon(
+                icon,
+                color: AppColors.icon,
+              ),
             ),
           ),
           SizedBox(width: 6),

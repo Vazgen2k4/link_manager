@@ -7,4 +7,5 @@ abstract final class AppColors {
   static const error = Colors.red;
   static const correct = Color.fromARGB(255, 30, 159, 101);
   // const Color.fromARGB(255, 30, 159, 101)
+  static const icon =  Color.fromARGB(255, 175, 150, 237);
 }

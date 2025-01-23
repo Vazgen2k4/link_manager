@@ -1,0 +1,89 @@
+name: Build iOS App
+
+on:
+  push:
+    branches:
+      - main
+
+# jobs:
+#   build:
+#     runs-on: macos-latest
+
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+
+#       - name: Set up Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#           flutter-version: '3.24.2'
+
+#       - name: Install dependencies
+#         run: flutter pub get
+
+#       - name: Create firebase_options.dart
+#         env:
+#           FIREBASE_OPTIONS_FILE: ${{ secrets.FIREBASE_OPTIONS_FILE }}
+#         run: |
+#           echo "$FIREBASE_OPTIONS_FILE" > lib/firebase_options.dart
+
+#       - name: Create GoogleService-Info.plist
+#         env:
+#           GOOGLE_SERVICE_INFO_PLIST: ${{ secrets.FIREBASE_PLIST }}
+#         run: |
+#           echo "$GOOGLE_SERVICE_INFO_PLIST" > ios/Runner/GoogleService-Info.plist
+
+#       # - name: Set up Swift Package Manager for Firebase
+#       #   run: |
+#       #     echo "// swift-tools-version:5.9
+#       #     import PackageDescription
+          
+#       #     let package = Package(
+#       #         name: \"YourApp\",
+#       #         dependencies: [
+#       #             .package(url: \"https://github.com/firebase/firebase-ios-sdk.git\", .upToNextMajor(from: \"10.15.0\"))
+#       #         ],
+#       #         targets: [
+#       #             .target(
+#       #                 name: \"YourApp\",
+#       #                 dependencies: [
+#       #                     .product(name: \"FirebaseCore\", package: \"firebase-ios-sdk\"),
+#       #                     .product(name: \"FirebaseAnalytics\", package: \"firebase-ios-sdk\")
+#       #                 ]
+#       #             )
+#       #         ]
+#       #     )" > ios/Package.swift
+
+#       # - name: Resolve Swift Packages
+#       #   run: |
+#       #     cd ios
+#       #     swift package resolve
+
+#       - name: Extract IDs from GoogleService-Info.plist
+#         id: extract_ids
+#         run: |
+#           REVERSED_CLIENT_ID=$(plutil -extract REVERSED_CLIENT_ID xml1 -o - ios/Runner/GoogleService-Info.plist | awk -F'[><]' '/string/{print $3}')
+#           CLIENT_ID=$(plutil -extract CLIENT_ID xml1 -o - ios/Runner/GoogleService-Info.plist | awk -F'[><]' '/string/{print $3}')
+#           echo "REVERSED_CLIENT_ID=$REVERSED_CLIENT_ID" >> $GITHUB_ENV
+#           echo "CLIENT_ID=$CLIENT_ID" >> $GITHUB_ENV
+
+#       - name: Build iOS .app
+#         run: |
+#           flutter build ios --release --no-codesign
+
+#       - name: Prepare .ipa package
+#         run: |
+#           # Создаем папку Payload
+#           mkdir Payload
+#           # Перемещаем Runner.app в Payload
+#           cp -r build/ios/iphoneos/Runner.app Payload/
+#           # Архивируем Payload в .zip
+#           zip -r MyApp.zip Payload
+#           # Переименовываем .zip в .ipa
+#           mv MyApp.zip MyApp.ipa
+
+#       - name: Upload .ipa
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: ios-app
+#           path: MyApp.ipa

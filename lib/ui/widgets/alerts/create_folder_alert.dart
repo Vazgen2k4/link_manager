@@ -37,7 +37,7 @@ class _CreateFolderAlertState extends State<CreateFolderAlert> {
     }
 
     final state = context.read<AuthBloc>().state as AuthLoaded;
-    final user = state.curentUser;
+    final user = state.currentUser;
 
     if (user == null) {
       return;

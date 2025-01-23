@@ -2,7 +2,7 @@ export 'api/api.dart';
 export 'api/firebase_api/firebase_api.dart';
 export 'bloc/auth/auth_bloc.dart';
 export 'bloc/folders/folders.dart';
-export 'middleware/auth_milddleware.dart';
+export 'middleware/auth_middleware.dart';
 export 'middleware/connection_middleware.dart';
 export 'middleware/middleware.dart';
 export 'models/folder/folder.dart';
