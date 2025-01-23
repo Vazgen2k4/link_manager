@@ -11,7 +11,7 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final auth = FirebaseAuth.instance;
-  final GoogleSignIn goolSignIn = GoogleSignIn();
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
   AuthBloc() : super(AuthInitial()) {
     on<AuthLoading>(_load);
@@ -35,7 +35,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       user = await FirebaseApi.getUser(id: id);
     }
 
-    final state = AuthLoaded(hasAuth: hasAuth, curentUser: user);
+    final state = AuthLoaded(hasAuth: hasAuth, currentUser: user);
     emit(state);
   }
 
@@ -44,21 +44,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     if (state is! AuthLoaded) {
-      AppLogger.logWarning('Проблема со стейтом');
+      AppLogger.logWarning('Проблема с состоянием');
       return;
     }
 
     try {
-      await goolSignIn.signOut();
+      await googleSignIn.signOut();
       await auth.signOut();
       const newState = AuthLoaded(
         hasAuth: false,
-        curentUser: null,
+        currentUser: null,
       );
 
       emit(newState);
-    } catch (e) {
-      AppLogger.logError('Ошибка выхода: $e');      
+    } catch (e, stackTrace) {
+      AppLogger.logError('Ошибка выхода: $e', stackTrace: stackTrace);
     }
   }
 
@@ -67,14 +67,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     if (this.state is! AuthLoaded) {
-      AppLogger.logWarning('Проблема со стейтом');
+      AppLogger.logWarning('Проблема с состоянием');
       return;
     }
 
     final state = this.state as AuthLoaded;
 
     try {
-      final googleUser = await goolSignIn.signIn();
+      final googleUser = await googleSignIn.signIn();
 
       if (googleUser == null) {
         return;
@@ -95,14 +95,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
 
       final id = auth.currentUser?.uid;
-      final curentUser = await FirebaseApi.getUser(id: id);
+      final currentUser = await FirebaseApi.getUser(id: id);
 
       emit(state.copyWith(
         hasAuth: true,
-        curentUser: curentUser,
+        currentUser: currentUser,
       ));
-    } catch (e) {
-     AppLogger.logError(e.toString());
+    } catch (e, stackTrace) {
+      AppLogger.logError(e.toString(), stackTrace: stackTrace);
     }
   }
 }

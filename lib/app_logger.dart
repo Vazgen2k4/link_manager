@@ -13,8 +13,13 @@ sealed class AppLogger {
     log('⚠️ WARNING: $value', level: 900, name: 'WarningLog');
   }
 
-  static void logError(String value) {
-    log('❌ ERROR: $value', level: 1000, name: 'ErrorLog');
+  static void logError(String value, {StackTrace? stackTrace}) {
+    log(
+      '❌ ERROR: $value',
+      level: 1000,
+      name: 'ErrorLog',
+      stackTrace: stackTrace,
+    );
   }
 
   static void logCritical(String value) {

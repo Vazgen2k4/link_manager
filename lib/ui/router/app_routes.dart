@@ -13,7 +13,7 @@ abstract class AppRoutes {
   static const String auth = '/auth';
   static const String home = '/home';
   static const String profile = '/profile';
-  static const String settins = '/settings';
+  static const String settings = '/settings';
   static const String init = start;
 
   static List<AppRoute> get routes {
@@ -22,7 +22,7 @@ abstract class AppRoutes {
       AppRoute(page: AuthPage(), path: auth),
       AppRoute(page: ProfilePage(), path: profile),
       AppRoute(page: StartPage(), path: start),
-      AppRoute(page: SettingsPage(), path: settins),
+      AppRoute(page: SettingsPage(), path: settings),
     ];
 
     return routesList.toSet().toList();

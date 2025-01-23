@@ -83,7 +83,7 @@ class LinksListWidget extends StatelessWidget {
 
   void deleateFolder(BuildContext context) async {
     final state = context.read<AuthBloc>().state as AuthLoaded;
-    final user = state.curentUser;
+    final user = state.currentUser;
 
     if (user == null) {
       return;

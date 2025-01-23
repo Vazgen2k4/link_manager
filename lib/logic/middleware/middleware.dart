@@ -1,4 +1,4 @@
-import 'package:link_manager/logic/middleware/auth_milddleware.dart';
+import 'package:link_manager/logic/middleware/auth_middleware.dart';
 import 'package:link_manager/logic/middleware/connection_middleware.dart';
 import 'package:flutter/material.dart';
 

@@ -48,7 +48,7 @@ abstract final class AppDialogs {
               return;
             }
 
-            final user = state.curentUser;
+            final user = state.currentUser;
             if (user == null) {
               return;
             }
@@ -113,7 +113,7 @@ abstract final class AppDialogs {
               return;
             }
 
-            final user = state.curentUser;
+            final user = state.currentUser;
             if (user == null) {
               return;
             }
