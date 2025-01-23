@@ -15,8 +15,8 @@
     "error_404_title": "Stránka nenalezena",
     "error_404": "Chyba 404",
     "add_folder": "Přidat složku",
-    "field_lable_name": "Název",
-    "field_lable_link": "Odkaz",
+    "field_label_name": "Název",
+    "field_label_link": "Odkaz",
     "cancel": "Zrušit",
     "confirm": "Potvrdit",
     "validate_required": "Toto pole je povinné",
@@ -33,9 +33,10 @@
     "empty_folder": "Složka je prázdná",
     "settings_title": "Nastavení",
     "lang": "Jazyk",
-    "deleate": "Odstranění",
+    "delete": "Odstranění",
     "folder_exists": "Tento adresář již existuje",
     "folder_create": "Adresář \"$\" byl úspěšně vytvořen",
     "link_exists": "Tento odkaz již existuje",
+    "calc_title": "Kalkulačka",
     "home_page_title": "Link Manager"
 }

@@ -86,7 +86,7 @@ class _CreateFolderAlertState extends State<CreateFolderAlert> {
               TextFormField(
                 controller: nameController,
                 decoration: InputDecoration(
-                  labelText: S.of(context).field_lable_name,
+                  labelText: S.of(context).field_label_name,
                 ),
                 validator: AppValidator(context, settings: {
                   AppValidatorType.required,
@@ -96,7 +96,7 @@ class _CreateFolderAlertState extends State<CreateFolderAlert> {
                 TextFormField(
                   controller: linkController,
                   decoration: InputDecoration(
-                    labelText: S.of(context).field_lable_link,
+                    labelText: S.of(context).field_label_link,
                   ),
                   validator: AppValidator(context, settings: {
                     AppValidatorType.required,

@@ -24,10 +24,11 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_folder": MessageLookupByLibrary.simpleMessage("Add Directory"),
         "auth_page_title": MessageLookupByLibrary.simpleMessage("Login"),
+        "calc_title": MessageLookupByLibrary.simpleMessage("Calculator"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
-        "ctu_section_title": MessageLookupByLibrary.simpleMessage("CTU - FEE"),
-        "deleate": MessageLookupByLibrary.simpleMessage("Deletion"),
+        "ctu_section_title": MessageLookupByLibrary.simpleMessage("CTU - FEL"),
+        "delete": MessageLookupByLibrary.simpleMessage("Deletion"),
         "dev_section_title": MessageLookupByLibrary.simpleMessage("Developer"),
         "empty_folder":
             MessageLookupByLibrary.simpleMessage("The directory is empty"),
@@ -36,8 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Page not found"),
         "error_name": MessageLookupByLibrary.simpleMessage("Error with name"),
         "exit": MessageLookupByLibrary.simpleMessage("Exit"),
-        "field_lable_link": MessageLookupByLibrary.simpleMessage("Link"),
-        "field_lable_name": MessageLookupByLibrary.simpleMessage("Name"),
+        "field_label_link": MessageLookupByLibrary.simpleMessage("Link"),
+        "field_label_name": MessageLookupByLibrary.simpleMessage("Name"),
         "floating_error":
             MessageLookupByLibrary.simpleMessage("Floating error"),
         "folder_create": MessageLookupByLibrary.simpleMessage(

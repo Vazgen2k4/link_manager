@@ -1,4 +1,5 @@
 import 'package:link_manager/ui/pages/auth/auth_page.dart';
+import 'package:link_manager/ui/pages/calc/calc_page.dart';
 import 'package:link_manager/ui/pages/home/home_page.dart';
 import 'package:link_manager/ui/pages/profile/profile_page.dart';
 import 'package:link_manager/ui/pages/settings/settings.dart';
@@ -13,6 +14,7 @@ abstract class AppRoutes {
   static const String auth = '/auth';
   static const String home = '/home';
   static const String profile = '/profile';
+  static const String calc = '/calc';
   static const String settings = '/settings';
   static const String init = start;
 
@@ -23,6 +25,7 @@ abstract class AppRoutes {
       AppRoute(page: ProfilePage(), path: profile),
       AppRoute(page: StartPage(), path: start),
       AppRoute(page: SettingsPage(), path: settings),
+      AppRoute(page: CalcPage(), path: calc),
     ];
 
     return routesList.toSet().toList();

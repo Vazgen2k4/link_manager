@@ -24,10 +24,11 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_folder": MessageLookupByLibrary.simpleMessage("Přidat složku"),
         "auth_page_title": MessageLookupByLibrary.simpleMessage("Přihlásit se"),
+        "calc_title": MessageLookupByLibrary.simpleMessage("Kalkulačka"),
         "cancel": MessageLookupByLibrary.simpleMessage("Zrušit"),
         "confirm": MessageLookupByLibrary.simpleMessage("Potvrdit"),
         "ctu_section_title": MessageLookupByLibrary.simpleMessage("ČVUT - FEL"),
-        "deleate": MessageLookupByLibrary.simpleMessage("Odstranění"),
+        "delete": MessageLookupByLibrary.simpleMessage("Odstranění"),
         "dev_section_title": MessageLookupByLibrary.simpleMessage("Vývojář"),
         "empty_folder":
             MessageLookupByLibrary.simpleMessage("Složka je prázdná"),
@@ -36,8 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Stránka nenalezena"),
         "error_name": MessageLookupByLibrary.simpleMessage("Chyba se jménem"),
         "exit": MessageLookupByLibrary.simpleMessage("Odhlásit se"),
-        "field_lable_link": MessageLookupByLibrary.simpleMessage("Odkaz"),
-        "field_lable_name": MessageLookupByLibrary.simpleMessage("Název"),
+        "field_label_link": MessageLookupByLibrary.simpleMessage("Odkaz"),
+        "field_label_name": MessageLookupByLibrary.simpleMessage("Název"),
         "floating_error":
             MessageLookupByLibrary.simpleMessage("Chyba tlačítek"),
         "folder_create": MessageLookupByLibrary.simpleMessage(

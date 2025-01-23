@@ -20,7 +20,7 @@ abstract final class AppDialogs {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(S.of(context).deleate),
+          title: Text(S.of(context).delete),
           content: Text(message),
           actions: [
             TextButton(

@@ -80,10 +80,10 @@ class S {
     );
   }
 
-  /// `CTU - FEE`
+  /// `CTU - FEL`
   String get ctu_section_title {
     return Intl.message(
-      'CTU - FEE',
+      'CTU - FEL',
       name: 'ctu_section_title',
       desc: '',
       args: [],
@@ -211,20 +211,20 @@ class S {
   }
 
   /// `Name`
-  String get field_lable_name {
+  String get field_label_name {
     return Intl.message(
       'Name',
-      name: 'field_lable_name',
+      name: 'field_label_name',
       desc: '',
       args: [],
     );
   }
 
   /// `Link`
-  String get field_lable_link {
+  String get field_label_link {
     return Intl.message(
       'Link',
-      name: 'field_lable_link',
+      name: 'field_label_link',
       desc: '',
       args: [],
     );
@@ -391,10 +391,10 @@ class S {
   }
 
   /// `Deletion`
-  String get deleate {
+  String get delete {
     return Intl.message(
       'Deletion',
-      name: 'deleate',
+      name: 'delete',
       desc: '',
       args: [],
     );
@@ -425,6 +425,16 @@ class S {
     return Intl.message(
       'This link already exists',
       name: 'link_exists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Calculator`
+  String get calc_title {
+    return Intl.message(
+      'Calculator',
+      name: 'calc_title',
       desc: '',
       args: [],
     );

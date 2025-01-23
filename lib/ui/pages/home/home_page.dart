@@ -6,6 +6,7 @@ import 'package:link_manager/logic/logic.dart';
 
 import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/router/app_hero_tags.dart';
+import 'package:link_manager/ui/router/app_routes.dart';
 import 'package:link_manager/ui/widgets/alerts/app_dialogs.dart';
 import 'package:link_manager/ui/widgets/buttons/cart_btn.dart';
 
@@ -40,14 +41,14 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: const HomeFloattingButton(),
+        floatingActionButton: const HomeFloatingButton(),
       ),
     );
   }
 }
 
-class HomeFloattingButton extends StatelessWidget {
-  const HomeFloattingButton({
+class HomeFloatingButton extends StatelessWidget {
+  const HomeFloatingButton({
     super.key,
   });
 
@@ -76,6 +77,7 @@ class HomeFloattingButton extends StatelessWidget {
         }
 
         return Row(
+          spacing: 12,
           mainAxisSize: MainAxisSize.min,
           children: [
             if (role == AppUserRole.admin) ...[
@@ -84,8 +86,12 @@ class HomeFloattingButton extends StatelessWidget {
                 child: const Icon(Icons.settings),
                 onPressed: () {},
               ),
-              const SizedBox(width: 12)
             ],
+            FloatingActionButton(
+              heroTag: AppHeroTags.calculateFAB,
+              child: const Icon(Icons.calculate),
+              onPressed: () => goRoute(context, AppRoutes.calc),
+            ),
             FloatingActionButton(
               heroTag: AppHeroTags.button,
               child: const Icon(Icons.add),
@@ -114,7 +120,7 @@ class CTUSection extends StatelessWidget {
       child: SizedBox(
         height: 50,
         child: StreamBuilder(
-          stream: FirebaseApi.ctuLiknsDoc.snapshots(),
+          stream: FirebaseApi.ctuLinksDoc.snapshots(),
           builder: (context, snapshot) {
             final folder = Folder.fromJson(snapshot.data?.data() ?? {});
 

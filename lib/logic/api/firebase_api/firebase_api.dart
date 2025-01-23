@@ -8,7 +8,7 @@ abstract final class FirebaseApi {
 
   static final users = _instance.collection('users');
   static final settings = _instance.collection('settings');
-  static final ctuLiknsDoc = settings.doc('ctu_links');
+  static final ctuLinksDoc = settings.doc('ctu_links');
 
   static Future<bool> setUserById({
     AppUser? user,
