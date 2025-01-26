@@ -83,7 +83,7 @@ abstract final class FirebaseApi {
 
     // TODO: это часть миграции
     if (userData['role'] == null) {
-      AppLogger.logHint('Мигрирование произошло');
+      AppLogger.logHint('Мигрировали произошло');
 
       userData['role'] ??= 'user';
       await updateUserById(
