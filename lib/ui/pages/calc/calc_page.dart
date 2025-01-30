@@ -52,33 +52,30 @@ class CalcListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         spacing: 12,
         children: [
-          SizedBox(
-            width: double.infinity,
-            child: Wrap(
-              children: [
-                CalcCardWidget(
-                  text: "Средний балл",
-                  type: CalcType.awg,
-                ),
-                CalcCardWidget(
-                  text: "Кредиты",
-                  type: CalcType.sumGrades,
-                ),
-                CalcCardWidget(
-                  text: "Взвешенный балл",
-                  type: CalcType.weightedAwg,
-                ),
-                CalcCardWidget(
-                  text: "Взвешенные кредиты",
-                  type: CalcType.sumWeightGrades,
-                ),
-              ],
-            ),
+          Wrap(
+            children: [
+              CalcCardWidget(
+                text: "Средний балл",
+                type: CalcType.awg,
+              ),
+              CalcCardWidget(
+                text: "Взвешенный балл",
+                type: CalcType.weightedAwg,
+              ),
+              CalcCardWidget(
+                text: "Кредиты",
+                type: CalcType.sumGrades,
+              ),
+              CalcCardWidget(
+                text: "Взвешенные кредиты",
+                type: CalcType.sumWeightGrades,
+              ),
+            ],
           ),
           BlocSelector<CalcBloc, CalcState, List<CalcWeightedGrade>>(
             selector: (state) {
@@ -140,7 +137,7 @@ class CalcCardWidget extends StatelessWidget {
 
   const CalcCardWidget({
     super.key,
-    required this.text,
+    this.text = "ll",
     required this.type,
   });
 
@@ -150,43 +147,45 @@ class CalcCardWidget extends StatelessWidget {
         CalcType.sumWeightGrades => state.sumWeightGrades(),
         CalcType.awg => state.calcAwg(),
       };
-  
-  
+
   int _getFractionDigits() => switch (type) {
         CalcType.weightedAwg => 2,
         CalcType.sumGrades => 0,
         CalcType.sumWeightGrades => 0,
         CalcType.awg => 2,
       };
-  
+
   @override
   Widget build(BuildContext context) {
-    return Card.filled(
-      color: AppColors.main,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ClipRRect(
-          clipBehavior: Clip.hardEdge,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            spacing: 6,
-            children: [
-              BlocBuilder<CalcBloc, CalcState>(
-                builder: (context, state) {
-                  if (state is! CalcInitial) {
-                    return const SizedBox();
-                  }
+    return Tooltip(
+      message: text,
+      child: Card.filled(
+        color: AppColors.main,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ClipRRect(
+            clipBehavior: Clip.hardEdge,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              // spacing: 6,
+              children: [
+                BlocBuilder<CalcBloc, CalcState>(
+                  builder: (context, state) {
+                    if (state is! CalcInitial) {
+                      return const SizedBox();
+                    }
 
-                  return AnimatedFlipCounter(
-                    value: _getValue(state),
-                    fractionDigits: _getFractionDigits(),
-                    duration: const Duration(milliseconds: 500),
-                    textStyle: const TextStyle(fontSize: 22),
-                  );
-                },
-              ),
-              Text(text),
-            ],
+                    return AnimatedFlipCounter(
+                      value: _getValue(state),
+                      fractionDigits: _getFractionDigits(),
+                      duration: const Duration(milliseconds: 500),
+                      textStyle: const TextStyle(fontSize: 22),
+                    );
+                  },
+                ),
+                Text(text),
+              ],
+            ),
           ),
         ),
       ),
