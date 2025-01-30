@@ -32,8 +32,6 @@ class CalcListWidget extends StatelessWidget {
     super.key,
   });
 
-  final _square = 55.0;
-
   Widget _buildAddButton(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
@@ -54,22 +52,33 @@ class CalcListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 22),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         spacing: 12,
         children: [
-          CalcCardWidget(value: 1.45, text: "Баллов"),
-          CalcCardWidget(value: 120, text: "Кредитов"),
-          Row(
-            spacing: 12,
-            children: [
-              SizedBox(
-                width: _square * 1.5,
-                child: const Text("Оценка"),
-              ),
-              const Text("Кредиты"),
-            ],
+          SizedBox(
+            width: double.infinity,
+            child: Wrap(
+              children: [
+                CalcCardWidget(
+                  text: "Средний балл",
+                  type: CalcType.awg,
+                ),
+                CalcCardWidget(
+                  text: "Кредиты",
+                  type: CalcType.sumGrades,
+                ),
+                CalcCardWidget(
+                  text: "Взвешенный балл",
+                  type: CalcType.weightedAwg,
+                ),
+                CalcCardWidget(
+                  text: "Взвешенные кредиты",
+                  type: CalcType.sumWeightGrades,
+                ),
+              ],
+            ),
           ),
           BlocSelector<CalcBloc, CalcState, List<CalcWeightedGrade>>(
             selector: (state) {
@@ -80,24 +89,41 @@ class CalcListWidget extends StatelessWidget {
               return state.grades;
             },
             builder: (context, grades) {
-              return Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  if (grades.isEmpty)
-                    const Text("Список пуст", textAlign: TextAlign.center),
-                  if (grades.isNotEmpty)
-                    ListView.separated(
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return CalcItemWidget(key: ValueKey(index));
-                      },
-                      separatorBuilder: (_, __) =>
-                          const SizedBox.square(dimension: 12),
-                      itemCount: grades.length,
-                    ),
-                  _buildAddButton(context),
-                ],
+              return Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  spacing: 22,
+                  children: [
+                    if (grades.isEmpty)
+                      Expanded(
+                        child: Text(
+                          "Нет оценок",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: AppColors.text.withAlpha(50),
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                    if (grades.isNotEmpty)
+                      Expanded(
+                        child: ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return CalcItemWidget(
+                              key: ValueKey(grades[index].hashCode),
+                              index: index,
+                              weightedGrade: grades[index],
+                            );
+                          },
+                          separatorBuilder: (_, __) =>
+                              const SizedBox.square(dimension: 12),
+                          itemCount: grades.length,
+                        ),
+                      ),
+                    _buildAddButton(context),
+                  ],
+                ),
               );
             },
           ),
@@ -107,53 +133,60 @@ class CalcListWidget extends StatelessWidget {
   }
 }
 
-class CalcCardWidget extends StatefulWidget {
-  final double value;
+class CalcCardWidget extends StatelessWidget {
   final String text;
+
+  final CalcType type;
 
   const CalcCardWidget({
     super.key,
-    required this.value,
     required this.text,
+    required this.type,
   });
 
-  @override
-  State<CalcCardWidget> createState() => _CalcCardWidgetState();
-}
-
-class _CalcCardWidgetState extends State<CalcCardWidget> {
-  double _value = 0.0;
-
-  @override
-  void initState() {
-    super.initState();
-    _value = widget.value;
-  }
-
+  num _getValue(CalcInitial state) => switch (type) {
+        CalcType.weightedAwg => state.calcWeightedAvg(),
+        CalcType.sumGrades => state.sumCredits(),
+        CalcType.sumWeightGrades => state.sumWeightGrades(),
+        CalcType.awg => state.calcAwg(),
+      };
+  
+  
+  int _getFractionDigits() => switch (type) {
+        CalcType.weightedAwg => 2,
+        CalcType.sumGrades => 0,
+        CalcType.sumWeightGrades => 0,
+        CalcType.awg => 2,
+      };
+  
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        AppLogger.logInfo("Нажатие на карточку");
-        setState(() {
-          _value = _value + 1.3;
-        });
-      },
-      onDoubleTap: () {
-        AppLogger.logInfo("Нажатие на карточку");
-        setState(() {
-          _value = _value - 1.3;
-        });
-      },
-      child: Card.filled(
-        color: AppColors.main,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: AnimatedFlipCounter(
-            value: _value,
-            fractionDigits: 2,
-            duration: const Duration(milliseconds: 500),
-            suffix: ' ${widget.text}',
+    return Card.filled(
+      color: AppColors.main,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ClipRRect(
+          clipBehavior: Clip.hardEdge,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: 6,
+            children: [
+              BlocBuilder<CalcBloc, CalcState>(
+                builder: (context, state) {
+                  if (state is! CalcInitial) {
+                    return const SizedBox();
+                  }
+
+                  return AnimatedFlipCounter(
+                    value: _getValue(state),
+                    fractionDigits: _getFractionDigits(),
+                    duration: const Duration(milliseconds: 500),
+                    textStyle: const TextStyle(fontSize: 22),
+                  );
+                },
+              ),
+              Text(text),
+            ],
           ),
         ),
       ),
@@ -161,60 +194,22 @@ class _CalcCardWidgetState extends State<CalcCardWidget> {
   }
 }
 
-/* 
-
-Text.rich(
-          TextSpan(
-            text: "$value",
-            children: [
-              TextSpan(
-                text: " $text",
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-          style: TextStyle(
-            color: AppColors.text,
-            fontSize: 22,
-          ),
-        )
-
- */
-
-class CalcItemWidget extends StatefulWidget {
+class CalcItemWidget extends StatelessWidget {
   final double height;
-  const CalcItemWidget({required super.key, this.height = 55.0});
+  final int index;
+  final CalcWeightedGrade weightedGrade;
 
-  @override
-  State<CalcItemWidget> createState() => _CalcItemWidgetState();
-}
-
-class _CalcItemWidgetState extends State<CalcItemWidget> {
-  final List<DropdownMenuItem<CalcGrade>> _letters = [
-    CalcGrade.A,
-    CalcGrade.B,
-    CalcGrade.C,
-    CalcGrade.D,
-    CalcGrade.E,
-    CalcGrade.F,
-    CalcGrade.none,
-  ]
-      .map((e) => DropdownMenuItem<CalcGrade>(
-            value: e,
-            child: Center(child: Text(e.name)),
-          ))
-      .toList();
-
-  CalcGrade _selectedLetter = CalcGrade.none;
+  const CalcItemWidget({
+    required super.key,
+    this.height = 55.0,
+    required this.index,
+    required this.weightedGrade,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final width = widget.height * 1.5;
-
     return Slidable(
-      key: widget.key!,
+      key: key,
       endActionPane: ActionPane(
         extentRatio: 0.2,
         motion: ScrollMotion(),
@@ -222,8 +217,8 @@ class _CalcItemWidgetState extends State<CalcItemWidget> {
           SlidableAction(
             flex: 1,
             onPressed: (context) {
-              AppLogger.logInfo("Удаление элемента");
-              setState(() {});
+              AppLogger.logInfo("Удаление элемента по индексу $index");
+              context.read<CalcBloc>().add(CalcRemove(index));
             },
             icon: Icons.delete,
             backgroundColor: AppColors.error,
@@ -233,71 +228,131 @@ class _CalcItemWidgetState extends State<CalcItemWidget> {
       child: Padding(
         padding: const EdgeInsets.only(right: 8.0),
         child: SizedBox(
-          height: widget.height,
+          height: height,
           child: Row(
             spacing: 12,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                width: width,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: AppColors.main,
-                      width: 2,
-                    ),
-                  ),
-                  // borderRadius: BorderRadius.circular(8),
-                ),
-                child: DropdownButton<CalcGrade>(
-                  items: _letters,
-                  underline: SizedBox(),
-                  onChanged: (CalcGrade? value) {
-                    if (value == _selectedLetter || value == null) {
-                      AppLogger.logWarning(
-                        "Значение не изменилось или равно null, value: $value",
-                      );
-                      return;
-                    }
-                    setState(() {
-                      _selectedLetter = value;
-                    });
-                  },
-                  value: _selectedLetter,
-                ),
+              CalcDropdownButton(
+                index: index,
+                weightedGrade: weightedGrade,
               ),
-              Expanded(
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 22,
-                      vertical: 16,
-                    ),
-                    // enabledBorder: OutlineInputBorder(
-                    //   borderRadius: BorderRadius.circular(8),
-                    //   borderSide: BorderSide(
-                    //     color: AppColors.main,
-                    //     width: 2,
-                    //   ),
-                    // ),
-                    // border: OutlineInputBorder(
-                    //   borderRadius: BorderRadius.circular(8),
-                    //   borderSide: BorderSide(
-                    //     color: AppColors.main,
-                    //     width: 2,
-                    //   ),
-                    // ),
-
-                    hintText: "Кредиты",
-                  ),
-                ),
+              CalcInputWidget(
+                index: index,
+                weightedGrade: weightedGrade,
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class CalcDropdownButton extends StatelessWidget {
+  CalcDropdownButton({
+    super.key,
+    this.width = 55.0 * 1.5,
+    required this.index,
+    required this.weightedGrade,
+  });
+
+  final double width;
+  final int index;
+  final CalcWeightedGrade weightedGrade;
+
+  final List<DropdownMenuItem<CalcGrade>> _letters = [
+    CalcGrade.A,
+    CalcGrade.B,
+    CalcGrade.C,
+    CalcGrade.D,
+    CalcGrade.E,
+    CalcGrade.F,
+    CalcGrade.none,
+  ]
+      .map(
+        (e) => DropdownMenuItem<CalcGrade>(
+          value: e,
+          child: Center(child: Text(e.name)),
+        ),
+      )
+      .toList();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: AppColors.main,
+            width: 2,
+          ),
+        ),
+      ),
+      child: DropdownButton<CalcGrade>(
+        items: _letters,
+        underline: SizedBox(),
+        onChanged: (CalcGrade? value) {
+          if (value == weightedGrade || value == null) {
+            AppLogger.logWarning(
+              "Значение не изменилось или равно null, value: $value",
+            );
+            return;
+          }
+
+          context
+              .read<CalcBloc>()
+              .add(CalcSetGrade(index, weightedGrade.copyWith(grade: value)));
+        },
+        value: weightedGrade.grade,
+      ),
+    );
+  }
+}
+
+class CalcInputWidget extends StatelessWidget {
+  final CalcWeightedGrade weightedGrade;
+  final int index;
+
+  const CalcInputWidget({
+    super.key,
+    required this.weightedGrade,
+    required this.index,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: TextField(
+        keyboardType: TextInputType.number,
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        controller: TextEditingController(
+          text: weightedGrade.credit == 0
+              ? null
+              : weightedGrade.credit.toString(),
+        ),
+        onSubmitted: (value) {
+          AppLogger.logInfo("Изменение кредитов на $value");
+          value = value.trim();
+
+          context.read<CalcBloc>().add(
+                CalcSetGrade(
+                  index,
+                  weightedGrade.copyWith(
+                    credit: int.tryParse(value) ?? 0,
+                  ),
+                ),
+              );
+        },
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 22,
+            vertical: 16,
+          ),
+          hintText: "Кредиты",
         ),
       ),
     );

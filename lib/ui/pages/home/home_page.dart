@@ -1,5 +1,4 @@
 import 'package:link_manager/generated/l10n.dart';
-import 'package:link_manager/logic/logic.dart';
 
 import 'package:link_manager/ui/pages/home/ctu_section.dart';
 import 'package:link_manager/ui/pages/home/home_floating_button.dart';

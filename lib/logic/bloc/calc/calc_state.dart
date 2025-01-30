@@ -30,24 +30,55 @@ final class CalcInitial extends CalcState {
     );
   }
 
+  int sumCredits() {
+    final grades = _getFilteredGrades();
+    if (grades.isEmpty) {
+      return 0;
+    }
+    return grades.map((e) => e.credit).reduce((v, e) => v + e);
+  }
+
   double calcAwg() {
+    final grades = _getFilteredGrades();
+
+    if (grades.isEmpty) {
+      return 0;
+    }
+
     double sum = grades.map((e) => e.grade.value).reduce((v, e) => v + e);
     return sum / grades.length;
   }
 
-  double calcWeighted() {
+  double calcWeightedAvg() {
+    final grades = _getFilteredGrades();
+
+    if (grades.isEmpty) {
+      return 0;
+    }
     final sum =
         grades.map((e) => e.grade.value * e.credit).reduce((v, e) => v + e);
 
     final weightSum = grades.map((e) => e.credit).reduce((v, e) => v + e);
 
+    if (weightSum == 0) {
+      return 0;
+    }
+
     return sum / weightSum;
   }
 
   double sumWeightGrades() {
+    final grades = _getFilteredGrades();
+    if (grades.isEmpty) {
+      return 0;
+    }
     return grades
         .map((e) => e.credit * (4 - e.grade.value))
         .reduce((v, e) => v + e);
+  }
+
+  List<CalcWeightedGrade> _getFilteredGrades() {
+    return grades.where((element) => element.grade != CalcGrade.none).toList();
   }
 
   @override

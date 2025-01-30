@@ -22,8 +22,25 @@ final class Calculate extends CalcEvent {
 final class CalcAdd extends CalcEvent {
   final CalcWeightedGrade value;
   const CalcAdd(this.value);
-  const CalcAdd.none() : value = const CalcWeightedGrade(CalcGrade.none, 0.0);
+  const CalcAdd.none() : value = const CalcWeightedGrade(CalcGrade.none, 0);
 
   @override
   List<Object> get props => [value];
+}
+
+final class CalcRemove extends CalcEvent {
+  final int index;
+  const CalcRemove(this.index);
+
+  @override
+  List<Object> get props => [index];
+}
+
+final class CalcSetGrade extends CalcEvent {
+  final int index;
+  final CalcWeightedGrade grade;
+  const CalcSetGrade(this.index, this.grade);
+
+  @override
+  List<Object> get props => [index];
 }

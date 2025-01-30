@@ -16,7 +16,24 @@ enum CalcGrade {
 
 final class CalcWeightedGrade {
   final CalcGrade grade;
-  final double credit;
+  final int credit;
 
   const CalcWeightedGrade(this.grade, this.credit);
+
+  CalcWeightedGrade copyWith({
+    CalcGrade? grade,
+    int? credit,
+  }) {
+    return CalcWeightedGrade(
+      grade ?? this.grade,
+      credit ?? this.credit,
+    );
+  }
+}
+
+enum CalcType {
+  awg,
+  weightedAwg,
+  sumGrades,
+  sumWeightGrades
 }
