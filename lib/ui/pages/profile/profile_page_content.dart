@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,10 +6,10 @@ import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/bloc/settings/settings_bloc.dart';
 import 'package:link_manager/resources/resources.dart';
+import 'package:link_manager/ui/pages/profile/personal_form.dart';
 import 'package:link_manager/ui/router/app_hero_tags.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:link_manager/ui/widgets/buttons/cooldown_button.dart';
-import 'package:link_manager/ui/widgets/buttons/profile_btn.dart';
 import 'package:link_manager/ui/widgets/buttons/settings_button.dart';
 import 'package:link_manager/ui/widgets/limited_container/limited_container.dart';
 import 'package:link_manager/ui/widgets/section/section.dart';
@@ -100,7 +99,7 @@ class ProfilePageContent extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      color: AppColors.main.withOpacity(.3),
+                      color: AppColors.main.withAlpha(33),
                       border: Border.all(
                         color: AppColors.main,
                         width: 2,
@@ -185,39 +184,6 @@ class ProfilePageContent extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class PersonalForm extends StatelessWidget {
-  const PersonalForm({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Hero(
-          tag: AppHeroTags.profileImage,
-          child: ProfileBtn(
-            userUrl: user?.photoURL ?? '',
-            disabel: true,
-            radius: 50,
-          ),
-        ),
-        ListTile(
-          leading: const Icon(Icons.person),
-          title: AutoSizeText(user?.displayName ?? ''),
-        ),
-        const SizedBox(width: 15),
-        ListTile(
-          leading: const Icon(Icons.email),
-          title: AutoSizeText(user?.email ?? ''),
-        ),
-      ],
     );
   }
 }

@@ -7,7 +7,7 @@ import 'package:link_manager/ui/pages/start/start_page.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
-abstract class AppRoutes {
+sealed class AppRoutes {
   const AppRoutes._();
 
   static const String start = '/';
@@ -17,6 +17,7 @@ abstract class AppRoutes {
   static const String calc = '/calc';
   static const String settings = '/settings';
   static const String init = start;
+  static const String noFound = '/404';
 
   static List<AppRoute> get routes {
     const routesList = <AppRoute>[
@@ -41,5 +42,5 @@ class AppRoute extends Equatable {
   });
 
   @override
-  List<Object> get props => [path];
+  List<Object> get props => [path, page];
 }

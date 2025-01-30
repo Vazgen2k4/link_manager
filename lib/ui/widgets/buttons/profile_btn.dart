@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 
 class ProfileBtn extends StatelessWidget {
   final String userUrl;
-  final bool disabel;
+  final bool isDisabled;
   final double radius;
 
   const ProfileBtn({
     super.key,
     required this.userUrl,
-    this.disabel = false,
+    this.isDisabled = false,
     this.radius = 17.5,
   });
 
@@ -24,7 +24,7 @@ class ProfileBtn extends StatelessWidget {
         style: ButtonStyle(padding: WidgetStatePropertyAll(EdgeInsets.zero)),
         onPressed: () {
           final currentRoute = ModalRoute.of(context)?.settings.name;
-          if (currentRoute == AppRoutes.profile || disabel) {
+          if (currentRoute == AppRoutes.profile || isDisabled) {
             return;
           }
           goRoute(context, AppRoutes.profile);
@@ -35,10 +35,8 @@ class ProfileBtn extends StatelessWidget {
             width: size,
             height: size,
             fit: BoxFit.cover,
-            placeholder: (context, url) => loadWidget,
-            errorWidget: (context, url, error) => const Icon(
-              Icons.error,
-            ),
+            placeholder: (_, __) => loadWidget,
+            errorWidget: (_, __, ___) => const Icon(Icons.error),
           ),
         ),
       ),

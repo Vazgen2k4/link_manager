@@ -3,21 +3,12 @@ part of 'calc_bloc.dart';
 sealed class CalcState extends Equatable {
   const CalcState();
 
-  static const Map<String, double> weights = {
-    'A': 1.0,
-    'B': 1.5,
-    'C': 2.0,
-    'D': 2.5,
-    'E': 3.0,
-    'F': 4.0,
-  };
-
   @override
   List<Object> get props => [];
 }
 
 final class CalcInitial extends CalcState {
-  final List<CalcGrades> grades;
+  final List<CalcWeightedGrade> grades;
   final double awg;
   final double weightedAwg;
 
@@ -28,7 +19,7 @@ final class CalcInitial extends CalcState {
   });
 
   CalcInitial copyWith({
-    List<CalcGrades>? grades,
+    List<CalcWeightedGrade>? grades,
     double? awg,
     double? weightedAwg,
   }) {
@@ -39,18 +30,26 @@ final class CalcInitial extends CalcState {
     );
   }
 
+  double calcAwg() {
+    double sum = grades.map((e) => e.grade.value).reduce((v, e) => v + e);
+    return sum / grades.length;
+  }
+
+  double calcWeighted() {
+    final sum =
+        grades.map((e) => e.grade.value * e.credit).reduce((v, e) => v + e);
+
+    final weightSum = grades.map((e) => e.credit).reduce((v, e) => v + e);
+
+    return sum / weightSum;
+  }
+
+  double sumWeightGrades() {
+    return grades
+        .map((e) => e.credit * (4 - e.grade.value))
+        .reduce((v, e) => v + e);
+  }
+
   @override
   List<Object> get props => [grades, awg, weightedAwg];
-}
-
-class CalcGrades {
-  final String letter;
-  final double credits;
-  final double value;
-
-  const CalcGrades({
-    required this.letter,
-    required this.value,
-    required this.credits,
-  });
 }

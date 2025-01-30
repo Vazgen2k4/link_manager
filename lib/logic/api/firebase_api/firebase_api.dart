@@ -41,8 +41,7 @@ abstract final class FirebaseApi {
       return false;
     }
 
-    final doc = await FirebaseApi.users.doc(id).get();
-    return doc.exists;
+    return (await FirebaseApi.users.doc(id).get()).exists;
   }
 
   static Future<bool> createUserByGoogleAuth({
@@ -86,6 +85,7 @@ abstract final class FirebaseApi {
       AppLogger.logHint('Мигрировали произошло');
 
       userData['role'] ??= 'user';
+
       await updateUserById(
         user: AppUser.fromJson(userData),
         id: id,

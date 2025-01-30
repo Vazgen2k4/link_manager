@@ -18,7 +18,7 @@ class ToKosButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: const Icon(Icons.calendar_month_outlined),
-      tileColor: AppColors.main.withOpacity(.3),
+      tileColor: AppColors.buttons,
       shape: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(

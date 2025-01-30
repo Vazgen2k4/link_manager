@@ -1,5 +1,6 @@
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
+import 'package:link_manager/logic/bloc/calc/calc_bloc.dart';
 import 'package:link_manager/logic/bloc/settings/settings_bloc.dart';
 import 'package:link_manager/ui/router/app_router.dart';
 import 'package:flutter/material.dart';
@@ -13,19 +14,27 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<SettingsBloc>(
-          lazy: false,
-          create: (context) {
-            final block = SettingsBloc();
-            block.add(const SettingsEventLoad());
-            return block;
+        BlocProvider<AuthBloc>(
+          create: (_) {
+            final bloc = AuthBloc();
+            bloc.add(const AuthLoading());
+            return bloc;
           },
         ),
-        BlocProvider<AuthBloc>(
-          create: (context) {
-            final block = AuthBloc();
-            block.add(const AuthLoading());
-            return block;
+        BlocProvider<SettingsBloc>(
+          lazy: false,
+          create: (_) {
+            final bloc = SettingsBloc();
+            bloc.add(const SettingsEventLoad());
+            return bloc;
+          },
+        ),
+        BlocProvider<CalcBloc>(
+          lazy: false,
+          create: (_) {
+            final bloc = CalcBloc();
+            bloc.add(const CalcInit());
+            return bloc;
           },
         ),
       ],

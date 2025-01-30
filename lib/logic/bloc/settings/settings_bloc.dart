@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-// import 'package:flutter/material.dart';
 import 'package:link_manager/app_logger.dart';
-// import 'package:link_manager/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'settings_event.dart';
@@ -10,7 +8,7 @@ part 'settings_state.dart';
 part 'settings_keys.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
-  final _prefs = SharedPreferencesWithCache.create(
+  static final _prefs = SharedPreferencesWithCache.create(
     cacheOptions: const SharedPreferencesWithCacheOptions(
       allowList: <String>{
         SettingsKeys.lang,

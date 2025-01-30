@@ -7,7 +7,9 @@ sealed class SettingsState extends Equatable {
   List<Object> get props => [];
 }
 
-final class SettingsInitial extends SettingsState {}
+final class SettingsInitial extends SettingsState {
+  const SettingsInitial() : super();
+}
 
 final class SettingsLoaded extends SettingsState {
   final String _lang;

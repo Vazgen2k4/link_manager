@@ -7,27 +7,22 @@ sealed class CalcEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class CalcInit extends CalcEvent {}
+final class CalcInit extends CalcEvent {
+  const CalcInit();
+}
 
-final class CalcSet extends CalcEvent {
-  final CalcGrades value;
-  const CalcSet(this.value);
+final class Calculate extends CalcEvent {
+  final List<CalcGrade> values;
+  const Calculate(this.values);
 
   @override
-  List<Object> get props => [value];
+  List<Object> get props => [values];
 }
 
 final class CalcAdd extends CalcEvent {
-  final CalcGrades value;
+  final CalcWeightedGrade value;
   const CalcAdd(this.value);
-
-  @override
-  List<Object> get props => [value];
-}
-
-final class CalcRemove extends CalcEvent {
-  final int value;
-  const CalcRemove(this.value);
+  const CalcAdd.none() : value = const CalcWeightedGrade(CalcGrade.none, 0.0);
 
   @override
   List<Object> get props => [value];

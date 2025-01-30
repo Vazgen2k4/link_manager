@@ -24,11 +24,11 @@ class CooldownButton extends StatefulWidget {
 }
 
 class _CooldownButtonState extends State<CooldownButton> {
-  bool isPresed = false;
+  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
-    Widget? current = isPresed ? loadWidget : widget.child;
+    Widget? current = isPressed ? loadWidget : widget.child;
 
     return Center(
       child: TextButton(
@@ -52,12 +52,12 @@ class _CooldownButtonState extends State<CooldownButton> {
   }
 
   void action() async {
-    if (isPresed || widget.onClick == null) {
+    if (isPressed || widget.onClick == null) {
       return;
     }
 
     setState(() {
-      isPresed = true;
+      isPressed = true;
     });
 
     widget.onClick!();

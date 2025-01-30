@@ -73,7 +73,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     final state = this.state as AuthLoaded;
 
-    try {
+    
       final googleUser = await googleSignIn.signIn();
 
       if (googleUser == null) {
@@ -84,6 +84,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
+        
       );
 
       await auth.signInWithCredential(credential);
@@ -101,8 +102,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         hasAuth: true,
         currentUser: currentUser,
       ));
-    } catch (e, stackTrace) {
-      AppLogger.logError(e.toString(), stackTrace: stackTrace);
-    }
+    
   }
 }

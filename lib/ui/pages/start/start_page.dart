@@ -1,4 +1,3 @@
-import 'package:link_manager/logic/middleware/middleware.dart';
 import 'package:link_manager/ui/app_const.dart';
 import 'package:flutter/material.dart';
 
@@ -7,10 +6,8 @@ class StartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Middleware(
-      child: Scaffold(
-        body: loadWidget,
-      ),
+    return Scaffold(
+      body: loadWidget,
     );
   }
 }

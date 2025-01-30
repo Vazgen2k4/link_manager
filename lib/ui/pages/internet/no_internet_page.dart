@@ -12,12 +12,12 @@ class NoInternetPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
+          spacing: 16,
           children: [
             const Icon(
               Icons.signal_wifi_connected_no_internet_4_rounded,
               size: 100,
             ),
-            const SizedBox(height: 16),
             AutoSizeText(S.of(context).no_connection),
           ],
         ),

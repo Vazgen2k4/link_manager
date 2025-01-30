@@ -12,14 +12,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // TODO: удалить этот файл и просто модифицировать файл 
 // './alert_widget.dart'
 class CreateFolderAlert extends StatefulWidget {
-  final void Function(String name, String link)? onSucsess;
+  final void Function(String name, String link)? onFolderCreated;
 
   const CreateFolderAlert({
     super.key,
-    this.onSucsess,
+    this.onFolderCreated,
   });
 
   @override
+  
   State<CreateFolderAlert> createState() => _CreateFolderAlertState();
 }
 
@@ -30,8 +31,8 @@ class _CreateFolderAlertState extends State<CreateFolderAlert> {
   AppLinkType linkType = AppLinkType.none;
 
   void onConfirm() {
-    final allIsValide = formKey.currentState?.validate() ?? false;
-    if (!allIsValide) {
+    final isFormValid = formKey.currentState?.validate() ?? false;
+    if (!isFormValid) {
       AppLogger.logInfo("Валидация в CreateFolderAlertState не прошла");
       return;
     }
@@ -46,8 +47,8 @@ class _CreateFolderAlertState extends State<CreateFolderAlert> {
     final name = nameController.value.text.trim();
     final link = linkController.value.text.trim();
 
-    if (widget.onSucsess != null) {
-      widget.onSucsess!(name, link);
+    if (widget.onFolderCreated != null) {
+      widget.onFolderCreated!(name, link);
     }
 
     Navigator.of(context).pop(true);
