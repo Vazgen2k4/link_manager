@@ -295,7 +295,7 @@ class CalcDropdownButton extends StatelessWidget {
         items: _letters,
         underline: SizedBox(),
         onChanged: (CalcGrade? value) {
-          if (value == weightedGrade || value == null) {
+          if ( value == null || value == weightedGrade.grade) {
             AppLogger.logWarning(
               "Значение не изменилось или равно null, value: $value",
             );
