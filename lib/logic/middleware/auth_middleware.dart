@@ -1,3 +1,4 @@
+import 'package:link_manager/app_logger.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/router/app_routes.dart';
@@ -15,6 +16,8 @@ class AuthMiddleware extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
+        AppLogger.logHint('AuthMiddleware: $state');
+        
         if (state is! AuthLoaded) {
           return;
         }

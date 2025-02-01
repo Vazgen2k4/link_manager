@@ -60,7 +60,7 @@ class LInksListContentWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                onLongPress: () => deleateLink(context, index),
+                onLongPress: () => deleteLink(context, index),
                 onTap: () => launchUrlByLink(link.value),
               ),
             ),
@@ -70,7 +70,7 @@ class LInksListContentWidget extends StatelessWidget {
     );
   }
 
-  void deleateLink(BuildContext context, int index) async {
+  void deleteLink(BuildContext context, int index) async {
     final state = context.read<AuthBloc>().state as AuthLoaded;
     final user = state.currentUser;
 

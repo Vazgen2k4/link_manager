@@ -44,7 +44,7 @@ class FolderItemWidget extends StatelessWidget {
                   ),
                 ),
                 backgroundColor: WidgetStatePropertyAll(
-                  AppColors.main.withOpacity(.3),
+                  AppColors.buttons,
                 ),
                 side: WidgetStatePropertyAll(
                   BorderSide(

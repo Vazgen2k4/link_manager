@@ -11,11 +11,11 @@ class AlertWidget extends StatefulWidget {
     String name,
     String value,
     AppLinkType type,
-  )? onSucsess;
+  )? onSuccess;
 
   const AlertWidget({
     super.key,
-    this.onSucsess,
+    this.onSuccess,
   });
 
   @override
@@ -29,8 +29,8 @@ class _AlertWidgetState extends State<AlertWidget> {
   AppLinkType linkType = AppLinkType.link;
 
   void onConfirm() {
-    final allIsValide = formKey.currentState?.validate() ?? false;
-    if (!allIsValide) {
+    final isFormValid = formKey.currentState?.validate() ?? false;
+    if (!isFormValid) {
       return;
     }
 
@@ -44,8 +44,8 @@ class _AlertWidgetState extends State<AlertWidget> {
     final link = linkController.value.text.trim();
     final name = nameController.value.text.trim();
 
-    if (widget.onSucsess != null) {
-      widget.onSucsess!(name, link, linkType);
+    if (widget.onSuccess != null) {
+      widget.onSuccess!(name, link, linkType);
     }
 
     Navigator.of(context).pop(true);
@@ -83,7 +83,7 @@ class _AlertWidgetState extends State<AlertWidget> {
               TextFormField(
                 controller: nameController,
                 decoration: InputDecoration(
-                  labelText: S.of(context).field_lable_name,
+                  labelText: S.of(context).field_label_name,
                 ),
                 validator: AppValidator(context, settings: {
                   AppValidatorType.required,
@@ -92,7 +92,7 @@ class _AlertWidgetState extends State<AlertWidget> {
               TextFormField(
                 controller: linkController,
                 decoration: InputDecoration(
-                  labelText: S.of(context).field_lable_link,
+                  labelText: S.of(context).field_label_link,
                 ),
                 validator: AppValidator(context, settings: {
                   AppValidatorType.required,

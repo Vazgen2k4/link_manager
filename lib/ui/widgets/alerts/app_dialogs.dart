@@ -20,7 +20,7 @@ abstract final class AppDialogs {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(S.of(context).deleate),
+          title: Text(S.of(context).delete),
           content: Text(message),
           actions: [
             TextButton(
@@ -42,7 +42,7 @@ abstract final class AppDialogs {
       context: context,
       builder: (context) {
         return CreateFolderAlert(
-          onSucsess: (name, link) async {
+          onFolderCreated: (name, link) async {
             final state = context.read<AuthBloc>().state;
             if (state is! AuthLoaded) {
               return;
@@ -107,7 +107,7 @@ abstract final class AppDialogs {
       context: context,
       builder: (context) {
         return AlertWidget(
-          onSucsess: (name, link, type) async {
+          onSuccess: (name, link, type) async {
             final state = context.read<AuthBloc>().state;
             if (state is! AuthLoaded) {
               return;

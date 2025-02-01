@@ -8,7 +8,7 @@ abstract final class FirebaseApi {
 
   static final users = _instance.collection('users');
   static final settings = _instance.collection('settings');
-  static final ctuLiknsDoc = settings.doc('ctu_links');
+  static final ctuLinksDoc = settings.doc('ctu_links');
 
   static Future<bool> setUserById({
     AppUser? user,
@@ -41,8 +41,7 @@ abstract final class FirebaseApi {
       return false;
     }
 
-    final doc = await FirebaseApi.users.doc(id).get();
-    return doc.exists;
+    return (await FirebaseApi.users.doc(id).get()).exists;
   }
 
   static Future<bool> createUserByGoogleAuth({
@@ -83,9 +82,10 @@ abstract final class FirebaseApi {
 
     // TODO: это часть миграции
     if (userData['role'] == null) {
-      AppLogger.logHint('Мигрирование произошло');
+      AppLogger.logHint('Мигрировали произошло');
 
       userData['role'] ??= 'user';
+
       await updateUserById(
         user: AppUser.fromJson(userData),
         id: id,

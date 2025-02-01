@@ -4,13 +4,13 @@ import 'package:link_manager/generated/l10n.dart';
 class AppValidator {
   final Set<AppValidatorType> settings;
   final BuildContext context;
-  Map<AppValidatorType, String? Function(String?)> _sourse;
+  Map<AppValidatorType, String? Function(String?)> _source;
 
   AppValidator(
     this.context, {
     required this.settings,
-  }) : _sourse = {} {
-    _sourse = {
+  }) : _source = {} {
+    _source = {
       AppValidatorType.required: _required,
       AppValidatorType.link: _isLink,
       AppValidatorType.mail: _isLinkToMail,
@@ -56,7 +56,7 @@ class AppValidator {
     String? result;
 
     for (var type in settings) {
-      final func = _sourse[type];
+      final func = _source[type];
       if (func == null) {
         continue;
       }

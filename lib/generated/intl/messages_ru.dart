@@ -26,10 +26,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Добавьте Директорию"),
         "auth_page_title":
             MessageLookupByLibrary.simpleMessage("Выполните вход"),
+        "calc_title": MessageLookupByLibrary.simpleMessage("Калькулятор"),
         "cancel": MessageLookupByLibrary.simpleMessage("Отменить"),
         "confirm": MessageLookupByLibrary.simpleMessage("Подтвердить"),
         "ctu_section_title": MessageLookupByLibrary.simpleMessage("ЧВУТ - ФЭЛ"),
-        "deleate": MessageLookupByLibrary.simpleMessage("Удаление"),
+        "delete": MessageLookupByLibrary.simpleMessage("Удаление"),
         "dev_section_title":
             MessageLookupByLibrary.simpleMessage("Разработчик"),
         "empty_folder":
@@ -39,8 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Страница не найдена"),
         "error_name": MessageLookupByLibrary.simpleMessage("Ошибка с именем"),
         "exit": MessageLookupByLibrary.simpleMessage("Выход"),
-        "field_lable_link": MessageLookupByLibrary.simpleMessage("Ссылка"),
-        "field_lable_name": MessageLookupByLibrary.simpleMessage("Название"),
+        "field_label_link": MessageLookupByLibrary.simpleMessage("Ссылка"),
+        "field_label_name": MessageLookupByLibrary.simpleMessage("Название"),
         "floating_error":
             MessageLookupByLibrary.simpleMessage("Ошибка с кнопками"),
         "folder_create": MessageLookupByLibrary.simpleMessage(
@@ -54,8 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "link_exists":
             MessageLookupByLibrary.simpleMessage("Такая ссылка уже существует"),
         "link_to_kos":
-            MessageLookupByLibrary.simpleMessage("Сcылка на расписание"),
-        "links": MessageLookupByLibrary.simpleMessage("Сcылки"),
+            MessageLookupByLibrary.simpleMessage("Ссылка на расписание"),
+        "links": MessageLookupByLibrary.simpleMessage("Ссылки"),
         "no_connection":
             MessageLookupByLibrary.simpleMessage("Нет соединения с интернетом"),
         "no_folders": MessageLookupByLibrary.simpleMessage(
@@ -83,6 +84,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "validate_phone":
             MessageLookupByLibrary.simpleMessage("Неверный формат номера"),
         "validate_required":
-            MessageLookupByLibrary.simpleMessage("Это поле обязятельное")
+            MessageLookupByLibrary.simpleMessage("Это поле обязательное")
       };
 }

@@ -15,7 +15,7 @@ class CartBtn extends StatelessWidget {
     return TextButton(
       style: ButtonStyle(
         backgroundColor: WidgetStatePropertyAll(
-          AppColors.main.withOpacity(.3),
+          AppColors.buttons,
         ),
         side: WidgetStatePropertyAll(
           const BorderSide(

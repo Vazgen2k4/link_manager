@@ -1,4 +1,5 @@
 import 'package:link_manager/ui/pages/auth/auth_page.dart';
+import 'package:link_manager/ui/pages/calc/calc_page.dart';
 import 'package:link_manager/ui/pages/home/home_page.dart';
 import 'package:link_manager/ui/pages/profile/profile_page.dart';
 import 'package:link_manager/ui/pages/settings/settings.dart';
@@ -6,15 +7,17 @@ import 'package:link_manager/ui/pages/start/start_page.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
-abstract class AppRoutes {
+sealed class AppRoutes {
   const AppRoutes._();
 
   static const String start = '/';
   static const String auth = '/auth';
   static const String home = '/home';
   static const String profile = '/profile';
+  static const String calc = '/calc';
   static const String settings = '/settings';
   static const String init = start;
+  static const String noFound = '/404';
 
   static List<AppRoute> get routes {
     const routesList = <AppRoute>[
@@ -23,6 +26,7 @@ abstract class AppRoutes {
       AppRoute(page: ProfilePage(), path: profile),
       AppRoute(page: StartPage(), path: start),
       AppRoute(page: SettingsPage(), path: settings),
+      AppRoute(page: CalcPage(), path: calc),
     ];
 
     return routesList.toSet().toList();
@@ -38,5 +42,5 @@ class AppRoute extends Equatable {
   });
 
   @override
-  List<Object> get props => [path];
+  List<Object> get props => [path, page];
 }

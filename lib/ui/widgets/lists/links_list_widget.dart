@@ -45,7 +45,7 @@ class LinksListWidget extends StatelessWidget {
               dimension: 35,
               child: IconButton.filled(
                 padding: EdgeInsets.zero,
-                onPressed: () => deleateFolder(context),
+                onPressed: () => deleteFolder(context),
                 icon: const Icon(Icons.delete_sweep_rounded),
               ),
             ),
@@ -81,7 +81,7 @@ class LinksListWidget extends StatelessWidget {
 
   }
 
-  void deleateFolder(BuildContext context) async {
+  void deleteFolder(BuildContext context) async {
     final state = context.read<AuthBloc>().state as AuthLoaded;
     final user = state.currentUser;
 
