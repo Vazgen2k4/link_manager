@@ -11,22 +11,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LinksListWidget extends StatelessWidget {
+  final Folder folder;
+  final int index;
+  final double minHeight;
+  
   const LinksListWidget({
     super.key,
     required this.folder,
     required this.index,
+    required this.minHeight,
   });
 
-  final Folder folder;
-  final int index;
 
   @override
   Widget build(BuildContext context) {
     final links = folder.appLinks;
+    const double minContentHeight = 54;
+    final divider = SizedBox(height: (minHeight - minContentHeight) / 2);
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        divider,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -62,9 +69,12 @@ class LinksListWidget extends StatelessWidget {
             ),
           ],
         ),
-        LInksListContentWidget(
-          links: links,
-          folderIndex: index,
+        divider,
+        Expanded(
+          child: LInksListContentWidget(
+            links: links,
+            folderIndex: index,
+          ),
         ),
       ],
     );

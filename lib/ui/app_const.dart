@@ -3,22 +3,11 @@ import 'package:link_manager/app_logger.dart';
 import 'package:link_manager/logic/models/link/app_link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-Future<T?> goRoute<T extends Object?>(
-  BuildContext context,
-  String route, {
-  bool withRemoveUntil = false,
-}) async {
-  if (withRemoveUntil) {
-    return await Navigator.of(context).pushNamedAndRemoveUntil(
-      route,
-      (route) => false,
-    );
-  }
 
-  return await Navigator.of(context).pushNamed(route);
-}
 
 const Widget loadWidget = Center(child: CircularProgressIndicator.adaptive());
+
+const String kSupportUrl = 'https://www.donationalerts.com/r/vazgen2k4';
 
 IconData getIconByLinkType(AppLinkType? type) => switch (type) {
       AppLinkType.email => Icons.email,

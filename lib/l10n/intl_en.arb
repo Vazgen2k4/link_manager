@@ -8,7 +8,9 @@
     "userdata_section_title": "Personal data",
     "dev_section_title": "Developer",
     "support_project": "Support the project",
-    "support_response_msg": "Account number copied ❤️",
+    
+    "support_response_msg": "Thank you for your support ❤️",
+    
     "telegram_blog": "OverWeb - Telegram blog",
     "exit": "Exit",
     "settings_page_title": "Exit",
@@ -38,5 +40,14 @@
     "folder_create": "Folder \"$\" has been successfully created",
     "link_exists": "This link already exists",
     "calc_title": "Calculator",
+    
+    "calc_credits": "Credits",
+    "calc_weighted": "Weighted credits",
+    "calc_weighted_average": "Weighted average",
+    "calc_gpa": "GPA",
+    
+    "add_grade": "Add grade",
+    "have_no_grades": "You have no grades yet...",
+    
     "home_page_title": "Link Manager"
 }

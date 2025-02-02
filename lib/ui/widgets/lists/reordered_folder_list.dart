@@ -6,7 +6,7 @@ import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/models/folder/folder.dart';
 import 'package:link_manager/logic/models/user/app_user.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
-import 'package:link_manager/ui/widgets/lists/filder_widget_item.dart';
+import 'package:link_manager/ui/widgets/lists/folder_widget_item.dart';
 
 class ReorderedFolderList extends StatefulWidget {
   const ReorderedFolderList({
@@ -23,18 +23,18 @@ class ReorderedFolderList extends StatefulWidget {
 class _ReorderedFolderListState extends State<ReorderedFolderList> {
   bool _haveReorder = false;
   List<Folder> _oldList = [];
-  List<Folder> _curentList = [];
+  List<Folder> _currentList = [];
 
   @override
   void initState() {
     _oldList = [...widget.user.folders];
-    _curentList = [...widget.user.folders];
+    _currentList = [...widget.user.folders];
 
     super.initState();
   }
 
   void _reorder(oldIndex, newIndex) async {
-    if (_curentList.length < 2) {
+    if (_currentList.length < 2) {
       return;
     }
 
@@ -42,11 +42,11 @@ class _ReorderedFolderListState extends State<ReorderedFolderList> {
       newIndex--;
     }
 
-    final old = _curentList.removeAt(oldIndex);
-    _curentList.insert(newIndex, old);
+    final old = _currentList.removeAt(oldIndex);
+    _currentList.insert(newIndex, old);
   }
 
-  Widget _reodrerPermisionButton({
+  Widget _reorderPermissionButton({
     required VoidCallback onPressed,
     required Color mainColor,
     required IconData icon,
@@ -58,7 +58,7 @@ class _ReorderedFolderListState extends State<ReorderedFolderList> {
         onPressed: onPressed,
         icon: Icon(icon),
         style: ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll(mainColor.withOpacity(.3)),
+          backgroundColor: WidgetStatePropertyAll(mainColor.withAlpha(85)),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
@@ -79,7 +79,7 @@ class _ReorderedFolderListState extends State<ReorderedFolderList> {
     }
 
     setState(() {
-      _curentList = [..._oldList];
+      _currentList = [..._oldList];
       _haveReorder = false;
     });
   }
@@ -90,7 +90,7 @@ class _ReorderedFolderListState extends State<ReorderedFolderList> {
     }
 
     await FirebaseApi.updateUserById(
-      user: widget.user.copyWith(folders: _curentList),
+      user: widget.user.copyWith(folders: _currentList),
       id: FirebaseAuth.instance.currentUser?.uid,
     );
   }
@@ -132,12 +132,12 @@ class _ReorderedFolderListState extends State<ReorderedFolderList> {
               ),
             ),
             const Spacer(),
-            _reodrerPermisionButton(
+            _reorderPermissionButton(
               onPressed: _confirmReorder,
               mainColor: AppColors.correct,
               icon: Icons.check,
             ),
-            _reodrerPermisionButton(
+            _reorderPermissionButton(
               mainColor: AppColors.error,
               icon: Icons.close,
               onPressed: _stopReorder,
@@ -147,7 +147,7 @@ class _ReorderedFolderListState extends State<ReorderedFolderList> {
         Expanded(
           child: ReorderableListView.builder(
             padding: EdgeInsets.only(bottom: 66),
-            itemCount: _curentList.length,
+            itemCount: _currentList.length,
             onReorder: _reorder,
             onReorderStart: (_) {
               setState(() {
@@ -155,12 +155,12 @@ class _ReorderedFolderListState extends State<ReorderedFolderList> {
               });
             },
             itemBuilder: (context, index) {
-              final folder = _curentList[index];
+              final folder = _currentList[index];
               return FolderItemWidget(
                 key: ValueKey(index),
                 folder: folder,
                 index: index,
-                minHeight: 54,
+                minHeight: 70,
               );
             },
             proxyDecorator: (child, _, __) {

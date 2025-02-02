@@ -1,11 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/bloc/settings/settings_bloc.dart';
 import 'package:link_manager/resources/resources.dart';
+import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/pages/profile/personal_form.dart';
 import 'package:link_manager/ui/router/app_hero_tags.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
@@ -18,12 +18,14 @@ import 'package:url_launcher/url_launcher.dart';
 class ProfilePageContent extends StatelessWidget {
   const ProfilePageContent({super.key});
 
-  void copyData(BuildContext context) {
-    Clipboard.setData(
-      const ClipboardData(
-        text: '2957569016/3030',
-      ),
-    );
+  void support(BuildContext context) {
+    // Clipboard.setData(
+    //   const ClipboardData(
+    //     text: '2957569016/3030',
+    //   ),
+    // );
+    
+    launchUrl(Uri.parse(kSupportUrl));
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -75,7 +77,7 @@ class ProfilePageContent extends StatelessWidget {
                   SettingsButton(
                     icon: Icons.favorite,
                     text: S.of(context).support_project,
-                    onClick: () => copyData(context),
+                    onClick: () => support(context),
                   ),
                   divider,
                   SettingsButton(

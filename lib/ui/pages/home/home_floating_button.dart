@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:link_manager/app_logger.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/logic.dart';
-import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/router/app_hero_tags.dart';
+import 'package:link_manager/ui/router/app_router.dart';
 import 'package:link_manager/ui/router/app_routes.dart';
 import 'package:link_manager/ui/widgets/alerts/app_dialogs.dart';
 
@@ -52,7 +52,7 @@ class HomeFloatingButton extends StatelessWidget {
             FloatingActionButton(
               heroTag: AppHeroTags.calculateFAB,
               child: const Icon(Icons.calculate),
-              onPressed: () => goRoute(context, AppRoutes.calc),
+              onPressed: () => AppRouter.goRoute(context, AppRoutes.calc),
             ),
             FloatingActionButton(
               heroTag: AppHeroTags.button,

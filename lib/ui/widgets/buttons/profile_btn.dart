@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:link_manager/ui/app_const.dart';
+import 'package:link_manager/ui/router/app_router.dart';
 import 'package:link_manager/ui/router/app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class ProfileBtn extends StatelessWidget {
           if (currentRoute == AppRoutes.profile || isDisabled) {
             return;
           }
-          goRoute(context, AppRoutes.profile);
+          AppRouter.goRoute(context, AppRoutes.profile);
         },
         icon: ClipOval(
           child: CachedNetworkImage(

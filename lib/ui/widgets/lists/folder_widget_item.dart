@@ -31,35 +31,33 @@ class FolderItemWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: TextButton(
-              onPressed: pressToIcon,
-              style: ButtonStyle(
-                fixedSize: WidgetStatePropertyAll(Size.fromHeight(54)),
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.horizontal(
-                      left: Radius.circular(10),
-                    ),
-                  ),
-                ),
-                backgroundColor: WidgetStatePropertyAll(
-                  AppColors.buttons,
-                ),
-                side: WidgetStatePropertyAll(
-                  BorderSide(
-                    color: const Color.fromARGB(255, 104, 58, 183),
-                    width: 3,
+          TextButton(
+            onPressed: pressToIcon,
+            style: ButtonStyle(
+              fixedSize: WidgetStatePropertyAll(Size.fromHeight(minHeight)),
+              shape: WidgetStatePropertyAll(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.horizontal(
+                    left: Radius.circular(10),
                   ),
                 ),
               ),
-              child: Icon(
-                icon,
-                color: AppColors.icon,
+              backgroundColor: WidgetStatePropertyAll(
+                AppColors.buttons,
+              ),
+              side: WidgetStatePropertyAll(
+                BorderSide(
+                  color: const Color.fromARGB(255, 104, 58, 183),
+                  width: 3,
+                ),
               ),
             ),
+            child: Icon(
+              icon,
+              color: AppColors.icon,
+            ),
           ),
-          SizedBox(width: 6),
+          SizedBox(width: 10),
           FolderItemContent(
             folder: folder,
             index: index,
@@ -123,6 +121,7 @@ class _FolderItemContentState extends State<FolderItemContent> {
           child: Stack(
             children: [
               LinksListWidget(
+                minHeight: widget.minHeight,
                 folder: widget.folder,
                 index: widget.index,
               ),

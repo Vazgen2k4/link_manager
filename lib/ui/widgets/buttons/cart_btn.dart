@@ -17,6 +17,11 @@ class CartBtn extends StatelessWidget {
         backgroundColor: WidgetStatePropertyAll(
           AppColors.buttons,
         ),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
         side: WidgetStatePropertyAll(
           const BorderSide(
             color: AppColors.main,
