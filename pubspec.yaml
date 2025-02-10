@@ -2,7 +2,7 @@ name: link_manager
 description: A new Flutter project.
 publish_to: 'none'
 # new_version
-version: 2.1.7+16
+version: 2.1.9+18
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
@@ -38,6 +38,9 @@ dependencies:
   auto_size_text: ^3.0.0
   animated_flip_counter: ^0.3.4
   flutter_slidable: ^4.0.0
+  http: ^1.3.0
+  firebase_messaging: ^15.2.2
+  flutter_local_notifications: ^18.0.1
 
 dev_dependencies:
   flutter_test:

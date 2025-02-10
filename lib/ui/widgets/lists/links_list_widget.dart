@@ -14,69 +14,81 @@ class LinksListWidget extends StatelessWidget {
   final Folder folder;
   final int index;
   final double minHeight;
-  
+  final double maxHeight;
+
   const LinksListWidget({
     super.key,
     required this.folder,
     required this.index,
     required this.minHeight,
+    required this.maxHeight,
   });
-
 
   @override
   Widget build(BuildContext context) {
     final links = folder.appLinks;
-    const double minContentHeight = 54;
-    final divider = SizedBox(height: (minHeight - minContentHeight) / 2);
-    
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        divider,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    const double contentHeight = 36;
+
+    return ClipRect(
+      clipBehavior: Clip.hardEdge,
+      child: SizedBox(
+        height: maxHeight,
+        width: double.infinity,
+        child: ListView(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           children: [
             SizedBox(
-              width: 150,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AutoSizeText(
-                  folder.name ?? S.of(context).error_name,
-                  maxLines: 1,
-                ),
+              height: minHeight - 16,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 150,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AutoSizeText(
+                        folder.name ?? S.of(context).error_name,
+                        maxLines: 1,
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  SizedBox.square(
+                    dimension: contentHeight,
+                    child: IconButton.filled(
+                      padding: EdgeInsets.zero,
+                      onPressed: () => deleteFolder(context),
+                      icon: const Icon(Icons.delete_sweep_rounded),
+                    ),
+                  ),
+                  SizedBox.square(dimension: 4),
+                  SizedBox.square(
+                    dimension: contentHeight,
+                    child: IconButton.filled(
+                      padding: EdgeInsets.zero,
+                      icon: const Icon(Icons.add_box_outlined),
+                      onPressed: () async {
+                        await AppDialogs.addLinkToFolderDialog(context, index);
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
-            const Spacer(),
-            SizedBox.square(
-              dimension: 35,
-              child: IconButton.filled(
-                padding: EdgeInsets.zero,
-                onPressed: () => deleteFolder(context),
-                icon: const Icon(Icons.delete_sweep_rounded),
-              ),
-            ),
-            SizedBox.square(dimension: 4),
-            SizedBox.square(
-              dimension: 35,
-              child: IconButton.filled(
-                padding: EdgeInsets.zero,
-                icon: const Icon(Icons.add_box_outlined),
-                onPressed: () async {
-                  await AppDialogs.addLinkToFolderDialog(context, index);
-                },
+            // divider,
+            SizedBox(height: 8),
+            SizedBox(
+              height: 36,
+              width: double.infinity,
+              child: LInksListContentWidget(
+                links: links,
+                folderIndex: index,
               ),
             ),
           ],
         ),
-        divider,
-        Expanded(
-          child: LInksListContentWidget(
-            links: links,
-            folderIndex: index,
-          ),
-        ),
-      ],
+      ),
     );
   }
 
@@ -88,7 +100,6 @@ class LinksListWidget extends StatelessWidget {
       AppLogger.logWarning('Обнаружена пустая ссылка');
       return;
     }
-
   }
 
   void deleteFolder(BuildContext context) async {

@@ -120,7 +120,11 @@ class _ReorderedFolderListState extends State<ReorderedFolderList> {
 
   @override
   Widget build(BuildContext context) {
+    
+    // return Text('ReorderedFolderList');
+    
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           children: [

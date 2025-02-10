@@ -58,11 +58,13 @@ class FolderItemWidget extends StatelessWidget {
             ),
           ),
           SizedBox(width: 10),
-          FolderItemContent(
-            folder: folder,
-            index: index,
-            minHeight: minHeight,
-            maxHeight: maxHeight,
+          Expanded(
+            child: FolderItemContent(
+              folder: folder,
+              index: index,
+              minHeight: minHeight,
+              maxHeight: maxHeight,
+            ),
           ),
         ],
       ),
@@ -76,7 +78,7 @@ class FolderItemContent extends StatefulWidget {
     required this.folder,
     required this.index,
     this.minHeight = 56,
-    this.maxHeight = 120,
+    this.maxHeight = 200,
   });
 
   final Folder folder;
@@ -94,39 +96,32 @@ class _FolderItemContentState extends State<FolderItemContent> {
   @override
   Widget build(BuildContext context) {
     final height = isOpen ? widget.maxHeight : widget.minHeight;
-    return Expanded(
-      child: GestureDetector(
-        onTap: () {
-          setState(() {
-            isOpen = !isOpen;
-          });
-        },
-        child: AnimatedContainer(
-          padding: EdgeInsets.all(6),
-          clipBehavior: Clip.antiAlias,
-          height: height,
-          duration: const Duration(
-            milliseconds: 100,
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isOpen = !isOpen;
+        });
+      },
+      child: AnimatedContainer(
+        clipBehavior: Clip.hardEdge,
+        padding: const EdgeInsets.all(8),
+        height: height,
+        duration: const Duration(milliseconds: 300), // Увеличиваем продолжительность для плавности
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(37, 104, 58, 183),
+          borderRadius: BorderRadius.horizontal(
+            right: Radius.circular(10),
           ),
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(37, 104, 58, 183),
-            borderRadius: BorderRadius.horizontal(
-              right: Radius.circular(10),
-            ),
-            border: Border.all(
-              color: const Color.fromARGB(255, 104, 58, 183),
-              width: 3,
-            ),
+          border: Border.all(
+            color: const Color.fromARGB(255, 104, 58, 183),
+            width: 3,
           ),
-          child: Stack(
-            children: [
-              LinksListWidget(
-                minHeight: widget.minHeight,
-                folder: widget.folder,
-                index: widget.index,
-              ),
-            ],
-          ),
+        ),
+        child: LinksListWidget(
+          minHeight: widget.minHeight,
+          maxHeight: widget.maxHeight,
+          folder: widget.folder,
+          index: widget.index,
         ),
       ),
     );

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:link_manager/app_logger.dart';
 import 'package:link_manager/logic/models/link/app_link.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-
 
 const Widget loadWidget = Center(child: CircularProgressIndicator.adaptive());
 
@@ -65,3 +64,14 @@ String getLinkValueByType({
       AppLinkType.email => 'mailto:$link',
       _ => link,
     };
+
+const String kMainUsersTopic = 'all_users';
+const String kMainAndroidChannelId = 'main_channel';
+const String kMainAndroidNotificationIcon = '@mipmap/ic_launcher';
+
+const kMainAndroidChannel = AndroidNotificationChannel(
+  kMainAndroidChannelId,
+  'Main Channel',
+  description: 'Основной канал уведомлений для Android',
+  importance: Importance.max,
+);
