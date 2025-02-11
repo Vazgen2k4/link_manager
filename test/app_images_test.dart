@@ -7,6 +7,7 @@ void main() {
   test('app_images assets test', () {
     expect(File(AppImages.cz).existsSync(), isTrue);
     expect(File(AppImages.en).existsSync(), isTrue);
+    expect(File(AppImages.logo).existsSync(), isTrue);
     expect(File(AppImages.ru).existsSync(), isTrue);
   });
 }
