@@ -8,7 +8,7 @@
     "userdata_section_title": "Персональные данные",
     "dev_section_title": "Разработчик",
     "support_project": "Поддержать проект",
-    "support_response_msg": "Номер счёта скопирован ❤️",
+    "support_response_msg": "Спасибо за поддержку ❤️",
     "telegram_blog": "OverWeb - телеграм блог",
     "exit": "Выход",
     "settings_page_title": "Выход",
@@ -37,8 +37,15 @@
     "folder_exists": "Такая директория уже существует",
     "folder_create": "Директория \"$\" успешно создана",
     "link_exists": "Такая ссылка уже существует",
-    
     "calc_title": "Калькулятор",
+    
+    "calc_credits": "Кредиты",
+    "calc_weighted": "Взвешенные кредиты",
+    "calc_weighted_average": "Взвешенное балл",
+    "calc_gpa": "Средний балл",
+    "add_grade": "Добавить оценку",
+    "have_no_grades": "У вас пока нет оценок...",
+    
     
     "home_page_title": "Link Manager"
 }

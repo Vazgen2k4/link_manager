@@ -12,7 +12,7 @@ class FoldersWidgetList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userId = FirebaseAuth.instance.currentUser?.uid;
-
+    
     return StreamBuilder(
       stream: FirebaseApi.users.doc(userId).snapshots(),
       builder: (context, snapshot) {
@@ -28,7 +28,8 @@ class FoldersWidgetList extends StatelessWidget {
             child: AutoSizeText(S.of(context).no_folders),
           );
         }
-
+        
+        
         return ReorderedFolderList(key: UniqueKey(), user: user);
       },
     );

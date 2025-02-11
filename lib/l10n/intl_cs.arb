@@ -8,7 +8,7 @@
     "userdata_section_title": "Osobní údaje",
     "dev_section_title": "Vývojář",
     "support_project": "Podpořit projekt",
-    "support_response_msg": "Číslo účtu zkopírováno ❤️",
+    "support_response_msg": "Děkujeme za vaši podporu ❤️",
     "telegram_blog": "OverWeb - telegramový blog",
     "exit": "Odhlásit se",
     "settings_page_title": "Odhlásit se",
@@ -37,6 +37,15 @@
     "folder_exists": "Tento adresář již existuje",
     "folder_create": "Adresář \"$\" byl úspěšně vytvořen",
     "link_exists": "Tento odkaz již existuje",
+    
     "calc_title": "Kalkulačka",
+    "calc_credits": "Kredity",
+    "calc_weighted": "Vážené kredity",
+    "calc_weighted_average": "Vážený průměr",
+    "calc_gpa": "GPA",
+    "add_grade": "Přidat známku",
+    "have_no_grades": "Zatím nemáte žádné známky...",
+    
+    
     "home_page_title": "Link Manager"
 }

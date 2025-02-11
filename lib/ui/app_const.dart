@@ -1,24 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:link_manager/app_logger.dart';
 import 'package:link_manager/logic/models/link/app_link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-Future<T?> goRoute<T extends Object?>(
-  BuildContext context,
-  String route, {
-  bool withRemoveUntil = false,
-}) async {
-  if (withRemoveUntil) {
-    return await Navigator.of(context).pushNamedAndRemoveUntil(
-      route,
-      (route) => false,
-    );
-  }
-
-  return await Navigator.of(context).pushNamed(route);
-}
-
 const Widget loadWidget = Center(child: CircularProgressIndicator.adaptive());
+
+const String kSupportUrl = 'https://www.donationalerts.com/r/vazgen2k4';
 
 IconData getIconByLinkType(AppLinkType? type) => switch (type) {
       AppLinkType.email => Icons.email,
@@ -76,3 +64,14 @@ String getLinkValueByType({
       AppLinkType.email => 'mailto:$link',
       _ => link,
     };
+
+const String kMainUsersTopic = 'all_users';
+const String kMainAndroidChannelId = 'main_channel';
+const String kMainAndroidNotificationIcon = '@mipmap/ic_launcher';
+
+const kMainAndroidChannel = AndroidNotificationChannel(
+  kMainAndroidChannelId,
+  'Main Channel',
+  description: 'Основной канал уведомлений для Android',
+  importance: Importance.max,
+);

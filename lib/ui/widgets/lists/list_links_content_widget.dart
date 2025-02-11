@@ -22,30 +22,31 @@ class LInksListContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (links.isEmpty) {
-      return  Expanded(
-        child: Align(
-          child: AutoSizeText(S.of(context).empty_folder),
-        ),
+      return Align(
+        child: AutoSizeText(S.of(context).empty_folder),
       );
     }
 
-    return Expanded(
-      child: ListView.separated(
-        controller: ScrollController(),
-        shrinkWrap: true,
-        itemCount: links.length,
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (_, __) => const SizedBox(width: 10),
-        itemBuilder: (_, index) {
-          final link = links[index];
-
-          return Align(
-            alignment: Alignment.bottomCenter,
-            child: Material(
-              clipBehavior: Clip.hardEdge,
-              borderRadius: BorderRadius.circular(10),
-              color: const Color(0xff594391),
-              child: InkWell(
+    return ListView.separated(
+      controller: ScrollController(),
+      shrinkWrap: true,
+      itemCount: links.length,
+      scrollDirection: Axis.horizontal,
+      separatorBuilder: (_, __) => const SizedBox(width: 10),
+      itemBuilder: (_, index) {
+        final link = links[index];
+    
+        return Align(
+          alignment: Alignment.bottomCenter,
+          child: Material(
+            
+            clipBehavior: Clip.hardEdge,
+            borderRadius: BorderRadius.circular(10),
+            color: const Color(0xff594391),
+            child: InkWell(
+              
+              child: SizedBox(
+                height: 40,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 8,
@@ -60,13 +61,13 @@ class LInksListContentWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                onLongPress: () => deleteLink(context, index),
-                onTap: () => launchUrlByLink(link.value),
               ),
+              onLongPress: () => deleteLink(context, index),
+              onTap: () => launchUrlByLink(link.value),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 

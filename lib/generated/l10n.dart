@@ -18,17 +18,20 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +44,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -52,12 +57,7 @@ class S {
 
   /// `Login`
   String get auth_page_title {
-    return Intl.message(
-      'Login',
-      name: 'auth_page_title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Login', name: 'auth_page_title', desc: '', args: []);
   }
 
   /// `Login`
@@ -140,10 +140,10 @@ class S {
     );
   }
 
-  /// `Account number copied ❤️`
+  /// `Thank you for your support ❤️`
   String get support_response_msg {
     return Intl.message(
-      'Account number copied ❤️',
+      'Thank you for your support ❤️',
       name: 'support_response_msg',
       desc: '',
       args: [],
@@ -162,12 +162,7 @@ class S {
 
   /// `Exit`
   String get exit {
-    return Intl.message(
-      'Exit',
-      name: 'exit',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Exit', name: 'exit', desc: '', args: []);
   }
 
   /// `Exit`
@@ -192,12 +187,7 @@ class S {
 
   /// `Error 404`
   String get error_404 {
-    return Intl.message(
-      'Error 404',
-      name: 'error_404',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Error 404', name: 'error_404', desc: '', args: []);
   }
 
   /// `Add Directory`
@@ -212,42 +202,22 @@ class S {
 
   /// `Name`
   String get field_label_name {
-    return Intl.message(
-      'Name',
-      name: 'field_label_name',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Name', name: 'field_label_name', desc: '', args: []);
   }
 
   /// `Link`
   String get field_label_link {
-    return Intl.message(
-      'Link',
-      name: 'field_label_link',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Link', name: 'field_label_link', desc: '', args: []);
   }
 
   /// `Cancel`
   String get cancel {
-    return Intl.message(
-      'Cancel',
-      name: 'cancel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
   }
 
   /// `Confirm`
   String get confirm {
-    return Intl.message(
-      'Confirm',
-      name: 'confirm',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
   }
 
   /// `This field is required`
@@ -302,12 +272,7 @@ class S {
 
   /// `No title`
   String get no_title {
-    return Intl.message(
-      'No title',
-      name: 'no_title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('No title', name: 'no_title', desc: '', args: []);
   }
 
   /// `You have no directories yet...`
@@ -322,12 +287,7 @@ class S {
 
   /// `Links`
   String get links {
-    return Intl.message(
-      'Links',
-      name: 'links',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Links', name: 'links', desc: '', args: []);
   }
 
   /// `Error with name`
@@ -372,32 +332,17 @@ class S {
 
   /// `Settings`
   String get settings_title {
-    return Intl.message(
-      'Settings',
-      name: 'settings_title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Settings', name: 'settings_title', desc: '', args: []);
   }
 
   /// `Language`
   String get lang {
-    return Intl.message(
-      'Language',
-      name: 'lang',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Language', name: 'lang', desc: '', args: []);
   }
 
   /// `Deletion`
   String get delete {
-    return Intl.message(
-      'Deletion',
-      name: 'delete',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Deletion', name: 'delete', desc: '', args: []);
   }
 
   /// `This folder already exists`
@@ -432,9 +377,49 @@ class S {
 
   /// `Calculator`
   String get calc_title {
+    return Intl.message('Calculator', name: 'calc_title', desc: '', args: []);
+  }
+
+  /// `Credits`
+  String get calc_credits {
+    return Intl.message('Credits', name: 'calc_credits', desc: '', args: []);
+  }
+
+  /// `Weighted credits`
+  String get calc_weighted {
     return Intl.message(
-      'Calculator',
-      name: 'calc_title',
+      'Weighted credits',
+      name: 'calc_weighted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weighted average`
+  String get calc_weighted_average {
+    return Intl.message(
+      'Weighted average',
+      name: 'calc_weighted_average',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GPA`
+  String get calc_gpa {
+    return Intl.message('GPA', name: 'calc_gpa', desc: '', args: []);
+  }
+
+  /// `Add grade`
+  String get add_grade {
+    return Intl.message('Add grade', name: 'add_grade', desc: '', args: []);
+  }
+
+  /// `You have no grades yet...`
+  String get have_no_grades {
+    return Intl.message(
+      'You have no grades yet...',
+      name: 'have_no_grades',
       desc: '',
       args: [],
     );

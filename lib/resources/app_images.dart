@@ -5,5 +5,6 @@ class AppImages {
 
   static const String cz = 'assets/images/cz.png';
   static const String en = 'assets/images/en.png';
+  static const String logo = 'assets/images/logo.png';
   static const String ru = 'assets/images/ru.png';
 }

@@ -24,7 +24,9 @@ class CTUSection extends StatelessWidget {
           stream: FirebaseApi.ctuLinksDoc.snapshots(),
           builder: (context, snapshot) {
             final folder = Folder.fromJson(snapshot.data?.data() ?? {});
-
+            
+            
+            
             return ListView.separated(
               shrinkWrap: true,
               itemCount: folder.appLinks.length,
