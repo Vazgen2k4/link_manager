@@ -49,4 +49,19 @@ class AppRouter {
     settings: const RouteSettings(name: AppRoutes.noFound),
     builder: (_) => const Error404Page(),
   );
+
+  static Future<T?> goRoute<T extends Object?>(
+    BuildContext context,
+    String route, {
+    bool withRemoveUntil = false,
+  }) async {
+    if (withRemoveUntil) {
+      return await Navigator.of(context).pushNamedAndRemoveUntil(
+        route,
+        (route) => false,
+      );
+    }
+
+    return await Navigator.of(context).pushNamed(route);
+  }
 }
