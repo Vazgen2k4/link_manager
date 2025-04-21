@@ -11,7 +11,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await NotificationService.instance.init();
+  if (DefaultFirebaseOptions.currentPlatform == DefaultFirebaseOptions.android) {
+    await NotificationService.instance.init();
+  }
 
   runApp(const App());
 }
