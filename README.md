@@ -8,7 +8,7 @@ Link Manager is a mobile app designed to help students efficiently manage and or
 |---------------------|---------------------------|--------------------------------|-----------------------------------|
 | **Jazyk**          | Kotlin                   | Dart                           | Celý kód v Dartu                 |
 | **Architektura**   | ViewModel + LiveData     | BLoC/Cubit                     | `lib/logic/bloc/`                      |
-| **UI**             | 5+ obrazovek             | Hlavní, profil, kalkulačka, nastavení, dialogy, search | Screenshoty UI |
+| **UI**             | 5+ obrazovek             | Home, Profile, Calc, Settings, Search, Auth, NoInternetPage, Error404page | Screenshoty UI |
 |                    | LazyColumn               | ListView.builder, Sliver (CustomScrollView)               | `lib/ui/pages/settings/settings_tab.dart`          |
 | **Navigace**       | Navigation Component     | Navigator2.0 (custom router)                       | `lib/ui/router/`               |
 | **Databáze**       | Room (SQLite)            | Firestore + SharedPreferences  | Cloud DB + lokální nastavení     |
