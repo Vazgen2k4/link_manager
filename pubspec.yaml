@@ -59,7 +59,6 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/icons/
     
 flutter_intl:
   enabled: true

@@ -7,16 +7,16 @@ Link Manager is a mobile app designed to help students efficiently manage and or
 | Kategorie           | Požadavek v předmětu       | Má implementace (Flutter)       | Důkazy / Poznámky                  |
 |---------------------|---------------------------|--------------------------------|-----------------------------------|
 | **Jazyk**          | Kotlin                   | Dart                           | Celý kód v Dartu                 |
-| **Architektura**   | ViewModel + LiveData     | BLoC/Cubit                     | `lib/bloc/`                      |
+| **Architektura**   | ViewModel + LiveData     | BLoC/Cubit                     | `lib/logic/bloc/`                      |
 | **UI**             | 5+ obrazovek             | Hlavní, profil, kalkulačka, nastavení, dialogy, search | Screenshoty UI |
-|                    | LazyColumn               | ListView.builder               | `lib/screens/home.dart`          |
-| **Navigace**       | Navigation Component     | GoRouter                       | `lib/router.dart`               |
+|                    | LazyColumn               | ListView.builder, Sliver (CustomScrollView)               | `lib/ui/pages/settings/settings_tab.dart`          |
+| **Navigace**       | Navigation Component     | Navigator2.0 (custom router)                       | `lib/ui/router/`               |
 | **Databáze**       | Room (SQLite)            | Firestore + SharedPreferences  | Cloud DB + lokální nastavení     |
 | **Síť**            | Retrofit                 | Firebase SDK                   | Auth + Firestore                |
-| **Notifikace**     | AlarmManager             | FCM + flutter_local_notifications | `lib/services/notifier.dart`   |
-| **Práva**          | Runtime permissions      | `POST_NOTIFICATIONS` + síťové  | `AndroidManifest.xml`           |
+| **Notifikace**     | AlarmManager             | FCM + flutter_local_notifications | `lib/services/notification_service.dart`   |
+| **Práva**          | Runtime permissions      | `POST_NOTIFICATIONS` + síťové  | `android/app/src/main/AndroidManifest.xml`           |
 | **Lokalizace**     | -                        | Čeština, angličtina, ruština   | `lib/l10n/`                     |
-| **Téma**           | Vlastní vzhled           | Material 3                     | `lib/theme/`                     |
+| **Téma**           | Vlastní vzhled           | Material 3 + custom colors                    | `lib/ui/theme/app_colors.dart`                     |
 
 | **Doplňkové funkce**            |                                  |
 |---------------------------------|----------------------------------|
