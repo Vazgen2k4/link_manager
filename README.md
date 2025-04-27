@@ -17,6 +17,8 @@ Link Manager is a mobile app designed to help students efficiently manage and or
 | **Práva**          | Runtime permissions      | `POST_NOTIFICATIONS` + síťové  | `android/app/src/main/AndroidManifest.xml`           |
 | **Lokalizace**     | -                        | Čeština, angličtina, ruština   | `lib/l10n/`                     |
 | **Téma**           | Vlastní vzhled           | Material 3 + custom colors                    | `lib/ui/theme/app_colors.dart`                     |
+| **Vícenásobný výběr** | Výběr více položek + hromadné akce | checkboxy + state | Důkaz: `lib/ui/widgets/lists/folder_widget_item.dart` a `lib/ui/pages/search/search_folder_page.dart` |
+
 
 | **Doplňkové funkce**            |                                  |
 |---------------------------------|----------------------------------|
