@@ -1,11 +1,15 @@
-import 'package:link_manager/ui/pages/auth/auth_page.dart';
-import 'package:link_manager/ui/pages/calc/calc_page.dart';
-import 'package:link_manager/ui/pages/home/home_page.dart';
-import 'package:link_manager/ui/pages/profile/profile_page.dart';
-import 'package:link_manager/ui/pages/settings/settings.dart';
-import 'package:link_manager/ui/pages/start/start_page.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:link_manager/generated/l10n.dart';
+import 'package:link_manager/ui/pages/auth/auth_page.dart';
+import 'package:link_manager/ui/pages/calc/calc_tab.dart';
+import 'package:link_manager/ui/pages/home/home_page.dart';
+import 'package:link_manager/ui/pages/home/home_tab.dart';
+import 'package:link_manager/ui/pages/profile/profile_page.dart';
+import 'package:link_manager/ui/pages/profile/profile_tab.dart';
+import 'package:link_manager/ui/pages/search/search_page.dart';
+import 'package:link_manager/ui/pages/settings/settings_tab.dart';
+import 'package:link_manager/ui/pages/start/start_page.dart';
 
 sealed class AppRoutes {
   const AppRoutes._();
@@ -14,6 +18,8 @@ sealed class AppRoutes {
   static const String auth = '/auth';
   static const String home = '/home';
   static const String profile = '/profile';
+  static const String search = '/search';
+
   static const String calc = '/calc';
   static const String settings = '/settings';
   static const String init = start;
@@ -25,12 +31,44 @@ sealed class AppRoutes {
       AppRoute(page: AuthPage(), path: auth),
       AppRoute(page: ProfilePage(), path: profile),
       AppRoute(page: StartPage(), path: start),
-      AppRoute(page: SettingsPage(), path: settings),
-      AppRoute(page: CalcPage(), path: calc),
+      AppRoute(page: SettingsTab(), path: settings),
+      AppRoute(page: CalcTab(), path: calc),
+      AppRoute(page: SearchFolderPage(), path: search),
     ];
 
     return routesList.toSet().toList();
   }
+
+  static List<AppTab> get homeTabs => [
+        AppTab(
+          name: 'Home',
+          icon: Icons.home,
+          route: home,
+          child: HomeTab(),
+          getTitle: (context) => S.of(context).home_page_title,
+        ),
+        AppTab(
+          name: 'Calc',
+          icon: Icons.calculate,
+          route: calc,
+          child: CalcTab(),
+          getTitle: (context) => S.of(context).calc_title,
+        ),
+        AppTab(
+          name: 'Profile',
+          icon: Icons.person,
+          route: profile,
+          child: ProfileTab(),
+          getTitle: (context) => S.of(context).profile_page_title,
+        ),
+        AppTab(
+          name: 'Settings',
+          icon: Icons.settings,
+          route: settings,
+          child: SettingsTab(),
+          getTitle: (context) => S.of(context).settings_title,
+        ),
+      ];
 }
 
 class AppRoute extends Equatable {
@@ -43,4 +81,23 @@ class AppRoute extends Equatable {
 
   @override
   List<Object> get props => [path, page];
+}
+
+class AppTab extends Equatable {
+  final String name;
+  final IconData icon;
+  final String route;
+  final Widget child;
+  final String Function(BuildContext) getTitle;
+
+  const AppTab({
+    required this.name,
+    required this.icon,
+    required this.route,
+    required this.child,
+    required this.getTitle,
+  });
+
+  @override
+  List<Object> get props => [name, icon, route];
 }

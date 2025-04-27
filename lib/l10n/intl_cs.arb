@@ -1,4 +1,6 @@
 {
+    "@@locale": "cs",
+    "current_lang": "Čeština",
     "auth_page_title": "Přihlásit se",
     "google_login_button": "Přihlásit se",
     "floating_error": "Chyba tlačítek",
@@ -46,6 +48,14 @@
     "add_grade": "Přidat známku",
     "have_no_grades": "Zatím nemáte žádné známky...",
     
+    "settings_home_page_section": "Domovská stránka",
     
+    "show_kos_button": "Zobrazit tlačítko KOS",
+    
+    "show_ctu_links": "Zobrazit odkazy ČVUT",
+    
+    "wrap_ctu_links": "Přetahovat odkazy ČVUT",
+    "search_folders": "Hledat složky",
+    "no_results": "Žádné výsledky",
     "home_page_title": "Link Manager"
 }

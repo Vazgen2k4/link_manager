@@ -22,87 +22,83 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "add_folder": MessageLookupByLibrary.simpleMessage("Add Directory"),
-    "add_grade": MessageLookupByLibrary.simpleMessage("Add grade"),
-    "auth_page_title": MessageLookupByLibrary.simpleMessage("Login"),
-    "calc_credits": MessageLookupByLibrary.simpleMessage("Credits"),
-    "calc_gpa": MessageLookupByLibrary.simpleMessage("GPA"),
-    "calc_title": MessageLookupByLibrary.simpleMessage("Calculator"),
-    "calc_weighted": MessageLookupByLibrary.simpleMessage("Weighted credits"),
-    "calc_weighted_average": MessageLookupByLibrary.simpleMessage(
-      "Weighted average",
-    ),
-    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-    "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
-    "ctu_section_title": MessageLookupByLibrary.simpleMessage("CTU - FEL"),
-    "delete": MessageLookupByLibrary.simpleMessage("Deletion"),
-    "dev_section_title": MessageLookupByLibrary.simpleMessage("Developer"),
-    "empty_folder": MessageLookupByLibrary.simpleMessage(
-      "The directory is empty",
-    ),
-    "error_404": MessageLookupByLibrary.simpleMessage("Error 404"),
-    "error_404_title": MessageLookupByLibrary.simpleMessage("Page not found"),
-    "error_name": MessageLookupByLibrary.simpleMessage("Error with name"),
-    "exit": MessageLookupByLibrary.simpleMessage("Exit"),
-    "field_label_link": MessageLookupByLibrary.simpleMessage("Link"),
-    "field_label_name": MessageLookupByLibrary.simpleMessage("Name"),
-    "floating_error": MessageLookupByLibrary.simpleMessage("Floating error"),
-    "folder_create": MessageLookupByLibrary.simpleMessage(
-      "Folder \"\$\" has been successfully created",
-    ),
-    "folder_exists": MessageLookupByLibrary.simpleMessage(
-      "This folder already exists",
-    ),
-    "google_login_button": MessageLookupByLibrary.simpleMessage("Login"),
-    "have_no_grades": MessageLookupByLibrary.simpleMessage(
-      "You have no grades yet...",
-    ),
-    "home_page_title": MessageLookupByLibrary.simpleMessage("Link Manager"),
-    "lang": MessageLookupByLibrary.simpleMessage("Language"),
-    "link_exists": MessageLookupByLibrary.simpleMessage(
-      "This link already exists",
-    ),
-    "link_to_kos": MessageLookupByLibrary.simpleMessage("Link to schedule"),
-    "links": MessageLookupByLibrary.simpleMessage("Links"),
-    "no_connection": MessageLookupByLibrary.simpleMessage(
-      "No internet connection",
-    ),
-    "no_folders": MessageLookupByLibrary.simpleMessage(
-      "You have no directories yet...",
-    ),
-    "no_title": MessageLookupByLibrary.simpleMessage("No title"),
-    "profile_page_title": MessageLookupByLibrary.simpleMessage("Profile"),
-    "remove_folder": MessageLookupByLibrary.simpleMessage(
-      "Do you want to delete the folder:",
-    ),
-    "remove_link": MessageLookupByLibrary.simpleMessage(
-      "Are you sure you want to delete the link:",
-    ),
-    "settings_page_title": MessageLookupByLibrary.simpleMessage("Exit"),
-    "settings_title": MessageLookupByLibrary.simpleMessage("Settings"),
-    "support_project": MessageLookupByLibrary.simpleMessage(
-      "Support the project",
-    ),
-    "support_response_msg": MessageLookupByLibrary.simpleMessage(
-      "Thank you for your support ❤️",
-    ),
-    "telegram_blog": MessageLookupByLibrary.simpleMessage(
-      "OverWeb - Telegram blog",
-    ),
-    "userdata_section_title": MessageLookupByLibrary.simpleMessage(
-      "Personal data",
-    ),
-    "validate_email": MessageLookupByLibrary.simpleMessage(
-      "Invalid email format",
-    ),
-    "validate_link": MessageLookupByLibrary.simpleMessage(
-      "Invalid link format",
-    ),
-    "validate_phone": MessageLookupByLibrary.simpleMessage(
-      "Invalid phone format",
-    ),
-    "validate_required": MessageLookupByLibrary.simpleMessage(
-      "This field is required",
-    ),
-  };
+        "add_folder": MessageLookupByLibrary.simpleMessage("Add Directory"),
+        "add_grade": MessageLookupByLibrary.simpleMessage("Add grade"),
+        "auth_page_title": MessageLookupByLibrary.simpleMessage("Login"),
+        "calc_credits": MessageLookupByLibrary.simpleMessage("Credits"),
+        "calc_gpa": MessageLookupByLibrary.simpleMessage("GPA"),
+        "calc_title": MessageLookupByLibrary.simpleMessage("Calculator"),
+        "calc_weighted":
+            MessageLookupByLibrary.simpleMessage("Weighted credits"),
+        "calc_weighted_average":
+            MessageLookupByLibrary.simpleMessage("Weighted average"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "ctu_section_title": MessageLookupByLibrary.simpleMessage("CTU - FEL"),
+        "current_lang": MessageLookupByLibrary.simpleMessage("English"),
+        "delete": MessageLookupByLibrary.simpleMessage("Deletion"),
+        "dev_section_title": MessageLookupByLibrary.simpleMessage("Developer"),
+        "empty_folder":
+            MessageLookupByLibrary.simpleMessage("The directory is empty"),
+        "error_404": MessageLookupByLibrary.simpleMessage("Error 404"),
+        "error_404_title":
+            MessageLookupByLibrary.simpleMessage("Page not found"),
+        "error_name": MessageLookupByLibrary.simpleMessage("Error with name"),
+        "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+        "field_label_link": MessageLookupByLibrary.simpleMessage("Link"),
+        "field_label_name": MessageLookupByLibrary.simpleMessage("Name"),
+        "floating_error":
+            MessageLookupByLibrary.simpleMessage("Floating error"),
+        "folder_create": MessageLookupByLibrary.simpleMessage(
+            "Folder \"\$\" has been successfully created"),
+        "folder_exists":
+            MessageLookupByLibrary.simpleMessage("This folder already exists"),
+        "google_login_button": MessageLookupByLibrary.simpleMessage("Login"),
+        "have_no_grades":
+            MessageLookupByLibrary.simpleMessage("You have no grades yet..."),
+        "home_page_title": MessageLookupByLibrary.simpleMessage("Link Manager"),
+        "lang": MessageLookupByLibrary.simpleMessage("Language"),
+        "link_exists":
+            MessageLookupByLibrary.simpleMessage("This link already exists"),
+        "link_to_kos": MessageLookupByLibrary.simpleMessage("Link to schedule"),
+        "links": MessageLookupByLibrary.simpleMessage("Links"),
+        "no_connection":
+            MessageLookupByLibrary.simpleMessage("No internet connection"),
+        "no_folders": MessageLookupByLibrary.simpleMessage(
+            "You have no directories yet..."),
+        "no_results": MessageLookupByLibrary.simpleMessage("No results"),
+        "no_title": MessageLookupByLibrary.simpleMessage("No title"),
+        "profile_page_title": MessageLookupByLibrary.simpleMessage("Profile"),
+        "remove_folder": MessageLookupByLibrary.simpleMessage(
+            "Do you want to delete the folder:"),
+        "remove_link": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete the link:"),
+        "search_folders":
+            MessageLookupByLibrary.simpleMessage("Search folders"),
+        "settings_home_page_section":
+            MessageLookupByLibrary.simpleMessage("Home page"),
+        "settings_page_title": MessageLookupByLibrary.simpleMessage("Exit"),
+        "settings_title": MessageLookupByLibrary.simpleMessage("Settings"),
+        "show_ctu_links":
+            MessageLookupByLibrary.simpleMessage("Show CTU links"),
+        "show_kos_button":
+            MessageLookupByLibrary.simpleMessage("Show KOS button"),
+        "support_project":
+            MessageLookupByLibrary.simpleMessage("Support the project"),
+        "support_response_msg": MessageLookupByLibrary.simpleMessage(
+            "Thank you for your support ❤️"),
+        "telegram_blog":
+            MessageLookupByLibrary.simpleMessage("OverWeb - Telegram blog"),
+        "userdata_section_title":
+            MessageLookupByLibrary.simpleMessage("Personal data"),
+        "validate_email":
+            MessageLookupByLibrary.simpleMessage("Invalid email format"),
+        "validate_link":
+            MessageLookupByLibrary.simpleMessage("Invalid link format"),
+        "validate_phone":
+            MessageLookupByLibrary.simpleMessage("Invalid phone format"),
+        "validate_required":
+            MessageLookupByLibrary.simpleMessage("This field is required"),
+        "wrap_ctu_links": MessageLookupByLibrary.simpleMessage("Wrap CTU links")
+      };
 }

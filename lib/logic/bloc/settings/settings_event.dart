@@ -9,7 +9,7 @@ sealed class SettingsEvent extends Equatable {
 
 final class SettingsEventLoad extends SettingsEvent {
   const SettingsEventLoad();
-  
+
   @override
   List<Object> get props => [];
 }
@@ -20,4 +20,25 @@ final class SettingsEventSetLocale extends SettingsEvent {
 
   @override
   List<Object> get props => [newLang];
+}
+
+final class ToggleKOSButtonEvent extends SettingsEvent {
+  const ToggleKOSButtonEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class ToggleCTULinksEvent extends SettingsEvent {
+  const ToggleCTULinksEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class ToggleMoveCTULinksEvent extends SettingsEvent {
+  const ToggleMoveCTULinksEvent();
+
+  @override
+  List<Object> get props => [];
 }

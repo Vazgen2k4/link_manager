@@ -1,4 +1,6 @@
 {
+    "@@locale": "ru",
+    "current_lang": "Русский",
     "auth_page_title": "Выполните вход",
     "google_login_button": "Выполните вход",
     "floating_error": "Ошибка с кнопками",
@@ -46,6 +48,13 @@
     "add_grade": "Добавить оценку",
     "have_no_grades": "У вас пока нет оценок...",
     
+    "settings_home_page_section": "Домашняя страница",
+
+    "show_kos_button": "Показать кнопку KOS",
     
+    "show_ctu_links": "Показать ссылки ЧВУТ",
+    "wrap_ctu_links": "Переносить ссылки ЧВУТ",
+    "search_folders": "Поиск папок",
+    "no_results": "Нет результатов",
     "home_page_title": "Link Manager"
 }

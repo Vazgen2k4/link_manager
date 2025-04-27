@@ -1,10 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:link_manager/generated/l10n.dart';
-import 'package:link_manager/ui/router/app_hero_tags.dart';
-import 'package:link_manager/ui/theme/app_colors.dart';
-import 'package:link_manager/ui/widgets/buttons/profile_btn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:link_manager/generated/l10n.dart';
+import 'package:link_manager/ui/router/app_routes.dart';
+import 'package:link_manager/ui/theme/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
@@ -31,7 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(
             children: <Widget>[
               if (!isHomePage) ...[
@@ -54,9 +53,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               if (!isProfilePage) ...[
-                Hero(
-                  tag: AppHeroTags.profileImage,
-                  child: ProfileBtn(userUrl: userUrl),
+                Center(
+                  child: IconButton(
+                    onPressed: () => Navigator.of(context).pushNamed(AppRoutes.search),
+                    icon: Icon(Icons.search),
+                  ),
                 ),
               ],
             ],

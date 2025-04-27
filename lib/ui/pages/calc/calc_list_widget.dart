@@ -69,9 +69,8 @@ class CalcListWidget extends StatelessWidget {
               return Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  spacing: 22,
                   children: [
-                    if (grades.isEmpty)
+                    if (grades.isEmpty) ...[
                       Expanded(
                         child: Text(
                           S.of(context).have_no_grades,
@@ -82,7 +81,9 @@ class CalcListWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                    if (grades.isNotEmpty)
+                      const SizedBox(height: 22),
+                    ],
+                    if (grades.isNotEmpty) ...[
                       Expanded(
                         child: ListView.separated(
                           shrinkWrap: true,
@@ -93,12 +94,14 @@ class CalcListWidget extends StatelessWidget {
                               weightedGrade: grades[index],
                             );
                           },
-                          separatorBuilder: (_, __) =>
-                              const SizedBox.square(dimension: 12),
+                          separatorBuilder: (_, __) => const SizedBox.square(dimension: 12),
                           itemCount: grades.length,
                         ),
                       ),
+                      const SizedBox(height: 22),
+                    ],
                     _buildAddButton(context),
+                    SizedBox(height: 12),
                   ],
                 ),
               );

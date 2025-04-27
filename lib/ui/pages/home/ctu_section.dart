@@ -10,7 +10,10 @@ import 'package:link_manager/ui/widgets/section/section.dart';
 class CTUSection extends StatelessWidget {
   const CTUSection({
     super.key,
+    required this.hasWrap,
   });
+
+  final bool hasWrap;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +22,35 @@ class CTUSection extends StatelessWidget {
       verticalPadding: 10,
       contentSpace: 15,
       child: SizedBox(
-        height: 50,
+        height: hasWrap ? null : 50,
         child: StreamBuilder(
           stream: FirebaseApi.ctuLinksDoc.snapshots(),
           builder: (context, snapshot) {
             final folder = Folder.fromJson(snapshot.data?.data() ?? {});
-            
-            
-            
+
+            if (hasWrap) {
+              return Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: folder.appLinks.map((appLink) {
+                  return CartBtn(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          AutoSizeText(appLink.text ?? 'error'),
+                          const SizedBox(width: 12),
+                          Icon(getIconByLinkType(appLink.type))
+                        ],
+                      ),
+                    ),
+                    onClick: () => launchUrlByLink(appLink.value),
+                  );
+                }).toList(),
+              );
+            }
+
             return ListView.separated(
               shrinkWrap: true,
               itemCount: folder.appLinks.length,

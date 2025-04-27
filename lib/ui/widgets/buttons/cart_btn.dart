@@ -1,5 +1,5 @@
-import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:link_manager/ui/theme/app_colors.dart';
 
 class CartBtn extends StatelessWidget {
   final VoidCallback? onClick;
@@ -34,11 +34,11 @@ class CartBtn extends StatelessWidget {
             horizontal: 20,
           ),
         ),
+        minimumSize: const WidgetStatePropertyAll(Size.zero), 
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
       onPressed: onClick,
-      child: Center(
-        child: child,
-      ),
+      child: child != null ? child as Widget : SizedBox.shrink(),
     );
   }
 }

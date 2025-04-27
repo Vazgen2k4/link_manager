@@ -120,9 +120,6 @@ class _ReorderedFolderListState extends State<ReorderedFolderList> {
 
   @override
   Widget build(BuildContext context) {
-    
-    // return Text('ReorderedFolderList');
-    
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -148,40 +145,40 @@ class _ReorderedFolderListState extends State<ReorderedFolderList> {
             ),
           ],
         ),
-        Expanded(
-          child: ReorderableListView.builder(
-            padding: EdgeInsets.only(bottom: 66),
-            itemCount: _currentList.length,
-            onReorder: _reorder,
-            onReorderStart: (_) {
-              setState(() {
-                _haveReorder = true;
-              });
-            },
-            itemBuilder: (context, index) {
-              final folder = _currentList[index];
-              return FolderItemWidget(
-                key: ValueKey(index),
-                folder: folder,
-                index: index,
-                minHeight: 70,
-              );
-            },
-            proxyDecorator: (child, _, __) {
-              return TweenAnimationBuilder<double>(
-                tween: Tween<double>(
-                  begin: 1.0,
-                  end: 0.9,
-                ),
-                duration: const Duration(
-                  milliseconds: 300,
-                ),
-                curve: Curves.easeInOut,
-                builder: _animateScale,
-                child: child,
-              );
-            },
-          ),
+        ReorderableListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.only(bottom: 12),
+          itemCount: _currentList.length,
+          onReorder: _reorder,
+          onReorderStart: (_) {
+            setState(() {
+              _haveReorder = true;
+            });
+          },
+          itemBuilder: (context, index) {
+            final folder = _currentList[index];
+            return FolderItemWidget(
+              key: ValueKey(index),
+              folder: folder,
+              index: index,
+              minHeight: 70,
+            );
+          },
+          proxyDecorator: (child, _, __) {
+            return TweenAnimationBuilder<double>(
+              tween: Tween<double>(
+                begin: 1.0,
+                end: 0.9,
+              ),
+              duration: const Duration(
+                milliseconds: 300,
+              ),
+              curve: Curves.easeInOut,
+              builder: _animateScale,
+              child: child,
+            );
+          },
         ),
       ],
     );

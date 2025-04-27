@@ -1,4 +1,6 @@
 {
+    "@@locale": "en",
+    "current_lang": "English",
     "auth_page_title": "Login",
     "google_login_button": "Login",
     "floating_error": "Floating error",
@@ -49,5 +51,12 @@
     "add_grade": "Add grade",
     "have_no_grades": "You have no grades yet...",
     
+    "settings_home_page_section": "Home page",
+    
+    "show_kos_button": "Show KOS button",
+    "show_ctu_links": "Show CTU links",
+    "wrap_ctu_links": "Wrap CTU links",
+    "search_folders": "Search folders",
+    "no_results": "No results",
     "home_page_title": "Link Manager"
 }

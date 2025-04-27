@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:link_manager/logic/logic.dart';
 import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/theme/app_colors.dart';
 import 'package:link_manager/ui/widgets/lists/links_list_widget.dart';
-import 'package:flutter/material.dart';
 
 class FolderItemWidget extends StatelessWidget {
   const FolderItemWidget({
@@ -22,9 +22,7 @@ class FolderItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final linkType = getLinkType(folder.link);
     final icon = getIconByLinkType(linkType);
-    final pressToIcon = linkType != AppLinkType.none
-        ? () => launchUrlByLink(folder.link)
-        : null;
+    final pressToIcon = linkType != AppLinkType.none ? () => launchUrlByLink(folder.link) : null;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -106,7 +104,7 @@ class _FolderItemContentState extends State<FolderItemContent> {
         clipBehavior: Clip.hardEdge,
         padding: const EdgeInsets.all(8),
         height: height,
-        duration: const Duration(milliseconds: 300), // Увеличиваем продолжительность для плавности
+        duration: const Duration(milliseconds: 100),
         decoration: BoxDecoration(
           color: const Color.fromARGB(37, 104, 58, 183),
           borderRadius: BorderRadius.horizontal(
