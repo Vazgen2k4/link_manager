@@ -78,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Вы хотите удалить папку:"),
         "remove_link": MessageLookupByLibrary.simpleMessage(
             "Вы уверены, что хотите удалить ссылку:"),
+        "remove_selected_folders":
+            MessageLookupByLibrary.simpleMessage("Удалить выбранные папки"),
         "search_folders": MessageLookupByLibrary.simpleMessage("Поиск папок"),
         "settings_home_page_section":
             MessageLookupByLibrary.simpleMessage("Домашняя страница"),

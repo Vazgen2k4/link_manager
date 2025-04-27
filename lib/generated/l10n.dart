@@ -570,6 +570,16 @@ class S {
     );
   }
 
+  /// `Remove selected folders`
+  String get remove_selected_folders {
+    return Intl.message(
+      'Remove selected folders',
+      name: 'remove_selected_folders',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Link Manager`
   String get home_page_title {
     return Intl.message(

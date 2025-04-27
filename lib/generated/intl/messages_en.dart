@@ -73,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you want to delete the folder:"),
         "remove_link": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete the link:"),
+        "remove_selected_folders":
+            MessageLookupByLibrary.simpleMessage("Remove selected folders"),
         "search_folders":
             MessageLookupByLibrary.simpleMessage("Search folders"),
         "settings_home_page_section":

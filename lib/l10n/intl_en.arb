@@ -58,5 +58,6 @@
     "wrap_ctu_links": "Wrap CTU links",
     "search_folders": "Search folders",
     "no_results": "No results",
+    "remove_selected_folders": "Remove selected folders",
     "home_page_title": "Link Manager"
 }

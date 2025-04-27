@@ -56,5 +56,6 @@
     "wrap_ctu_links": "Переносить ссылки ЧВУТ",
     "search_folders": "Поиск папок",
     "no_results": "Нет результатов",
+    "remove_selected_folders": "Удалить выбранные папки",
     "home_page_title": "Link Manager"
 }

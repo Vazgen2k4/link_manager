@@ -57,5 +57,6 @@
     "wrap_ctu_links": "Přetahovat odkazy ČVUT",
     "search_folders": "Hledat složky",
     "no_results": "Žádné výsledky",
+    "remove_selected_folders": "Odstranit vybrané složky",
     "home_page_title": "Link Manager"
 }

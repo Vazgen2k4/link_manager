@@ -73,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Chcete odstranit složku:"),
         "remove_link": MessageLookupByLibrary.simpleMessage(
             "Jste si jistí, že chcete odstranit odkaz:"),
+        "remove_selected_folders":
+            MessageLookupByLibrary.simpleMessage("Odstranit vybrané složky"),
         "search_folders": MessageLookupByLibrary.simpleMessage("Hledat složky"),
         "settings_home_page_section":
             MessageLookupByLibrary.simpleMessage("Domovská stránka"),
