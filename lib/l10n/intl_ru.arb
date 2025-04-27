@@ -54,6 +54,11 @@
     
     "show_ctu_links": "Показать ссылки ЧВУТ",
     "wrap_ctu_links": "Переносить ссылки ЧВУТ",
+    "show_ntk_people": "Показать людей НТК",
+    "ntk_people": "Люди НТК",
+    "ntk_title": "НТК",
+    
+    "loading": "Загрузка...",
     "search_folders": "Поиск папок",
     "no_results": "Нет результатов",
     "remove_selected_folders": "Удалить выбранные папки",

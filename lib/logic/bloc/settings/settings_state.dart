@@ -16,22 +16,26 @@ final class SettingsLoaded extends SettingsState {
   final bool _showKOSButton;
   final bool _showCTULinks;
   final bool _hasWrapCTULinks;
+  final bool _showNTKPeopleCount;
 
   String get lang => _lang;
   bool get showKOSButton => _showKOSButton;
   bool get showCTULinks => _showCTULinks;
   bool get moveCTULinks => _hasWrapCTULinks;
+  bool get showNTKPeopleCount => _showNTKPeopleCount;
 
   const SettingsLoaded({
     String? lang,
     bool? showKOSButton,
     bool? showCTULinks,
     bool? hasWrapCTULinks,
+    bool? showNTKPeopleCount,
   })  : _lang = lang ?? 'en',
         _showKOSButton = showKOSButton ?? true,
         _showCTULinks = showCTULinks ?? true,
-        _hasWrapCTULinks = hasWrapCTULinks ?? false;
+        _hasWrapCTULinks = hasWrapCTULinks ?? false,
+        _showNTKPeopleCount = showNTKPeopleCount ?? true;
 
   @override
-  List<Object> get props => [_lang, _showKOSButton, _showCTULinks, _hasWrapCTULinks];
+  List<Object> get props => [_lang, _showKOSButton, _showCTULinks, _hasWrapCTULinks, _showNTKPeopleCount];
 }

@@ -57,7 +57,11 @@
     "show_ctu_links": "Show CTU links",
     "wrap_ctu_links": "Wrap CTU links",
     "search_folders": "Search folders",
+    "show_ntk_people": "Show NTK people",
     "no_results": "No results",
+    "loading": "Loading...",
     "remove_selected_folders": "Remove selected folders",
+    "ntk_people": "NTK people",
+    "ntk_title": "NTK",
     "home_page_title": "Link Manager"
 }

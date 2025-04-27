@@ -53,10 +53,13 @@
     "show_kos_button": "Zobrazit tlačítko KOS",
     
     "show_ctu_links": "Zobrazit odkazy ČVUT",
-    
+    "ntk_people": "Lidé NTK",
+    "ntk_title": "NTK",
     "wrap_ctu_links": "Přetahovat odkazy ČVUT",
     "search_folders": "Hledat složky",
+    "loading": "Načítání...",
     "no_results": "Žádné výsledky",
+    "show_ntk_people": "Zobrazit lidi NTK",
     "remove_selected_folders": "Odstranit vybrané složky",
     "home_page_title": "Link Manager"
 }

@@ -16,6 +16,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         SettingsKeys.showKOSButton,
         SettingsKeys.showCTULinks,
         SettingsKeys.hasWrapCTULinks,
+        SettingsKeys.showNTKPeopleCount,
       },
     ),
   );
@@ -26,6 +27,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<ToggleKOSButtonEvent>(_toggleKOSButton);
     on<ToggleCTULinksEvent>(_toggleCTULinks);
     on<ToggleMoveCTULinksEvent>(_toggleMoveCTULinks);
+    on<ToggleNTKPeopleCountEvent>(_toggleNTKPeopleCount);
   }
 
   Future<void> _load(
@@ -36,15 +38,17 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
     final prefs = await _prefs;
     final lang = prefs.getString(SettingsKeys.lang);
-    final showKOSButton = prefs.getBool(SettingsKeys.showKOSButton) ?? false;
-    final showCTULinks = prefs.getBool(SettingsKeys.showCTULinks) ?? false;
-    final hasWrapCTULinks = prefs.getBool(SettingsKeys.hasWrapCTULinks) ?? false;
+    final showKOSButton = prefs.getBool(SettingsKeys.showKOSButton);
+    final showCTULinks = prefs.getBool(SettingsKeys.showCTULinks);
+    final hasWrapCTULinks = prefs.getBool(SettingsKeys.hasWrapCTULinks);
+    final showNTKPeopleCount = prefs.getBool(SettingsKeys.showNTKPeopleCount);
 
     final state = SettingsLoaded(
       lang: lang,
       showKOSButton: showKOSButton,
       showCTULinks: showCTULinks,
       hasWrapCTULinks: hasWrapCTULinks,
+      showNTKPeopleCount: showNTKPeopleCount,
     );
 
     emit(state);
@@ -139,6 +143,30 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       showKOSButton: currentState.showKOSButton,
       showCTULinks: currentState.showCTULinks,
       hasWrapCTULinks: newState,
+    ));
+  }
+
+  Future<void> _toggleNTKPeopleCount(
+    ToggleNTKPeopleCountEvent event,
+    Emitter<SettingsState> emit,
+  ) async {
+    if (state is! SettingsLoaded) {
+      AppLogger.logError("Ошибка состояния при переключении NTK počtu lidí");
+      return;
+    }
+
+    final currentState = state as SettingsLoaded;
+    final newState = !currentState.showNTKPeopleCount;
+
+    AppLogger.logHint("Переключение отображения počtu lidí v NTK");
+    await _prefs.then((prefs) => prefs.setBool(SettingsKeys.showNTKPeopleCount, newState));
+
+    emit(SettingsLoaded(
+      lang: currentState.lang,
+      showKOSButton: currentState.showKOSButton,
+      showCTULinks: currentState.showCTULinks,
+      hasWrapCTULinks: currentState.moveCTULinks,
+      showNTKPeopleCount: newState,
     ));
   }
 }

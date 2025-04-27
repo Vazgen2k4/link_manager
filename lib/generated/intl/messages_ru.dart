@@ -67,12 +67,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "link_to_kos":
             MessageLookupByLibrary.simpleMessage("Ссылка на расписание"),
         "links": MessageLookupByLibrary.simpleMessage("Ссылки"),
+        "loading": MessageLookupByLibrary.simpleMessage("Загрузка..."),
         "no_connection":
             MessageLookupByLibrary.simpleMessage("Нет соединения с интернетом"),
         "no_folders": MessageLookupByLibrary.simpleMessage(
             "У вас пока нет директорий..."),
         "no_results": MessageLookupByLibrary.simpleMessage("Нет результатов"),
         "no_title": MessageLookupByLibrary.simpleMessage("Нет заголовка"),
+        "ntk_people": MessageLookupByLibrary.simpleMessage("Люди НТК"),
+        "ntk_title": MessageLookupByLibrary.simpleMessage("НТК"),
         "profile_page_title": MessageLookupByLibrary.simpleMessage("Профиль"),
         "remove_folder":
             MessageLookupByLibrary.simpleMessage("Вы хотите удалить папку:"),
@@ -89,6 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Показать ссылки ЧВУТ"),
         "show_kos_button":
             MessageLookupByLibrary.simpleMessage("Показать кнопку KOS"),
+        "show_ntk_people":
+            MessageLookupByLibrary.simpleMessage("Показать людей НТК"),
         "support_project":
             MessageLookupByLibrary.simpleMessage("Поддержать проект"),
         "support_response_msg":

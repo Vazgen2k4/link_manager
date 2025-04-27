@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:link_manager/logic/bloc/settings/settings_bloc.dart';
 import 'package:link_manager/ui/pages/home/ctu_section.dart';
+import 'package:link_manager/ui/pages/home/ntk_section.dart';
 import 'package:link_manager/ui/widgets/buttons/to_kos_button.dart';
 import 'package:link_manager/ui/widgets/lists/folders_widget_list.dart';
 
@@ -21,6 +22,11 @@ class HomeTab extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               if (state.showKOSButton) SliverToBoxAdapter(child: const ToKosButton()),
+              if (state.showNTKPeopleCount) ...[
+                SliverToBoxAdapter(
+                  child: NtkSection(),
+                ),
+              ],
               if (state.showCTULinks) ...[
                 SliverToBoxAdapter(child: CTUSection(hasWrap: state.moveCTULinks)),
                 SliverToBoxAdapter(child: Divider()),

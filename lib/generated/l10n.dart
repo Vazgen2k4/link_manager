@@ -560,6 +560,16 @@ class S {
     );
   }
 
+  /// `Show NTK people`
+  String get show_ntk_people {
+    return Intl.message(
+      'Show NTK people',
+      name: 'show_ntk_people',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No results`
   String get no_results {
     return Intl.message(
@@ -570,11 +580,41 @@ class S {
     );
   }
 
+  /// `Loading...`
+  String get loading {
+    return Intl.message(
+      'Loading...',
+      name: 'loading',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Remove selected folders`
   String get remove_selected_folders {
     return Intl.message(
       'Remove selected folders',
       name: 'remove_selected_folders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NTK people`
+  String get ntk_people {
+    return Intl.message(
+      'NTK people',
+      name: 'ntk_people',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NTK`
+  String get ntk_title {
+    return Intl.message(
+      'NTK',
+      name: 'ntk_title',
       desc: '',
       args: [],
     );

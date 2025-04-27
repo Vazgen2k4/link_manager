@@ -62,12 +62,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tento odkaz již existuje"),
         "link_to_kos": MessageLookupByLibrary.simpleMessage("Odkaz na rozvrh"),
         "links": MessageLookupByLibrary.simpleMessage("Odkazy"),
+        "loading": MessageLookupByLibrary.simpleMessage("Načítání..."),
         "no_connection":
             MessageLookupByLibrary.simpleMessage("Žádné připojení k internetu"),
         "no_folders":
             MessageLookupByLibrary.simpleMessage("Nemáte žádné složky..."),
         "no_results": MessageLookupByLibrary.simpleMessage("Žádné výsledky"),
         "no_title": MessageLookupByLibrary.simpleMessage("Bez názvu"),
+        "ntk_people": MessageLookupByLibrary.simpleMessage("Lidé NTK"),
+        "ntk_title": MessageLookupByLibrary.simpleMessage("NTK"),
         "profile_page_title": MessageLookupByLibrary.simpleMessage("Profil"),
         "remove_folder":
             MessageLookupByLibrary.simpleMessage("Chcete odstranit složku:"),
@@ -85,6 +88,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Zobrazit odkazy ČVUT"),
         "show_kos_button":
             MessageLookupByLibrary.simpleMessage("Zobrazit tlačítko KOS"),
+        "show_ntk_people":
+            MessageLookupByLibrary.simpleMessage("Zobrazit lidi NTK"),
         "support_project":
             MessageLookupByLibrary.simpleMessage("Podpořit projekt"),
         "support_response_msg":

@@ -62,12 +62,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("This link already exists"),
         "link_to_kos": MessageLookupByLibrary.simpleMessage("Link to schedule"),
         "links": MessageLookupByLibrary.simpleMessage("Links"),
+        "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
         "no_connection":
             MessageLookupByLibrary.simpleMessage("No internet connection"),
         "no_folders": MessageLookupByLibrary.simpleMessage(
             "You have no directories yet..."),
         "no_results": MessageLookupByLibrary.simpleMessage("No results"),
         "no_title": MessageLookupByLibrary.simpleMessage("No title"),
+        "ntk_people": MessageLookupByLibrary.simpleMessage("NTK people"),
+        "ntk_title": MessageLookupByLibrary.simpleMessage("NTK"),
         "profile_page_title": MessageLookupByLibrary.simpleMessage("Profile"),
         "remove_folder": MessageLookupByLibrary.simpleMessage(
             "Do you want to delete the folder:"),
@@ -85,6 +88,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Show CTU links"),
         "show_kos_button":
             MessageLookupByLibrary.simpleMessage("Show KOS button"),
+        "show_ntk_people":
+            MessageLookupByLibrary.simpleMessage("Show NTK people"),
         "support_project":
             MessageLookupByLibrary.simpleMessage("Support the project"),
         "support_response_msg": MessageLookupByLibrary.simpleMessage(

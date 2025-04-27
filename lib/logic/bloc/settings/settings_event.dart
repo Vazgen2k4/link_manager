@@ -42,3 +42,11 @@ final class ToggleMoveCTULinksEvent extends SettingsEvent {
   @override
   List<Object> get props => [];
 }
+
+
+final class ToggleNTKPeopleCountEvent extends SettingsEvent {
+  const ToggleNTKPeopleCountEvent();
+
+  @override
+  List<Object> get props => [];
+}

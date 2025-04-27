@@ -156,10 +156,26 @@ class SettingsTab extends StatelessWidget {
                         return SettingsTile(
                           divider: divider,
                           icon: Icons.transfer_within_a_station,
-                          title: "Move CTU Links",
+                          title: S.of(context).wrap_ctu_links,
                           isChecked: state.moveCTULinks,
                           onChanged: (newValue) {
                             context.read<SettingsBloc>().add(ToggleMoveCTULinksEvent());
+                          },
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  ),
+                  BlocBuilder<SettingsBloc, SettingsState>(
+                    builder: (context, state) {
+                      if (state is SettingsLoaded) {
+                        return SettingsTile(
+                          divider: divider,
+                          icon: Icons.people_alt,
+                          title: S.of(context).show_ntk_people,
+                          isChecked: state.showNTKPeopleCount,
+                          onChanged: (newValue) {
+                            context.read<SettingsBloc>().add(ToggleNTKPeopleCountEvent());
                           },
                         );
                       }

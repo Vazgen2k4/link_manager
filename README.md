@@ -12,7 +12,7 @@ Link Manager is a mobile app designed to help students efficiently manage and or
 |                    | LazyColumn               | ListView.builder, Sliver (CustomScrollView)               | `lib/ui/pages/settings/settings_tab.dart`          |
 | **Navigace**       | Navigation Component     | Navigator2.0 (custom router)                       | `lib/ui/router/`               |
 | **Databáze**       | Room (SQLite)            | Firestore + SharedPreferences  | Cloud DB + lokální nastavení     |
-| **Síť**            | Retrofit                 | Firebase SDK                   | Auth + Firestore                |
+| **Síť**            | Retrofit                 | Firebase SDK  + http                 | Auth + Firestore  ; `lib/logic/api/ntk_api.dart`              |
 | **Notifikace**     | AlarmManager             | FCM + flutter_local_notifications | `lib/services/notification_service.dart`   |
 | **Práva**          | Runtime permissions      | `POST_NOTIFICATIONS` + síťové  | `android/app/src/main/AndroidManifest.xml`           |
 | **Lokalizace**     | -                        | Čeština, angličtina, ruština   | `lib/l10n/`                     |
