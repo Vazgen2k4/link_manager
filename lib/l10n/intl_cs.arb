@@ -60,6 +60,9 @@
     "loading": "Načítání...",
     "no_results": "Žádné výsledky",
     "show_ntk_people": "Zobrazit lidi NTK",
+    
+    "errors_ntk_api": "Chyba s NTK, zkuste to prosím později",
+    
     "remove_selected_folders": "Odstranit vybrané složky",
     "home_page_title": "Link Manager"
 }

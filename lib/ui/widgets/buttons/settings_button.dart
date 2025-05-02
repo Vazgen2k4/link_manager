@@ -16,16 +16,21 @@ class SettingsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      tileColor: AppColors.main,
-      leading: Icon(icon),
-      title: AutoSizeText(text),
-      shape: const OutlineInputBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(12),
+    return GestureDetector(
+      onTap: onClick,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: AppColors.main,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            spacing: 12,
+            children: [Icon(icon), AutoSizeText(text)],
+          ),
         ),
       ),
-      onTap: onClick,
     );
   }
 }

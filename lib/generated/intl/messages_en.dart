@@ -44,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error_404_title":
             MessageLookupByLibrary.simpleMessage("Page not found"),
         "error_name": MessageLookupByLibrary.simpleMessage("Error with name"),
+        "errors_ntk_api": MessageLookupByLibrary.simpleMessage(
+            "Error with NTK, try again later"),
         "exit": MessageLookupByLibrary.simpleMessage("Exit"),
         "field_label_link": MessageLookupByLibrary.simpleMessage("Link"),
         "field_label_name": MessageLookupByLibrary.simpleMessage("Name"),

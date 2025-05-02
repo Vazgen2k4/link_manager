@@ -47,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error_404_title":
             MessageLookupByLibrary.simpleMessage("Страница не найдена"),
         "error_name": MessageLookupByLibrary.simpleMessage("Ошибка с именем"),
+        "errors_ntk_api": MessageLookupByLibrary.simpleMessage(
+            "Ошибка с НТК, попробуйте позже"),
         "exit": MessageLookupByLibrary.simpleMessage("Выход"),
         "field_label_link": MessageLookupByLibrary.simpleMessage("Ссылка"),
         "field_label_name": MessageLookupByLibrary.simpleMessage("Название"),

@@ -30,7 +30,7 @@ class FoldersWidgetList extends StatelessWidget {
         }
         
         
-        return ReorderedFolderList(key: UniqueKey(), user: user);
+        return ReorderedFolderList( user: user);
       },
     );
   }

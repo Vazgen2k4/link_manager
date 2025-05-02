@@ -600,6 +600,16 @@ class S {
     );
   }
 
+  /// `Error with NTK, try again later`
+  String get errors_ntk_api {
+    return Intl.message(
+      'Error with NTK, try again later',
+      name: 'errors_ntk_api',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `NTK people`
   String get ntk_people {
     return Intl.message(

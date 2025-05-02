@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-// import 'package:rountiner/core/consts.dart';
 import 'package:http/http.dart' as http;
 import 'package:link_manager/app_logger.dart';
 import 'package:link_manager/ui/app_const.dart';
@@ -82,16 +80,13 @@ class NotificationService {
       return;
     }
 
-    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    await flutterLocalNotificationsPlugin
+    await _localNotifications
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(kMainAndroidChannel);
 
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings(kMainAndroidNotificationIcon);
-
-    // IOS Initialization Settings
 
     const initializationSettingsIos = DarwinInitializationSettings();
 
@@ -168,7 +163,10 @@ class NotificationService {
     // open app from terminated state
     final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
     if (initialMessage != null) {
+      log("Initial message received: ${initialMessage.messageId}");
       _handleBackgroundMessage(initialMessage);
+    } else {
+      log("No initial message");
     }
   }
 

@@ -61,6 +61,7 @@
     "no_results": "No results",
     "loading": "Loading...",
     "remove_selected_folders": "Remove selected folders",
+    "errors_ntk_api": "Error with NTK, try again later",
     "ntk_people": "NTK people",
     "ntk_title": "NTK",
     "home_page_title": "Link Manager"

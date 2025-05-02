@@ -43,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error_404_title":
             MessageLookupByLibrary.simpleMessage("Stránka nenalezena"),
         "error_name": MessageLookupByLibrary.simpleMessage("Chyba se jménem"),
+        "errors_ntk_api": MessageLookupByLibrary.simpleMessage(
+            "Chyba s NTK, zkuste to prosím později"),
         "exit": MessageLookupByLibrary.simpleMessage("Odhlásit se"),
         "field_label_link": MessageLookupByLibrary.simpleMessage("Odkaz"),
         "field_label_name": MessageLookupByLibrary.simpleMessage("Název"),

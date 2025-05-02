@@ -13,3 +13,4 @@ key.properties
 **/*.jks
 keystore.properties
 /app/google-services.json
+/app/.cxx

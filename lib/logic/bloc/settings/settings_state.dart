@@ -9,6 +9,7 @@ sealed class SettingsState extends Equatable {
 
 final class SettingsInitial extends SettingsState {
   const SettingsInitial() : super();
+
 }
 
 final class SettingsLoaded extends SettingsState {
@@ -38,4 +39,21 @@ final class SettingsLoaded extends SettingsState {
 
   @override
   List<Object> get props => [_lang, _showKOSButton, _showCTULinks, _hasWrapCTULinks, _showNTKPeopleCount];
+  
+
+  SettingsLoaded copyWith({
+    String? lang,
+    bool? showKOSButton,
+    bool? showCTULinks,
+    bool? hasWrapCTULinks,
+    bool? showNTKPeopleCount,
+  }) {
+    return SettingsLoaded(
+      lang: lang ?? _lang,
+      showKOSButton: showKOSButton ?? _showKOSButton,
+      showCTULinks: showCTULinks ?? _showCTULinks,
+      hasWrapCTULinks: hasWrapCTULinks ?? _hasWrapCTULinks,
+      showNTKPeopleCount: showNTKPeopleCount ?? _showNTKPeopleCount,
+    );
+  }
 }

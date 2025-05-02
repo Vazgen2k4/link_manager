@@ -63,6 +63,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       return;
     }
 
+    final currentState = state as SettingsLoaded;
     final prefs = await _prefs;
     final lang = prefs.getString(SettingsKeys.lang);
 
@@ -74,7 +75,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     AppLogger.logHint("Установка нового языка");
     await prefs.setString(SettingsKeys.lang, event.newLang);
 
-    emit(SettingsLoaded(lang: event.newLang));
+    emit(currentState.copyWith(lang: event.newLang));
   }
 
   Future<void> _toggleKOSButton(
@@ -92,12 +93,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     AppLogger.logHint("Переключение кнопки KOS");
     await _prefs.then((prefs) => prefs.setBool(SettingsKeys.showKOSButton, newState));
 
-    emit(SettingsLoaded(
-      lang: currentState.lang,
-      showKOSButton: newState,
-      showCTULinks: currentState.showCTULinks,
-      hasWrapCTULinks: currentState.moveCTULinks,
-    ));
+    emit(currentState.copyWith(showKOSButton: newState));
   }
 
   Future<void> _toggleCTULinks(
@@ -115,12 +111,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     AppLogger.logHint("Переключение секции с CTU линками");
     await _prefs.then((prefs) => prefs.setBool(SettingsKeys.showCTULinks, newState));
 
-    emit(SettingsLoaded(
-      lang: currentState.lang,
-      showKOSButton: currentState.showKOSButton,
-      showCTULinks: newState,
-      hasWrapCTULinks: currentState.moveCTULinks,
-    ));
+    emit(currentState.copyWith(showCTULinks: newState));
   }
 
   Future<void> _toggleMoveCTULinks(
@@ -138,12 +129,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     AppLogger.logHint("Переключение перемещения CTU ссылок");
     await _prefs.then((prefs) => prefs.setBool(SettingsKeys.hasWrapCTULinks, newState));
 
-    emit(SettingsLoaded(
-      lang: currentState.lang,
-      showKOSButton: currentState.showKOSButton,
-      showCTULinks: currentState.showCTULinks,
-      hasWrapCTULinks: newState,
-    ));
+    emit(currentState.copyWith(hasWrapCTULinks: newState));
   }
 
   Future<void> _toggleNTKPeopleCount(
@@ -161,12 +147,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     AppLogger.logHint("Переключение отображения počtu lidí v NTK");
     await _prefs.then((prefs) => prefs.setBool(SettingsKeys.showNTKPeopleCount, newState));
 
-    emit(SettingsLoaded(
-      lang: currentState.lang,
-      showKOSButton: currentState.showKOSButton,
-      showCTULinks: currentState.showCTULinks,
-      hasWrapCTULinks: currentState.moveCTULinks,
-      showNTKPeopleCount: newState,
-    ));
+    emit(currentState.copyWith(showNTKPeopleCount: newState));
   }
 }

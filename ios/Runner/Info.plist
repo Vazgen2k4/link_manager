@@ -46,6 +46,8 @@
     <key>UIApplicationSupportsIndirectInputEvents</key>
     <true/>
     
+    <key>io.flutter.experimental.enable-impeller</key>
+    <true/>    
     <!-- Google Sign-In Configuration -->
     <key>CFBundleURLTypes</key>
     <array>

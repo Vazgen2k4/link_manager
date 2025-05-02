@@ -69,11 +69,13 @@ class NTKPeopleTile extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          AnimatedFlipCounter(
-            value: peopleCount!,
-            duration: const Duration(milliseconds: 800),
-            textStyle: Theme.of(context).textTheme.headlineMedium,
-          ),
+          
+            AnimatedFlipCounter(
+              value: peopleCount ?? 0,
+              duration: const Duration(milliseconds: 800),
+              textStyle: Theme.of(context).textTheme.headlineMedium,
+            ),
+          
           IconButton(
             icon: isLoading
                 ? const SizedBox(

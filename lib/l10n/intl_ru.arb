@@ -40,24 +40,20 @@
     "folder_create": "Директория \"$\" успешно создана",
     "link_exists": "Такая ссылка уже существует",
     "calc_title": "Калькулятор",
-    
     "calc_credits": "Кредиты",
     "calc_weighted": "Взвешенные кредиты",
     "calc_weighted_average": "Взвешенное балл",
     "calc_gpa": "Средний балл",
     "add_grade": "Добавить оценку",
     "have_no_grades": "У вас пока нет оценок...",
-    
     "settings_home_page_section": "Домашняя страница",
-
     "show_kos_button": "Показать кнопку KOS",
-    
     "show_ctu_links": "Показать ссылки ЧВУТ",
     "wrap_ctu_links": "Переносить ссылки ЧВУТ",
     "show_ntk_people": "Показать людей НТК",
     "ntk_people": "Люди НТК",
     "ntk_title": "НТК",
-    
+    "errors_ntk_api": "Ошибка с НТК, попробуйте позже",
     "loading": "Загрузка...",
     "search_folders": "Поиск папок",
     "no_results": "Нет результатов",
