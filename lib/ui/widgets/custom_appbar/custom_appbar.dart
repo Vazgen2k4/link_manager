@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/ui/router/app_routes.dart';
@@ -21,9 +20,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-    final userUrl = user?.photoURL ?? '';
-
     return DecoratedBox(
       decoration: const BoxDecoration(
         color: AppColors.main,
