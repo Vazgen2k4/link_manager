@@ -120,6 +120,8 @@ class _FolderItemContentState extends State<FolderItemContent> {
           maxHeight: widget.maxHeight,
           folder: widget.folder,
           index: widget.index,
+          isOpened: isOpen,
+          verticalPadding: 12,
         ),
       ),
     );

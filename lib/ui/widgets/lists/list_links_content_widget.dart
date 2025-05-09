@@ -1,13 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/api/firebase_api/firebase_api.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/models/link/app_link.dart';
 import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/widgets/alerts/app_dialogs.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LInksListContentWidget extends StatelessWidget {
   const LInksListContentWidget({
@@ -35,16 +35,14 @@ class LInksListContentWidget extends StatelessWidget {
       separatorBuilder: (_, __) => const SizedBox(width: 10),
       itemBuilder: (_, index) {
         final link = links[index];
-    
+
         return Align(
           alignment: Alignment.bottomCenter,
           child: Material(
-            
             clipBehavior: Clip.hardEdge,
             borderRadius: BorderRadius.circular(10),
             color: const Color(0xff594391),
             child: InkWell(
-              
               child: SizedBox(
                 height: 40,
                 child: Padding(

@@ -1,7 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:link_manager/services/notification_service.dart';
 import 'package:link_manager/ui/app.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'firebase_options.dart';
 
 void main() async {
@@ -11,7 +12,10 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await NotificationService.instance.init();
+  if (DefaultFirebaseOptions.currentPlatform == DefaultFirebaseOptions.android) {
+    // Initialize the notification service
+    await NotificationService.instance.init();
+  }
 
   runApp(const App());
 }

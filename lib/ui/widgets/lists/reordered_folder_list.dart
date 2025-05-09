@@ -162,7 +162,6 @@ class _ReorderedFolderListState extends State<ReorderedFolderList> {
               key: ValueKey(index),
               folder: folder,
               index: index,
-              minHeight: 70,
             );
           },
           proxyDecorator: (child, _, __) {

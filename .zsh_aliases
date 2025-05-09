@@ -1,2 +1,4 @@
 alias flutter="fvm flutter"
 alias dart="fvm dart"
+alias build_android="fvm flutter build appbundle --release"
+alias build_ios="fvm flutter build ipa --release"
