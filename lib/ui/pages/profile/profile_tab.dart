@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
-import 'package:link_manager/logic/bloc/settings/settings_bloc.dart';
 import 'package:link_manager/ui/app_const.dart';
 import 'package:link_manager/ui/pages/profile/personal_form.dart';
 import 'package:link_manager/ui/router/app_hero_tags.dart';
@@ -35,11 +34,10 @@ class ProfileTab extends StatelessWidget {
     );
   }
 
- 
   @override
   Widget build(BuildContext context) {
     const divider = SizedBox(height: 8, width: 8);
-    
+
     return LimitContainer(
       child: CustomScrollView(
         slivers: [
