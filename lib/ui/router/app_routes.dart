@@ -44,28 +44,36 @@ sealed class AppRoutes {
           name: 'Home',
           icon: Icons.home,
           route: home,
-          child: HomeTab(),
+          child: HomeTab(
+            key: const Key('home_tab'),
+          ),
           getTitle: (context) => S.of(context).home_page_title,
         ),
         AppTab(
           name: 'Calc',
           icon: Icons.calculate,
           route: calc,
-          child: CalcTab(),
+          child: CalcTab(
+            key: const Key('calc_tab'),
+          ),
           getTitle: (context) => S.of(context).calc_title,
         ),
         AppTab(
           name: 'Profile',
           icon: Icons.person,
           route: profile,
-          child: ProfileTab(),
+          child: ProfileTab(
+            key: const Key('profile_tab'),
+          ),
           getTitle: (context) => S.of(context).profile_page_title,
         ),
         AppTab(
           name: 'Settings',
           icon: Icons.settings,
           route: settings,
-          child: SettingsTab(),
+          child: SettingsTab(
+            key: const Key('settings_tab'),
+          ),
           getTitle: (context) => S.of(context).settings_title,
         ),
       ];

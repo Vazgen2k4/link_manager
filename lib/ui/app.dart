@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:link_manager/generated/l10n.dart';
 import 'package:link_manager/logic/bloc/auth/auth_bloc.dart';
 import 'package:link_manager/logic/bloc/calc/calc_bloc.dart';
+import 'package:link_manager/logic/bloc/connection/connection_cubit.dart';
 import 'package:link_manager/logic/bloc/settings/settings_bloc.dart';
 import 'package:link_manager/ui/router/app_router.dart';
 
@@ -14,6 +15,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<ConnectionCubit>(
+          create: (_) => ConnectionCubit(),
+        ),
         BlocProvider<AuthBloc>(
           create: (_) {
             final bloc = AuthBloc();
