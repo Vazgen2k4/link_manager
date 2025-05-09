@@ -63,6 +63,25 @@
     
     "errors_ntk_api": "Chyba s NTK, zkuste to prosím později",
     
+    "version_section_title": "O aplikace",
+    
+    "version_is": "Aktuální verze: {version}",
+    "@version_is": {
+      "placeholders": {
+        "version": {
+            "type": "String"
+        }
+      }
+    },
+    "build_is": "Aktuální build {build}",
+    "@build_is": {
+      "placeholders": {
+        "build": {
+            "type": "String"
+        }
+      }
+    },
+    
     "remove_selected_folders": "Odstranit vybrané složky",
     "home_page_title": "Link Manager"
 }

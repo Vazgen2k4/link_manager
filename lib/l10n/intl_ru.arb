@@ -58,5 +58,24 @@
     "search_folders": "Поиск папок",
     "no_results": "Нет результатов",
     "remove_selected_folders": "Удалить выбранные папки",
+    
+    "version_section_title": "О приложении",
+    
+    "version_is": "Текущая версия: {version}",
+    "@version_is": {
+      "placeholders": {
+        "version": {
+            "type": "String"
+        }
+      }
+    },
+    "build_is": "Текущая сборка: {build}",
+    "@build_is": {
+      "placeholders": {
+        "build": {
+            "type": "String"
+        }
+      }
+    },
     "home_page_title": "Link Manager"
 }

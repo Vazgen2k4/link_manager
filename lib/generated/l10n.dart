@@ -630,6 +630,36 @@ class S {
     );
   }
 
+  /// `About App`
+  String get version_section_title {
+    return Intl.message(
+      'About App',
+      name: 'version_section_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current version: {version}`
+  String version_is(String version) {
+    return Intl.message(
+      'Current version: $version',
+      name: 'version_is',
+      desc: '',
+      args: [version],
+    );
+  }
+
+  /// `Current build: {build}`
+  String build_is(String build) {
+    return Intl.message(
+      'Current build: $build',
+      name: 'build_is',
+      desc: '',
+      args: [build],
+    );
+  }
+
   /// `Link Manager`
   String get home_page_title {
     return Intl.message(

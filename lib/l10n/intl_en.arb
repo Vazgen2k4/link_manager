@@ -64,5 +64,25 @@
     "errors_ntk_api": "Error with NTK, try again later",
     "ntk_people": "NTK people",
     "ntk_title": "NTK",
+    
+    "version_section_title": "About App",
+    
+    "version_is": "Current version: {version}",
+    "@version_is": {
+      "placeholders": {
+        "version": {
+            "type": "String"
+        }
+      }
+    },
+    "build_is": "Current build: {build}",
+    "@build_is": {
+      "placeholders": {
+        "build": {
+            "type": "String"
+        }
+      }
+    },
+    
     "home_page_title": "Link Manager"
 }

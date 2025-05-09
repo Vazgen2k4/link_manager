@@ -20,11 +20,16 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'cs';
 
+  static String m0(build) => "Aktuální build ${build}";
+
+  static String m1(version) => "Aktuální verze: ${version}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_folder": MessageLookupByLibrary.simpleMessage("Přidat složku"),
         "add_grade": MessageLookupByLibrary.simpleMessage("Přidat známku"),
         "auth_page_title": MessageLookupByLibrary.simpleMessage("Přihlásit se"),
+        "build_is": m0,
         "calc_credits": MessageLookupByLibrary.simpleMessage("Kredity"),
         "calc_gpa": MessageLookupByLibrary.simpleMessage("GPA"),
         "calc_title": MessageLookupByLibrary.simpleMessage("Kalkulačka"),
@@ -108,6 +113,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Neplatný formát čísla"),
         "validate_required":
             MessageLookupByLibrary.simpleMessage("Toto pole je povinné"),
+        "version_is": m1,
+        "version_section_title":
+            MessageLookupByLibrary.simpleMessage("O aplikace"),
         "wrap_ctu_links":
             MessageLookupByLibrary.simpleMessage("Přetahovat odkazy ČVUT")
       };

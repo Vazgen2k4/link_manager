@@ -20,6 +20,10 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
+  static String m0(build) => "Текущая сборка: ${build}";
+
+  static String m1(version) => "Текущая версия: ${version}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_folder":
@@ -27,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_grade": MessageLookupByLibrary.simpleMessage("Добавить оценку"),
         "auth_page_title":
             MessageLookupByLibrary.simpleMessage("Выполните вход"),
+        "build_is": m0,
         "calc_credits": MessageLookupByLibrary.simpleMessage("Кредиты"),
         "calc_gpa": MessageLookupByLibrary.simpleMessage("Средний балл"),
         "calc_title": MessageLookupByLibrary.simpleMessage("Калькулятор"),
@@ -112,6 +117,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Неверный формат номера"),
         "validate_required":
             MessageLookupByLibrary.simpleMessage("Это поле обязательное"),
+        "version_is": m1,
+        "version_section_title":
+            MessageLookupByLibrary.simpleMessage("О приложении"),
         "wrap_ctu_links":
             MessageLookupByLibrary.simpleMessage("Переносить ссылки ЧВУТ")
       };
